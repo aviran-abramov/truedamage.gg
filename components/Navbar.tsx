@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link"
 import {
     NavigationMenu,
@@ -8,15 +10,17 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export const Navbar = () => {
+    const isMobile = useIsMobile();
 
     return (
-        <NavigationMenu>
+        <NavigationMenu viewport={isMobile}>
             <NavigationMenuList>
                 {/* HOME */}
                 <NavigationMenuItem>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
                         <Link href="/">Home</Link>
                     </NavigationMenuLink>
                 </NavigationMenuItem>
@@ -27,10 +31,10 @@ export const Navbar = () => {
                     <NavigationMenuContent>
                         <ul className="grid w-50 gap-4">
                             <li>
-                                <NavigationMenuLink>
+                                <NavigationMenuLink asChild>
                                     <Link href="/matches/upcoming">Upcoming Matches</Link>
                                 </NavigationMenuLink>
-                                <NavigationMenuLink >
+                                <NavigationMenuLink asChild>
                                     <Link href="/matches/results">Results</Link>
                                 </NavigationMenuLink>
                             </li>
@@ -44,10 +48,10 @@ export const Navbar = () => {
                     <NavigationMenuContent>
                         <ul className="grid w-50 gap-4">
                             <li>
-                                <NavigationMenuLink>
+                                <NavigationMenuLink asChild>
                                     <Link href="/forecasts/create">Today's Forecasts</Link>
                                 </NavigationMenuLink>
-                                <NavigationMenuLink >
+                                <NavigationMenuLink asChild>
                                     <Link href="/forecasts/my-forecasts">Results</Link>
                                 </NavigationMenuLink>
                             </li>
@@ -57,14 +61,14 @@ export const Navbar = () => {
 
                 {/* ARTICLES */}
                 <NavigationMenuItem className="hidden md:block">
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
                         <Link href="/articles">Articles</Link>
                     </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 {/* FAQ */}
                 <NavigationMenuItem className="hidden md:block">
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
                         <Link href="/faq">FAQ</Link>
                     </NavigationMenuLink>
                 </NavigationMenuItem>
