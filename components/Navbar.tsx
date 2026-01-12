@@ -49,7 +49,7 @@ export const Navbar = () => {
                         <ul className="grid w-50 gap-4">
                             <li>
                                 <NavigationMenuLink asChild>
-                                    <Link href="/forecasts/create">Today's Forecasts</Link>
+                                    <Link href="/forecasts/upcoming">Upcoming Forecasts</Link>
                                 </NavigationMenuLink>
                                 <NavigationMenuLink asChild>
                                     <Link href="/forecasts/my-forecasts">Results</Link>
