@@ -1,10 +1,6 @@
 import { AlertCircleIcon, CheckCircle2Icon, PopcornIcon } from "lucide-react"
-import {
-    Alert,
-    AlertDescription,
-    AlertTitle,
-} from "@/components/ui/alert"
-import { MatchProps } from "@/lib/types/match"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui"
+import { MatchProps } from "@/lib/types"
 import Image from "next/image"
 
 export const Forecast = ({

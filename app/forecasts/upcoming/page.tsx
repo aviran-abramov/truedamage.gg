@@ -1,12 +1,15 @@
 import { ForecastList } from "@/components/ForecastList"
+import { getUpcomingForecasts } from "@/lib/services/forecast-service"
 import Image from "next/image"
 
-const UpcomingForecastsPage = () => {
+const UpcomingForecastsPage = async () => {
+    const forecasts = await getUpcomingForecasts()
+
     return (
         <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col items-center">
             <Image src="/lol_banner.webp" alt="Upcoming Matches" width={1416} height={248.16} />
 
-            <ForecastList />
+            <ForecastList forecasts={forecasts} />
         </div>
     )
 }

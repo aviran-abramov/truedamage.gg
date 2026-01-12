@@ -9,7 +9,7 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui"
 import { useIsMobile } from "@/hooks/use-mobile"
 
 export const Navbar = () => {

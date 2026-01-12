@@ -1,3 +1,7 @@
+/**
+ * @deprecated Use Forecast from '@/lib/types/forecast' instead
+ * This interface is kept for backward compatibility
+ */
 export interface MatchProps {
     id: string;
     matchDate: string;
@@ -9,3 +13,6 @@ export interface MatchProps {
     bestOf: number;
     forecastedWinnerName?: string;
 }
+
+// Re-export for convenience
+export type { Forecast } from './forecast';
