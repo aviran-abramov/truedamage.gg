@@ -12,3 +12,27 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Team {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  country   String
+  game      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Match {
+  id               String   @id @default(cuid())
+  matchDate        String
+  matchTime        String
+  game             String
+  league           String
+  teamA            String
+  teamB            String
+  bestOf           Int
+  winnerPrediction String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}

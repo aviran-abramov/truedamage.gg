@@ -2,10 +2,10 @@ export interface MatchProps {
     id: string;
     matchDate: string;
     matchTime: string;
-    gameName: string;
-    leagueName: string;
-    teamAName: string;
-    teamBName: string;
+    game: string;
+    league: string;
+    teamA: string;
+    teamB: string;
     bestOf: number;
-    forecastedWinnerName?: string;
+    winnerPrediction?: string;
 }
