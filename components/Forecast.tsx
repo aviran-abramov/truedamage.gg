@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/alert"
 import { MatchProps } from "@/lib/types/match"
 import Image from "next/image"
+import { Match } from "@/lib/generated/prisma/client"
 
 export const Forecast = ({
     id,
@@ -17,7 +18,7 @@ export const Forecast = ({
     teamB = "BRION Challengers",
     bestOf = 3,
     winnerPrediction = "BRION Challengers",
-}: MatchProps) => {
+}: Match) => {
 
     return (
         <li className="list-none w-full">
