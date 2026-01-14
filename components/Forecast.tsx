@@ -22,7 +22,7 @@ export const Forecast = ({
             {/* TOP PART */}
             <Alert className="rounded-b-none text-black dark:text-white">
                 <AlertTitle className="flex items-center gap-2">
-                    <Image className="dark:invert" src={`/lol_small_icon.svg`} alt={`${game} logo`} width={20} height={20} />
+                    <Image className="dark:invert" src={`/icons/games/league-of-legends.svg`} alt={`${game} logo`} width={20} height={20} />
                     <AlertTitle className="font-semibold">{game} - {league}</AlertTitle>
                 </AlertTitle>
             </Alert>
