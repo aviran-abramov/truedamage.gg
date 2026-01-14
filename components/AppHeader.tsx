@@ -22,7 +22,13 @@ const UserBar = () => {
             <div className="flex items-center justify-between max-w-7xl mx-auto">
                 <Link href="/" className="font-extrabold tracking-tight text-xl">TrueDamage.gg</Link>
                 <Navbar />
-                <ModeToggle />
+
+                <div className='flex items-center gap-1'>
+                    <ModeToggle />
+                    <Button variant="outline" size="icon" className="cursor-pointer">
+                        <UserIcon />
+                    </Button>
+                </div>
             </div>
         </div>
     )
