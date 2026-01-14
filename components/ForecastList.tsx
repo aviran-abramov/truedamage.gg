@@ -10,6 +10,8 @@ export const ForecastList = async () => {
             }
         }
     });
+    console.log(forecasts[0]);
+
 
     return (
         <section className="flex flex-col items-center max-w-4xl w-full">
@@ -17,7 +19,7 @@ export const ForecastList = async () => {
 
             <ul className="w-full space-y-8">
                 {forecasts.map((forecast) => (
-                    <Forecast key={forecast.id} {...forecast} />
+                    <Forecast key={forecast.id} forecast={forecast} />
                 ))}
             </ul>
         </section>

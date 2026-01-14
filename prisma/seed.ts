@@ -3,7 +3,6 @@ import prisma from "@/lib/db";
 async function main() {
     const matches = [
         {
-            id: "1",
             matchDate: "2026-01-12",
             matchTime: "11:00",
             game: "League of Legends",
@@ -14,7 +13,6 @@ async function main() {
             winnerPrediction: "BRION Challengers",
         },
         {
-            id: "2",
             matchDate: "2026-01-13",
             matchTime: "14:00",
             game: "League of Legends",
@@ -25,7 +23,6 @@ async function main() {
             winnerPrediction: "T1 Esports Academy",
         },
         {
-            id: "3",
             matchDate: "2026-01-14",
             matchTime: "16:00",
             game: "League of Legends",
@@ -36,6 +33,64 @@ async function main() {
             winnerPrediction: "All for One Gaming",
         }
     ];
+
+    const teams = [
+        {
+            name: "BIG Academy",
+            slug: "big-academy",
+            country: "Germany",
+
+            game: "League of Legends",
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+        },
+        {
+            name: "BRION Challengers",
+            slug: "brion-challengers",
+            country: "South Korea",
+            game: "League of Legends",
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+        },
+        {
+            name: "T1 Esports Academy",
+            slug: "t1-esports-academy",
+            country: "South Korea",
+            game: "League of Legends",
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+        },
+        {
+            name: "BNK FEARX Youth",
+            slug: "bnk-fearx-youth",
+            country: "South Korea",
+            game: "League of Legends",
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+        },
+        {
+            name: "All for One Gaming",
+            slug: "all-for-one-gaming",
+            country: "Germany",
+            game: "League of Legends",
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+        },
+        {
+            name: "Second Time Alive",
+            slug: "second-time-alive",
+            country: "Germany",
+            game: "League of Legends",
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+        }
+    ]
+
+    for (const team of teams) {
+        await prisma.team.create({
+            data: team
+        });
+    }
 
     for (const match of matches) {
         await prisma.match.create({
