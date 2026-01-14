@@ -26,7 +26,9 @@ const UserBar = () => {
                 <div className='flex items-center gap-1'>
                     <ModeToggle />
                     <Button variant="outline" size="icon" className="cursor-pointer">
-                        <UserIcon />
+                        <Link href="/login">
+                            <UserIcon />
+                        </Link>
                     </Button>
                 </div>
             </div>
