@@ -10,8 +10,6 @@ export const ForecastList = async () => {
             }
         }
     });
-    console.log(forecasts[0]);
-
 
     return (
         <section className="flex flex-col items-center max-w-4xl w-full">
