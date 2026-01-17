@@ -11,8 +11,8 @@ export const teams = [
     {
         name: "BRION Challengers",
         slug: "brion-challengers",
-        countryCode: "South Korea",
-        countryName: "KR",
+        countryCode: "kr",
+        countryName: "South Korea",
         game: "League of Legends",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
@@ -20,8 +20,8 @@ export const teams = [
     {
         name: "T1 Esports Academy",
         slug: "t1-esports-academy",
-        countryCode: "South Korea",
-        countryName: "KR",
+        countryCode: "kr",
+        countryName: "South Korea",
         game: "League of Legends",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
@@ -29,8 +29,8 @@ export const teams = [
     {
         name: "BNK FEARX Youth",
         slug: "bnk-fearx-youth",
-        countryCode: "South Korea",
-        countryName: "KR",
+        countryCode: "kr",
+        countryName: "South Korea",
         game: "League of Legends",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),

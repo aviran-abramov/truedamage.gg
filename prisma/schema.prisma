@@ -15,6 +15,7 @@ model Game {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   teams     Team[]
+  matches   Match[]
 }
 
 model Team {
@@ -33,7 +34,8 @@ model Match {
   id               String   @id @default(cuid())
   matchDate        String
   matchTime        String
-  game             String
+  gameId           String
+  game             Game     @relation(fields: [gameId], references: [id])
   league           String
   teamA            String
   teamB            String

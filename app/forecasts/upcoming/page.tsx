@@ -1,4 +1,5 @@
 import { ForecastList } from "@/components/ForecastList"
+import prisma from "@/lib/db";
 import Image from "next/image"
 
 const UpcomingForecastsPage = () => {
