@@ -23,7 +23,7 @@ async function main() {
             });
 
             if (!game) {
-                throw new Error(`Game not found for team: ${team.name}`);
+                throw new Error(`SEED: Create Teams - Game not found for team: ${team.name}`);
             }
 
             await prisma.team.create({
@@ -45,7 +45,27 @@ async function main() {
             });
 
             if (!game) {
-                throw new Error(`Game not found for match: ${match.game}`);
+                throw new Error(`SEED: Create Matches - Game not found for match: ${match.game}`);
+            }
+
+            const teamA = await prisma.team.findFirst({
+                where: {
+                    name: match.teamAName
+                }
+            });
+
+            if (!teamA) {
+                throw new Error(`SEED: Create matches - Team A not found for match: ${match.game}`)
+            }
+
+            const teamB = await prisma.team.findFirst({
+                where: {
+                    name: match.teamBName
+                }
+            });
+
+            if (!teamB) {
+                throw new Error(`SEED: Create matches - Team B not found for match: ${match.game}`)
             }
 
             await prisma.match.create({
@@ -53,8 +73,8 @@ async function main() {
                     matchDate: match.matchDate,
                     matchTime: match.matchTime,
                     league: match.league,
-                    teamA: match.teamA,
-                    teamB: match.teamB,
+                    teamAId: teamA.id,
+                    teamBId: teamB.id,
                     gameId: game.id,
                     bestOf: match.bestOf,
                     winnerPrediction: match.winnerPrediction

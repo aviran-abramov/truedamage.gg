@@ -3,16 +3,16 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 import Image from "next/image"
-import { Match } from "@/lib/generated/prisma/client"
+import type { Match, Game, Team } from "@/lib/generated/prisma/client"
 
-export const Forecast = ({ forecast }: { forecast: Match }) => {
+export const Forecast = ({ forecast }: { forecast: Match & { game: Game, teamA: Team, teamB: Team } }) => {
     return (
         <li className="list-none w-full">
             {/* TOP PART */}
             <Alert className="rounded-b-none text-black dark:text-white">
                 <AlertTitle className="flex items-center gap-2">
-                    <Image className="dark:invert" src={`/icons/games/league-of-legends.svg`} alt={`${forecast.game} logo`} width={20} height={20} />
-                    <AlertTitle className="font-semibold">{forecast.game} - {forecast.league}</AlertTitle>
+                    <Image className="dark:invert" src={`/icons/games/league-of-legends.svg`} alt={`${forecast.game.name} logo`} width={20} height={20} />
+                    <AlertTitle className="font-semibold">{forecast.game.name} - {forecast.league}</AlertTitle>
                 </AlertTitle>
             </Alert>
 
@@ -20,10 +20,10 @@ export const Forecast = ({ forecast }: { forecast: Match }) => {
             <Alert className="rounded-t-none grid grid-cols-[1fr_auto_1fr] items-center bg-[#F1F1F5] text-black ">
                 {/* LEFT - TEAM A */}
                 <div className="flex flex-col items-center gap-0.5">
-                    <p className={`text-xl font-bold ${forecast.winnerPrediction === forecast.teamA ? "text-green-600" : ""}`}>{forecast.teamA}</p>
+                    <p className={`text-xl font-bold ${forecast.winnerPrediction === forecast.teamA.name ? "text-green-600" : ""}`}>{forecast.teamA.name}</p>
                     <div className="flex items-center gap-1">
-                        <Image src={`https://flagcdn.com/w20/us.png`} alt={`United States flag`} width={20} height={20} />
-                        <p>United States</p>
+                        <Image src={`https://flagcdn.com/w20/${forecast.teamA.countryCode}.png`} alt={`${forecast.teamA.countryName} flag`} width={20} height={20} />
+                        <p>{forecast.teamA.countryName}</p>
                     </div>
                 </div>
 
@@ -36,10 +36,10 @@ export const Forecast = ({ forecast }: { forecast: Match }) => {
 
                 {/* RIGHT - TEAM B */}
                 <div className="flex flex-col items-center gap-0.5">
-                    <p className={`text-xl font-bold ${forecast.winnerPrediction === forecast.teamB ? "text-green-600" : ""}`}>{forecast.teamB}</p>
+                    <p className={`text-xl font-bold ${forecast.winnerPrediction === forecast.teamB.name ? "text-green-600" : ""}`}>{forecast.teamB.name}</p>
                     <div className="flex items-center gap-1">
-                        <Image src="https://flagcdn.com/w20/us.png" alt={`United States flag`} width={20} height={20} />
-                        <p>United States</p>
+                        <Image src={`https://flagcdn.com/w20/${forecast.teamB.countryCode}.png`} alt={`${forecast.teamB.countryName} flag`} width={20} height={20} />
+                        <p>{forecast.teamB.countryName}</p>
                     </div>
                 </div>
 

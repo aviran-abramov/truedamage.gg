@@ -8,39 +8,54 @@ datasource db {
 }
 
 model Game {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  slug      String   @unique
-  iconUrl   String? // "/icons/lol.svg"
+  id      String  @id @default(cuid())
+  name    String  @unique @db.VarChar(255)
+  slug    String  @unique @db.VarChar(255)
+  iconUrl String? // "/icons/lol.svg"
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  teams     Team[]
-  matches   Match[]
+
+  teams   Team[]
+  matches Match[]
 }
 
 model Team {
-  id          String   @id @default(cuid())
-  name        String
-  slug        String   @unique
-  countryCode String? // KR
-  countryName String? // "South Kdonorea"
-  gameId      String
-  game        Game     @relation(fields: [gameId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          String  @id @default(cuid())
+  name        String  @db.VarChar(255)
+  slug        String  @unique @db.VarChar(255)
+  countryCode String? @db.VarChar(3) // KR 
+  countryName String? @db.VarChar(255) // "South Korea"
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  gameId String
+  game   Game   @relation(fields: [gameId], references: [id])
+
+  teamAMatches Match[] @relation("TeamAMatches")
+  teamBMatches Match[] @relation("TeamBMatches")
+
+  @@index([gameId])
 }
 
 model Match {
-  id               String   @id @default(cuid())
-  matchDate        String
-  matchTime        String
-  gameId           String
-  game             Game     @relation(fields: [gameId], references: [id])
-  league           String
-  teamA            String
-  teamB            String
+  id               String  @id @default(cuid())
+  matchDate        String // 2026-01-12
+  matchTime        String // 11:00
+  league           String  @db.VarChar(255)
   bestOf           Int
   winnerPrediction String?
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  teamAId String
+  teamA   Team   @relation("TeamAMatches", fields: [teamAId], references: [id])
+
+  teamBId String
+  teamB   Team   @relation("TeamBMatches", fields: [teamBId], references: [id])
+
+  gameId String
+  game   Game   @relation(fields: [gameId], references: [id])
 }

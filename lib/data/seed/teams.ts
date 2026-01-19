@@ -52,5 +52,23 @@ export const teams = [
         game: "League of Legends",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
+    },
+    {
+        name: "SK Gaming",
+        slug: "sk-gaming",
+        countryCode: "eu",
+        countryName: "Europe",
+        game: "League of Legends",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+    },
+    {
+        name: "Team Vitality",
+        slug: "team-vitality",
+        countryCode: "fr",
+        countryName: "France",
+        game: "League of Legends",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
     }
 ];
