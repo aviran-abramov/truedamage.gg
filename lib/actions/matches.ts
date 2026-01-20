@@ -1,8 +1,21 @@
 "use server";
 
 import prisma from "../db";
+import { Prisma } from "../generated/prisma/client";
 
-export async function getMatchesWithForecasts() {
+type MatchWithRelations = Prisma.MatchGetPayload<{
+    include: {
+        game: true,
+        teamA: true,
+        teamB: true
+    }
+}>;
+
+type GetMatchesWithForecastsResult =
+    | { success: true; data: MatchWithRelations[] }
+    | { success: false, errorMessage: string };
+
+export async function getMatchesWithForecasts(): Promise<GetMatchesWithForecastsResult> {
     try {
         const forecasts = await prisma.match.findMany({
             where: {
@@ -25,10 +38,10 @@ export async function getMatchesWithForecasts() {
             data: forecasts
         }
     } catch (error) {
-        console.error("ACTIONS: matches.ts - getMatchesWithForecasts function - Failed to get all matches with forecasts", error);
+        console.error("ACTIONS: matches.ts - getMatchesWithForecasts function - Failed to get matches with forecasts", error);
         return {
             success: false,
-            error: "Failed to fetch all available matches with forecasts"
+            errorMessage: "Failed to fetch matches with forecasts"
         }
     }
 }
