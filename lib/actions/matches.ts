@@ -3,7 +3,7 @@
 import prisma from "../db";
 import { Prisma } from "../generated/prisma/client";
 
-type MatchWithRelations = Prisma.MatchGetPayload<{
+export type MatchWithRelations = Prisma.MatchGetPayload<{
     include: {
         game: true,
         teamA: true,

@@ -1,11 +1,5 @@
-import { Game, Match, Team } from "@/lib/generated/prisma/client"
 import { Forecast } from "./Forecast"
-
-interface MatchWithRelations extends Match {
-    game: Game;
-    teamA: Team;
-    teamB: Team;
-}
+import { MatchWithRelations } from "@/lib/actions/matches"
 
 export const ForecastList = ({ forecasts }: { forecasts: MatchWithRelations[] }) => {
     return (
