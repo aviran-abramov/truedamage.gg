@@ -3,7 +3,7 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 import Image from "next/image"
-import type { Match, Game, Team } from "@/lib/generated/prisma/client"
+import { Game, Match, Team } from "@/lib/generated/prisma/client"
 
 export const Forecast = ({ forecast }: { forecast: Match & { game: Game, teamA: Team, teamB: Team } }) => {
     return (
