@@ -38,7 +38,7 @@ export async function getMatchesWithForecasts(): Promise<GetMatchesWithForecasts
             data: forecasts
         }
     } catch (error) {
-        console.error("ACTIONS: matches.ts - getMatchesWithForecasts function - Failed to get matches with forecasts", error);
+        console.error("ACTIONS: matches.ts - getMatchesWithForecasts function - Failed to get matches with forecasts.", error);
         return {
             success: false,
             errorMessage: "Failed to fetch matches with forecasts"
