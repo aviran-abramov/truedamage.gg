@@ -29,7 +29,7 @@ export async function getMatchesWithForecasts(): Promise<GetMatchesWithForecasts
                 teamB: true
             },
             orderBy: {
-                matchDate: 'asc',
+                matchDate: "desc",
             }
         });
 
