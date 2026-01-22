@@ -1,8 +1,12 @@
+
 import Link from 'next/link'
 import { Navbar } from './Navbar'
 import { ModeToggle } from './mode-toggle'
 import { Button } from './ui/button'
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, DialogTrigger, DialogFooter, DialogHeader } from './ui/dialog'
 import { UserIcon } from 'lucide-react'
+import { Field, FieldLabel } from './ui/field'
+import { Input } from './ui/input'
 
 export const AppHeader = () => {
     // TODO: Replace with better-auth session check
@@ -25,14 +29,53 @@ const UserBar = () => {
 
                 <div className='flex items-center gap-1'>
                     <ModeToggle />
-                    <Button variant="outline" size="icon" className="cursor-pointer">
-                        <Link href="/login">
-                            <UserIcon />
-                        </Link>
-                    </Button>
+                    <AuthButton />
                 </div>
             </div>
         </div>
+    )
+}
+
+const AuthButton = () => {
+
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button variant="outline" size="icon" className="cursor-pointer">
+                    <UserIcon />
+                </Button>
+            </DialogTrigger>
+
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle className='text-2xl font-bold'>Login</DialogTitle>
+                    {/* <DialogDescription>
+                        This action cannot be undone. This will permanently delete your account
+                        and remove your data from our servers.
+                    </DialogDescription> */}
+                </DialogHeader>
+                <form action="" className='space-y-4'>
+                    <Field>
+                        <FieldLabel>Email Address</FieldLabel>
+                        <Input name="email" type="text" placeholder="johndoe@gmail.com" />
+                    </Field>
+
+                    <Field>
+                        <FieldLabel>Password</FieldLabel>
+                        <Input name="password" type="password" placeholder="password" />
+                    </Field>
+
+                    <Button type="submit" className="w-full cursor-pointer">
+                        LOGIN
+                    </Button>
+                </form>
+
+                <div className='flex items-center justify-center'>
+                    <p>Not a member?</p>
+                    <Link href="#" className='hover:underline text-blue-400 ml-1'>Join now</Link>
+                </div>
+            </DialogContent>
+        </Dialog>
     )
 }
 
