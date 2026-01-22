@@ -2,6 +2,11 @@
 
 import prisma from "../db";
 import { Prisma } from "../generated/prisma/client";
+import { redirect } from "next/navigation";
+
+type ActionResult<T> =
+    | { success: true; data: T }
+    | { success: false; errorMessage: string };
 
 export async function createMatch(formData: FormData) {
     try {
@@ -21,24 +26,21 @@ export async function createMatch(formData: FormData) {
                 name: rawFormData.game
             }
         });
-
-        if (!game) throw new Error("not found")
+        if (!game) throw new Error("Game not found")
 
         const teamA = await prisma.team.findFirst({
             where: {
                 name: rawFormData.teamAName
             }
         });
-
-        if (!teamA) throw new Error("not found")
+        if (!teamA) throw new Error("Team A not found")
 
         const teamB = await prisma.team.findFirst({
             where: {
                 name: rawFormData.teamBName
             }
         });
-
-        if (!teamB) throw new Error("not found")
+        if (!teamB) throw new Error("Team B not found")
 
         await prisma.match.create({
             data: {
@@ -52,12 +54,12 @@ export async function createMatch(formData: FormData) {
                 winnerPrediction: rawFormData.winnerPrediction
             }
         })
-
-        return console.log('success!');
-
     } catch (error) {
-        console.log('error!');
+        console.error(`createMatch failed:`, error);
+        return;
     }
+
+    redirect('/matches/upcoming');
 }
 
 export type MatchWithRelations = Prisma.MatchGetPayload<{
@@ -68,11 +70,7 @@ export type MatchWithRelations = Prisma.MatchGetPayload<{
     }
 }>;
 
-type GetMatchesWithForecastsResult =
-    | { success: true; data: MatchWithRelations[] }
-    | { success: false, errorMessage: string };
-
-export async function getMatchesWithForecasts(): Promise<GetMatchesWithForecastsResult> {
+export async function getMatchesWithForecasts(): Promise<ActionResult<MatchWithRelations[]>> {
     try {
         const forecasts = await prisma.match.findMany({
             where: {
@@ -95,10 +93,10 @@ export async function getMatchesWithForecasts(): Promise<GetMatchesWithForecasts
             data: forecasts
         }
     } catch (error) {
-        console.error("ACTIONS: matches.ts - getMatchesWithForecasts function - Failed to get matches with forecasts.", error);
+        console.error("getMatchesWithForecasts failed:", error);
         return {
             success: false,
-            errorMessage: "Failed to fetch matches with forecasts"
+            errorMessage: error instanceof Error ? error.message : "Failed to fetch matches with forecasts."
         }
     }
 }
