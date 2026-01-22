@@ -83,7 +83,7 @@ const adminLinks = [
     { href: '/admin/games/create', label: 'New Game' },
     { href: '/admin/teams/create', label: 'New Team' },
     { href: '/admin/matches/create', label: 'New Match' },
-    { href: '/admin/forecasts/create', label: 'New Forecast' },
+    { href: '/admin/predictions/create', label: 'New Prediction' },
 ];
 
 const AdminBar = () => {

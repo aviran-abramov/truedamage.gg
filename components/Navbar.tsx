@@ -42,17 +42,17 @@ export const Navbar = () => {
                     </NavigationMenuContent>
                 </NavigationMenuItem>
 
-                {/* FORECASTS */}
+                {/* PREDICTIONS */}
                 <NavigationMenuItem className="hidden md:block">
-                    <NavigationMenuTrigger>Forecasts</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Predictions</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid w-50 gap-4">
                             <li>
                                 <NavigationMenuLink asChild>
-                                    <Link href="/forecasts/upcoming">Upcoming Forecasts</Link>
+                                    <Link href="/predictions/upcoming">Upcoming Predictions</Link>
                                 </NavigationMenuLink>
                                 <NavigationMenuLink asChild>
-                                    <Link href="/forecasts/my-forecasts">Results</Link>
+                                    <Link href="/predictions/my-predictions">Results</Link>
                                 </NavigationMenuLink>
                             </li>
                         </ul>

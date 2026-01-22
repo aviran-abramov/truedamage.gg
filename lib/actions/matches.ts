@@ -70,9 +70,9 @@ export type MatchWithRelations = Prisma.MatchGetPayload<{
     }
 }>;
 
-export async function getMatchesWithForecasts(): Promise<ActionResult<MatchWithRelations[]>> {
+export async function getMatchesWithPredictions(): Promise<ActionResult<MatchWithRelations[]>> {
     try {
-        const forecasts = await prisma.match.findMany({
+        const predictions = await prisma.match.findMany({
             where: {
                 winnerPrediction: {
                     not: null
@@ -90,13 +90,13 @@ export async function getMatchesWithForecasts(): Promise<ActionResult<MatchWithR
 
         return {
             success: true,
-            data: forecasts
+            data: predictions
         }
     } catch (error) {
-        console.error("getMatchesWithForecasts failed:", error);
+        console.error("getMatchesWithPredictions failed:", error);
         return {
             success: false,
-            errorMessage: error instanceof Error ? error.message : "Failed to fetch matches with forecasts."
+            errorMessage: error instanceof Error ? error.message : "Failed to fetch matches with predictions."
         }
     }
 }

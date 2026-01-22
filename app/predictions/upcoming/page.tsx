@@ -1,9 +1,9 @@
-import { ForecastList } from "@/components/ForecastList"
-import { getMatchesWithForecasts } from "@/lib/actions/matches";
+import { PredictionList } from "@/components/PredictionList";
+import { getMatchesWithPredictions } from "@/lib/actions/matches";
 import Image from "next/image"
 
-export default async function UpcomingForecastsPage() {
-    const result = await getMatchesWithForecasts();
+export default async function UpcomingPredictionsPage() {
+    const result = await getMatchesWithPredictions();
 
     return (
         <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col items-center">
@@ -11,7 +11,7 @@ export default async function UpcomingForecastsPage() {
 
             {
                 result.success ? (
-                    <ForecastList forecasts={result.data} />
+                    <PredictionList predictions={result.data} />
                 ) : (
                     <p>{result.errorMessage}</p>
                 )

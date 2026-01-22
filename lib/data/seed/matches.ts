@@ -29,7 +29,7 @@ export const matches = [
         bestOf: 5,
         winnerPrediction: "All for One Gaming",
     },
-    // REAL FORECASTS FROM HERE
+    // REAL PREDICTIONS FROM HERE
     {
         matchDate: "2026-01-21",
         matchTime: "10:00",
