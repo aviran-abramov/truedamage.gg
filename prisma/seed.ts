@@ -1,9 +1,37 @@
+import { auth } from "@/lib/auth";
 import { games } from "@/lib/data/seed/games";
 import { matches } from "@/lib/data/seed/matches";
 import { teams } from "@/lib/data/seed/teams";
 import prisma from "@/lib/db";
 
-async function main() {
+async function seedUserTable() {
+    try {
+        await auth.api.signUpEmail({
+            body: {
+                name: "johndoe",
+                email: "johndoe@gmail.com",
+                password: "123123123",
+            }
+        });
+
+        const user = await prisma.user.findUnique({
+            where: { email: "laxure@gmail.com" }
+        });
+
+        if (!user) throw new Error("Could not get the user seeded to the db.")
+
+        await prisma.user.update({
+            where: { email: user.email },
+            data: { role: "ADMIN" }
+        })
+
+        console.log("Seed user table - success");
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function seedGameTable() {
     try {
         for (const game of games) {
             await prisma.game.create({
@@ -15,6 +43,14 @@ async function main() {
             });
         }
 
+        console.log("Seed game table - success");
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function seedTeamTable() {
+    try {
         for (const team of teams) {
             const game = await prisma.game.findUnique({
                 where: {
@@ -37,6 +73,14 @@ async function main() {
             });
         }
 
+        console.log("Seed team table - success");
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function seedMatchTable() {
+    try {
         for (const match of matches) {
             const game = await prisma.game.findUnique({
                 where: {
@@ -82,9 +126,23 @@ async function main() {
             });
         }
 
+        console.log("Seed match table - success");
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function main() {
+    try {
+        await seedUserTable();
+        await seedGameTable();
+        await seedTeamTable();
+        await seedMatchTable();
+
         console.log('Seed data has been inserted successfully!');
     } catch (error) {
-        console.log(`ERROR: Could not create seed. ${error}`);
+        console.error(`ERROR: Could not create seed. ${error}`);
+        throw new Error("ERROR: Could not create seed. ${error}");
     }
 }
 
