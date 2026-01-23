@@ -27,30 +27,40 @@ export const Navbar = () => {
 
                 {/* MATCHES */}
                 <NavigationMenuItem className="hidden md:block">
-                    <NavigationMenuTrigger>Matches</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Match Center</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid w-50 gap-4">
                             <li>
                                 <NavigationMenuLink asChild>
-                                    <Link href="/matches/upcoming">Upcoming Matches</Link>
+                                    <Link href="/matches/upcoming">Matches</Link>
                                 </NavigationMenuLink>
+                            </li>
+                            <li>
+                                <NavigationMenuLink asChild>
+                                    <Link href="/predictions/upcoming">Predictions</Link>
+                                </NavigationMenuLink>
+                            </li>
+                            <li>
                                 <NavigationMenuLink asChild>
                                     <Link href="/matches/results">Results</Link>
                                 </NavigationMenuLink>
                             </li>
-                        </ul>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
-
-                {/* PREDICTIONS */}
-                <NavigationMenuItem className="hidden md:block">
-                    <NavigationMenuTrigger>Predictions</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ul className="grid w-50 gap-4">
                             <li>
                                 <NavigationMenuLink asChild>
-                                    <Link href="/predictions/upcoming">Upcoming Predictions</Link>
+                                    <Link href="/matches/tournaments">Tournaments</Link>
                                 </NavigationMenuLink>
+                            </li>
+                            <li>
+                                <NavigationMenuLink asChild>
+                                    <Link href="/matches/teams">Teams</Link>
+                                </NavigationMenuLink>
+                            </li>
+                            <li>
+                                <NavigationMenuLink asChild>
+                                    <Link href="/matches/players">Players</Link>
+                                </NavigationMenuLink>
+                            </li>
+                            <li>
                                 <NavigationMenuLink asChild>
                                     <Link href="/predictions/my-predictions">Results</Link>
                                 </NavigationMenuLink>
@@ -73,6 +83,6 @@ export const Navbar = () => {
                     </NavigationMenuLink>
                 </NavigationMenuItem>
             </NavigationMenuList>
-        </NavigationMenu>
+        </NavigationMenu >
     )
 }
