@@ -11,7 +11,7 @@ export const Prediction = ({ prediction }: { prediction: Match & { game: Game, t
             {/* TOP PART */}
             <Alert className="rounded-b-none text-black dark:text-white">
                 <AlertTitle className="flex items-center gap-2">
-                    <Image className="dark:invert" src={`/icons/games/league-of-legends.svg`} alt={`${prediction.game.name} logo`} width={20} height={20} />
+                    <Image className="dark:invert" src={`${prediction.game.iconUrl}`} alt={`${prediction.game.name} logo`} width={20} height={20} />
                     <AlertTitle className="font-semibold">{prediction.game.name} - {prediction.league}</AlertTitle>
                 </AlertTitle>
             </Alert>

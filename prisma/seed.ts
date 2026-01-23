@@ -11,11 +11,12 @@ async function seedUserTable() {
                 name: "johndoe",
                 email: "johndoe@gmail.com",
                 password: "123123123",
+                role: "ADMIN"
             }
         });
 
-        const user = await prisma.user.findUnique({
-            where: { email: "laxure@gmail.com" }
+        const user = await prisma.user.findFirst({
+            where: { email: "johndoe@gmail.com" }
         });
 
         if (!user) throw new Error("Could not get the user seeded to the db.")
