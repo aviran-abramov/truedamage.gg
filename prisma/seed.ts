@@ -115,8 +115,8 @@ async function seedMatchTable() {
 
             await prisma.match.create({
                 data: {
-                    matchDate: match.matchDate,
-                    matchTime: match.matchTime,
+                    date: match.date,
+                    time: match.time,
                     league: match.league,
                     teamAId: teamA.id,
                     teamBId: teamB.id,

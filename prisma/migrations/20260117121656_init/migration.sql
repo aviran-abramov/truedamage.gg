@@ -27,8 +27,8 @@ CREATE TABLE "Team" (
 -- CreateTable
 CREATE TABLE "Match" (
     "id" TEXT NOT NULL,
-    "matchDate" TEXT NOT NULL,
-    "matchTime" TEXT NOT NULL,
+    "date" TEXT NOT NULL,
+    "time" TEXT NOT NULL,
     "game" TEXT NOT NULL,
     "league" TEXT NOT NULL,
     "teamA" TEXT NOT NULL,

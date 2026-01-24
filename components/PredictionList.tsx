@@ -1,16 +1,27 @@
 import { Prediction } from "./Prediction"
 import { MatchWithRelations } from "@/lib/actions/matches"
 
-export const PredictionList = ({ predictions }: { predictions: MatchWithRelations[] }) => {
-    return (
-        <section className="flex flex-col items-center max-w-5xl w-full">
-            <p className="text-3xl font-bold mb-4 py-4">Upcoming Predictions</p>
+interface PredictionListProps {
+    predictions: MatchWithRelations[]
+}
 
-            <ul className="w-full space-y-8">
-                {predictions.map((prediction) => (
-                    <Prediction key={prediction.id} prediction={prediction} />
-                ))}
-            </ul>
-        </section>
+export const PredictionList = ({ predictions = [] }: PredictionListProps) => {
+    if (predictions.length === 0) return <EmptyPredictions />;
+
+    return (
+        <ul className="w-full space-y-8">
+            {predictions.map((prediction) => (
+                <Prediction key={prediction.id} prediction={prediction} />
+            ))}
+        </ul>
+    )
+}
+
+const EmptyPredictions = () => {
+    return (
+        <div className="text-center py-12 text-gray-500">
+            <p>No predictions available yet.</p>
+            <p className="text-sm mt-2">Check back soon for upcoming matches!</p>
+        </div>
     )
 }

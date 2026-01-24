@@ -16,12 +16,12 @@ export default function CreateMatchPage() {
                     <form action={createMatch} className="flex flex-col gap-4">
                         <Field>
                             <FieldLabel>Match Date</FieldLabel>
-                            <Input name="matchDate" type="text" placeholder="2026-01-12" />
+                            <Input name="date" type="text" placeholder="2026-01-12" />
                         </Field>
 
                         <Field>
                             <FieldLabel>Match Time</FieldLabel>
-                            <Input name="matchTime" type="text" placeholder="11:00" />
+                            <Input name="time" type="text" placeholder="11:00" />
                         </Field>
 
                         <Field>

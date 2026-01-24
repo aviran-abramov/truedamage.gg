@@ -11,8 +11,8 @@ type ActionResult<T> =
 export async function createMatch(formData: FormData) {
     try {
         const rawFormData = {
-            matchDate: formData.get('matchDate') as string,
-            matchTime: formData.get('matchTime') as string,
+            date: formData.get('date') as string,
+            time: formData.get('time') as string,
             game: formData.get('game') as string,
             league: formData.get('league') as string,
             bestOf: Number(formData.get('bestOf')),
@@ -44,8 +44,8 @@ export async function createMatch(formData: FormData) {
 
         await prisma.match.create({
             data: {
-                matchDate: rawFormData.matchDate,
-                matchTime: rawFormData.matchTime,
+                date: rawFormData.date,
+                time: rawFormData.time,
                 gameId: game.id,
                 league: rawFormData.league,
                 bestOf: rawFormData.bestOf,
@@ -84,7 +84,7 @@ export async function getMatchesWithPredictions(): Promise<ActionResult<MatchWit
                 teamB: true
             },
             orderBy: {
-                matchDate: "desc",
+                date: "desc",
             }
         });
 

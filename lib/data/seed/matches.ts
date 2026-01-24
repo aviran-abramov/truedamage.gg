@@ -1,7 +1,7 @@
 export const matches = [
     {
-        matchDate: "2026-01-12",
-        matchTime: "11:00",
+        date: "2026-01-12",
+        time: "11:00",
         game: "League of Legends",
         league: "LoL Champions Korea Challengers League (LCK CL) 2026 Kickoff",
         teamAName: "BIG Academy",
@@ -10,8 +10,8 @@ export const matches = [
         winnerPrediction: "BRION Challengers",
     },
     {
-        matchDate: "2026-01-13",
-        matchTime: "14:00",
+        date: "2026-01-13",
+        time: "14:00",
         game: "League of Legends",
         league: "LoL Champions Korea Challengers League (LCK CL) 2026 Kickoff",
         teamAName: "BNK FEARX Youth",
@@ -20,8 +20,8 @@ export const matches = [
         winnerPrediction: "T1 Esports Academy",
     },
     {
-        matchDate: "2026-01-14",
-        matchTime: "16:00",
+        date: "2026-01-14",
+        time: "16:00",
         game: "League of Legends",
         league: "LoL Champions Korea Challengers League (LCK CL) 2026 Kickoff",
         teamAName: "All for One Gaming",
@@ -31,8 +31,8 @@ export const matches = [
     },
     // REAL PREDICTIONS FROM HERE
     {
-        matchDate: "2026-01-21",
-        matchTime: "10:00",
+        date: "2026-01-21",
+        time: "10:00",
         game: "League of Legends",
         league: "LoL Champions Korea (LCK) Cup 2026",
         teamAName: "Dplus KIA",
@@ -41,8 +41,8 @@ export const matches = [
         winnerPrediction: "Dplus KIA",
     },
     {
-        matchDate: "2026-01-22",
-        matchTime: "12:00",
+        date: "2026-01-22",
+        time: "12:00",
         game: "League of Legends",
         league: "LoL Champions Korea (LCK) Cup 2026",
         teamAName: "BNK FearX",
@@ -51,8 +51,8 @@ export const matches = [
         winnerPrediction: "Gen.G",
     },
     { // this game has less than 100 elo diff
-        matchDate: "2026-01-21",
-        matchTime: "14:00",
+        date: "2026-01-21",
+        time: "14:00",
         game: "Counter Strike 2",
         league: "Intel Extreme Masters Rio 2026",
         teamAName: "Imperial Esports",
@@ -61,8 +61,8 @@ export const matches = [
         winnerPrediction: "Imperial Esports",
     },
     {
-        matchDate: "2026-01-22",
-        matchTime: "14:00",
+        date: "2026-01-22",
+        time: "14:00",
         game: "Counter Strike 2",
         league: "Circuit X Redemption Curitiba",
         teamAName: "Keyd Stars",

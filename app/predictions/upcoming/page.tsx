@@ -7,15 +7,26 @@ export default async function UpcomingPredictionsPage() {
 
     return (
         <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col items-center">
-            <Image src="/lol_banner.webp" alt="Upcoming Matches" width={1416} height={248.16} loading="eager" />
+            <Image
+                src="/lol_banner.webp"
+                alt="Upcoming Matches"
+                width={1416}
+                height={248.16}
+                loading="eager"
+            />
 
-            {
-                result.success ? (
-                    <PredictionList predictions={result.data} />
-                ) : (
-                    <p>{result.errorMessage}</p>
-                )
-            }
+            <section className="flex flex-col items-center max-w-5xl w-full">
+                <p className="text-3xl font-bold mb-4 py-4">Upcoming Predictions</p>
+
+                {
+                    result.success ? (
+                        <PredictionList predictions={result.data} />
+                    ) : (
+                        <p>{result.errorMessage}</p>
+                    )
+                }
+            </section>
+
         </div>
     )
 }
