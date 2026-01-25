@@ -4,7 +4,7 @@ import { Input } from "../ui/input";
 interface FormFieldProps {
     name: string;
     label?: string;
-    type: string;
+    type?: string;
     placeholder?: string;
 }
 
