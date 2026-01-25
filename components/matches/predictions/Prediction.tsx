@@ -2,16 +2,8 @@ import {
     Alert,
     AlertTitle,
 } from "@/components/ui/alert"
+import { PredictionContentProps, PredictionHeaderProps, PredictionMatchDetailsProps, PredictionProps, PredictionTeamProps } from "@/lib/types/match";
 import Image from "next/image"
-import { Game, Match, Team } from "@/lib/generated/prisma/client"
-
-interface PredictionProps {
-    prediction: Match & {
-        game: Game;
-        teamA: Team;
-        teamB: Team;
-    }
-}
 
 export const Prediction = ({ prediction }: PredictionProps) => {
     const gameIconPath = `/icons/games/${prediction.game.slug}.svg`;
@@ -52,17 +44,7 @@ export const Prediction = ({ prediction }: PredictionProps) => {
     )
 }
 
-interface PredictionHeaderProps {
-    gameIconPath: string;
-    gameName: string;
-    league: string
-}
-
-const PredictionHeader = ({
-    gameIconPath,
-    gameName,
-    league
-}: PredictionHeaderProps) => {
+const PredictionHeader = ({ gameIconPath, gameName, league }: PredictionHeaderProps) => {
 
     return (
         <Alert className="rounded-b-none text-black dark:text-white">
@@ -80,10 +62,6 @@ const PredictionHeader = ({
     )
 }
 
-interface PredictionContentProps {
-    children: React.ReactNode
-}
-
 const PredictionContent = ({ children }: PredictionContentProps) => {
 
     return (
@@ -93,14 +71,7 @@ const PredictionContent = ({ children }: PredictionContentProps) => {
     )
 }
 
-interface TeamProps {
-    name: string;
-    countryName: string;
-    countryCode: string;
-    isPredictedWinner: boolean;
-}
-
-const TeamDisplay = ({ name, countryName, countryCode, isPredictedWinner }: TeamProps) => {
+const TeamDisplay = ({ name, countryName, countryCode, isPredictedWinner }: PredictionTeamProps) => {
     const flagUrl = countryCode !== "unknown" ? `https://flagcdn.com/w20/${countryCode}.png` : "/icons/flags/unknown.png";
 
     return (
@@ -123,13 +94,7 @@ const TeamDisplay = ({ name, countryName, countryCode, isPredictedWinner }: Team
     )
 }
 
-interface MatchDetailsProps {
-    date: string;
-    time: string;
-    bestOf: number;
-}
-
-const MatchDetails = ({ date, time, bestOf }: MatchDetailsProps) => {
+const MatchDetails = ({ date, time, bestOf }: PredictionMatchDetailsProps) => {
 
     return (
         <div className="text-center space-y-1">

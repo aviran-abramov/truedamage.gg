@@ -1,9 +1,5 @@
+import { PredictionListProps } from "@/lib/types/match";
 import { Prediction } from "./Prediction"
-import { MatchWithRelations } from "@/lib/actions/matches"
-
-interface PredictionListProps {
-    predictions: MatchWithRelations[]
-}
 
 export const PredictionList = ({ predictions = [] }: PredictionListProps) => {
     if (predictions.length === 0) return <EmptyPredictions />;
