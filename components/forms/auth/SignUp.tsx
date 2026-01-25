@@ -1,11 +1,16 @@
-import { login } from "@/lib/actions/auth";
-import { Button } from "../ui/button";
-import { Field, FieldLabel } from "../ui/field";
-import { Input } from "../ui/input";
+import { Button } from "@/components/ui/button";
+import { Field, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { signUp } from "@/lib/actions/auth";
 
-export function LoginForm() {
+export function SignUpForm() {
     return (
-        <form action={login} className='space-y-4'>
+        <form action={signUp} className='space-y-4'>
+            <Field>
+                <FieldLabel>Username</FieldLabel>
+                <Input name="name" type="text" placeholder="johndoe" />
+            </Field>
+
             <Field>
                 <FieldLabel>Email Address</FieldLabel>
                 <Input name="email" type="text" placeholder="johndoe@gmail.com" />
@@ -17,7 +22,7 @@ export function LoginForm() {
             </Field>
 
             <Button type="submit" className="w-full cursor-pointer">
-                LOGIN
+                CREATE ACCOUNT
             </Button>
         </form>
     )

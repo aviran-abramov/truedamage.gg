@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import React from "react";
 import { DialogHeader } from "../ui/dialog";
 import Link from "next/link";
-import { SignUpForm } from "../forms/SignUp";
+import { SignUpForm } from "../forms/auth/SignUp";
 
 
 export function SignUpModal({ onAuthModalToShowClick }: { onAuthModalToShowClick: () => void }) {
