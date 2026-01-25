@@ -1,12 +1,12 @@
 import { DialogTitle, DialogDescription } from "@radix-ui/react-dialog";
 import { ArrowLeft } from "lucide-react";
 import React from "react";
-import SignUpForm from "../forms/SignUp";
 import { DialogHeader } from "../ui/dialog";
 import Link from "next/link";
+import { SignUpForm } from "../forms/SignUp";
 
 
-export default function SignUpModal({ onAuthModalToShowClick }: { onAuthModalToShowClick: () => void }) {
+export function SignUpModal({ onAuthModalToShowClick }: { onAuthModalToShowClick: () => void }) {
     return (
         <React.Fragment>
             <DialogHeader>

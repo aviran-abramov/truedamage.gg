@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { Field, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
 
-export default function LoginForm() {
+export function LoginForm() {
     return (
         <form action={login} className='space-y-4'>
             <Field>

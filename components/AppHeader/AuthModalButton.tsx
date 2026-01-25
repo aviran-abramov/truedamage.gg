@@ -4,11 +4,13 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { UserIcon } from "lucide-react";
-import LoginModal from "../auth/LoginModal";
-import SignUpModal from "../auth/SignUpModal";
+import { SignUpModal } from "../modals/SignUpModal";
+import { LoginModal } from "../modals/LoginModal";
 
-export const AuthModalButton = () => {
-    const [authModalToShow, setAuthModalToShow] = useState<"login" | "signup">("login");
+type AuthModalType = "login" | "signup";
+
+export function AuthModalButton() {
+    const [authModalToShow, setAuthModalToShow] = useState<AuthModalType>("login");
 
     const handleAuthModalToShowClick = () => setAuthModalToShow(prevState => prevState === "login" ? "signup" : "login");
     const handleOpenChange = (isOpen: boolean) => {

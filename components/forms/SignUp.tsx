@@ -3,7 +3,7 @@ import { Field, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
-export default function SignUpForm() {
+export function SignUpForm() {
     return (
         <form action={signUp} className='space-y-4'>
             <Field>

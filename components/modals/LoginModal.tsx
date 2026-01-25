@@ -1,11 +1,11 @@
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
-import LoginForm from '../forms/Login'
 import { DialogHeader } from '../ui/dialog'
 import Link from 'next/link'
+import { LoginForm } from '../forms/Login'
 
-export default function LoginModal({ onAuthModalToShowClick }: { onAuthModalToShowClick: () => void }) {
+export function LoginModal({ onAuthModalToShowClick }: { onAuthModalToShowClick: () => void }) {
     return (
         <React.Fragment>
             <DialogHeader>

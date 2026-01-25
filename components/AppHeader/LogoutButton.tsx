@@ -1,6 +1,6 @@
 import { LogOut } from "lucide-react";
 import { Button } from "../ui/button";
-import LogoutForm from "../forms/Logout";
+import { LogoutForm } from "../forms/Logout";
 
 export function LogoutButton() {
     return (
