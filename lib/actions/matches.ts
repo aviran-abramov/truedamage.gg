@@ -59,7 +59,7 @@ export async function createMatch(formData: FormData) {
         return;
     }
 
-    redirect('/matches/upcoming');
+    redirect('/matches/predictions/upcoming');
 }
 
 export type MatchWithRelations = Prisma.MatchGetPayload<{
