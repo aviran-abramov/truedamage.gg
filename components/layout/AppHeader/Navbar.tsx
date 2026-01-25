@@ -29,43 +29,7 @@ export const Navbar = () => {
                 <NavigationMenuItem className="hidden md:block">
                     <NavigationMenuTrigger>Match Center</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid w-50 gap-4">
-                            <li>
-                                <NavigationMenuLink asChild>
-                                    <Link href="/matches/upcoming">Matches</Link>
-                                </NavigationMenuLink>
-                            </li>
-                            <li>
-                                <NavigationMenuLink asChild>
-                                    <Link href="/matches/predictions/upcoming">Predictions</Link>
-                                </NavigationMenuLink>
-                            </li>
-                            <li>
-                                <NavigationMenuLink asChild>
-                                    <Link href="/matches/results">Results</Link>
-                                </NavigationMenuLink>
-                            </li>
-                            <li>
-                                <NavigationMenuLink asChild>
-                                    <Link href="/matches/tournaments">Tournaments</Link>
-                                </NavigationMenuLink>
-                            </li>
-                            <li>
-                                <NavigationMenuLink asChild>
-                                    <Link href="/matches/teams">Teams</Link>
-                                </NavigationMenuLink>
-                            </li>
-                            <li>
-                                <NavigationMenuLink asChild>
-                                    <Link href="/matches/players">Players</Link>
-                                </NavigationMenuLink>
-                            </li>
-                            <li>
-                                <NavigationMenuLink asChild>
-                                    <Link href="/predictions/my-predictions">Results</Link>
-                                </NavigationMenuLink>
-                            </li>
-                        </ul>
+                        <MatchLinkList />
                     </NavigationMenuContent>
                 </NavigationMenuItem>
 
@@ -84,5 +48,46 @@ export const Navbar = () => {
                 </NavigationMenuItem>
             </NavigationMenuList>
         </NavigationMenu >
+    )
+}
+
+const matchLinks = [
+    { id: "matches", label: 'Matches', href: '/matches/upcoming' },
+    { id: "results", label: 'Results', href: '/matches/results' },
+    { id: "predictions", label: 'Predictions', href: '/matches/predictions/upcoming' },
+    { id: "prediction-results", label: 'Prediction Results', href: '/matches/predictions/results' },
+    { id: "tournaments", label: 'Tournaments', href: '/matches/tournaments' },
+    { id: "teams", label: 'Teams', href: '/matches/teams' },
+    { id: "players", label: 'Players', href: '/matches/players' },
+];
+
+function MatchLinkList() {
+
+    return (
+        <ul className="grid w-50 gap-4">
+            {matchLinks.map((match) => (
+                <MatchLink
+                    key={match.id}
+                    label={match.label}
+                    href={match.href}
+                />
+            ))}
+        </ul>
+    )
+}
+
+interface MatchLinkProps {
+    label: string;
+    href: string;
+}
+
+function MatchLink({ label, href }: MatchLinkProps) {
+
+    return (
+        <li>
+            <NavigationMenuLink asChild>
+                <Link href={href}>{label}</Link>
+            </NavigationMenuLink>
+        </li>
     )
 }
