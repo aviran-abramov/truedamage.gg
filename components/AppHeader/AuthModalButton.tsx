@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { UserIcon } from "lucide-react";
-import { SignUpModal } from "../modals/SignUpModal";
-import { LoginModal } from "../modals/LoginModal";
+import { LoginModal } from "../modals/auth/LoginModal";
+import { SignUpModal } from "../modals/auth/SignUpModal";
 
 type AuthModalType = "login" | "signup";
 
