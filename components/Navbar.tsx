@@ -37,7 +37,7 @@ export const Navbar = () => {
                             </li>
                             <li>
                                 <NavigationMenuLink asChild>
-                                    <Link href="/predictions/upcoming">Predictions</Link>
+                                    <Link href="/matches/predictions/upcoming">Predictions</Link>
                                 </NavigationMenuLink>
                             </li>
                             <li>
