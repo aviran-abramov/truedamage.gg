@@ -1,6 +1,6 @@
+import { LogoutForm } from "@/components/forms/auth/Logout";
+import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
-import { Button } from "../ui/button";
-import { LogoutForm } from "../forms/auth/Logout";
 
 export function LogoutButton() {
     return (

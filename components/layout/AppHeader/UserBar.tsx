@@ -1,10 +1,10 @@
 import React from 'react'
-import { ModeToggle } from '../mode-toggle';
-import { Navbar } from '../Navbar';
 import { LogoutButton } from './LogoutButton';
 import { AuthModalButton } from './AuthModalButton';
 import Link from 'next/link';
 import { AppLogo } from './AppLogo';
+import { Navbar } from '@/components/Navbar';
+import { ModeToggle } from '@/components/mode-toggle';
 
 interface UserBarProps {
     isLoggedIn: boolean;

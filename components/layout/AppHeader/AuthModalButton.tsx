@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
-import { Button } from "../ui/button";
 import { UserIcon } from "lucide-react";
-import { LoginModal } from "../modals/auth/LoginModal";
-import { SignUpModal } from "../modals/auth/SignUpModal";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { LoginModal } from "@/components/modals/auth/LoginModal";
+import { SignUpModal } from "@/components/modals/auth/SignUpModal";
 
 type AuthModalType = "login" | "signup";
 
