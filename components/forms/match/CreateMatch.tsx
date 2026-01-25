@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { createMatch } from "@/lib/actions/matches";
 import prisma from "@/lib/db";
 import { Game } from "@/lib/generated/prisma/client";
+import { FormField } from "../FormField";
 
 
 export async function CreateMatch() {
@@ -85,23 +86,6 @@ export async function CreateMatch() {
                 </Button>
             </CardFooter>
         </form>
-    )
-}
-
-interface FormFieldProps {
-    name: string;
-    label?: string;
-    type: string;
-    placeholder?: string;
-}
-
-const FormField = ({ name, label, type = "text", placeholder }: FormFieldProps) => {
-
-    return (
-        <Field>
-            {label && <FieldLabel>{label}</FieldLabel>}
-            <Input name={name} type={type} placeholder={placeholder} />
-        </Field>
     )
 }
 
