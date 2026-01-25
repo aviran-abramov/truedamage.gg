@@ -1,4 +1,4 @@
-import { PredictionList } from "@/components/PredictionList";
+import { PredictionList } from "@/components/matches/predictions/PredictionList";
 import { getMatchesWithPredictions } from "@/lib/actions/matches";
 import Image from "next/image"
 

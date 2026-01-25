@@ -3,7 +3,7 @@ import { LogoutButton } from './LogoutButton';
 import { AuthModalButton } from './AuthModalButton';
 import Link from 'next/link';
 import { AppLogo } from './AppLogo';
-import { Navbar } from '@/components/Navbar';
+import { Navbar } from '@/components/layout/AppHeader/Navbar';
 import { ModeToggle } from '@/components/mode-toggle';
 
 interface UserBarProps {
