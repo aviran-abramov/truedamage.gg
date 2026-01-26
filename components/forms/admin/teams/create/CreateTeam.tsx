@@ -1,11 +1,9 @@
 import { FormField } from "@/components/forms/FormField";
+import { FormSelectGameField } from "@/components/forms/FormSelectGameField";
 import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CreateTeam } from "@/lib/actions/teams";
 import prisma from "@/lib/db";
-import { Game } from "@/lib/generated/prisma/client";
 
 export async function CreateTeamForm() {
     const games = await prisma.game.findMany();
@@ -51,35 +49,5 @@ export async function CreateTeamForm() {
                 </Button>
             </CardFooter>
         </form>
-    )
-}
-
-interface FormSelectGameFieldProps {
-    label: string;
-    name: string;
-    placeholder: string;
-    title: string;
-    games: Game[]
-}
-
-function FormSelectGameField({ label, name, placeholder, title, games }: FormSelectGameFieldProps) {
-
-    return (
-        <Field>
-            <FieldLabel>{label}</FieldLabel>
-            <Select name={name}>
-                <SelectTrigger className="w-full max-w-48">
-                    <SelectValue placeholder={placeholder} />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectGroup>
-                        <SelectLabel>{title}</SelectLabel>
-                        {games.map((game) => (
-                            <SelectItem key={game.id} value={game.name}>{game.name}</SelectItem>
-                        ))}
-                    </SelectGroup>
-                </SelectContent>
-            </Select>
-        </Field>
     )
 }
