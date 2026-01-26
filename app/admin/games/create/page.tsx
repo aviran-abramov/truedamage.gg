@@ -1,4 +1,4 @@
-import { CreateGameForm } from "@/components/forms/admin/games/create/page";
+import { CreateGameForm } from "@/components/forms/admin/games/create/CreateGame";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function CreateGamePage() {
