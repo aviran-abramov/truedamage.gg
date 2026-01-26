@@ -1,4 +1,3 @@
-"use client";
 
 import Link from "next/link"
 import {
@@ -10,13 +9,10 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { useIsMobile } from "@/hooks/use-mobile"
 
 export const Navbar = () => {
-    const isMobile = useIsMobile();
-
     return (
-        <NavigationMenu viewport={isMobile}>
+        <NavigationMenu>
             <NavigationMenuList>
                 {/* HOME */}
                 <NavigationMenuItem>
