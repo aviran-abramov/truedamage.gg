@@ -75,7 +75,7 @@ export async function CreateMatch() {
 
             <CardFooter className="flex flex-col gap-2 border-t">
                 <Button type="submit" className="w-full cursor-pointer">
-                    Create
+                    Create Match
                 </Button>
 
                 <Button variant="outline" className="w-full cursor-pointer">

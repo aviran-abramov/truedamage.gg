@@ -16,7 +16,7 @@ export function CreateGameForm() {
 
             <CardFooter className="flex flex-col gap-2 border-t">
                 <Button type="submit" className="w-full cursor-pointer">
-                    Create
+                    Create Game
                 </Button>
 
                 <Button variant="outline" className="w-full cursor-pointer">
