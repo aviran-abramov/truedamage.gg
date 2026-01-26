@@ -3,7 +3,7 @@
 import { headers } from 'next/headers';
 import { auth } from '@/lib/auth';
 import { UserBar } from './UserBar';
-import { AdminBar } from './AdminBar';
+import { AdminBar } from './AdminNavigation/AdminBar';
 import { UserRole } from '@/lib/generated/prisma/enums';
 
 export async function AppHeader() {
