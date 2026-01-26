@@ -18,5 +18,6 @@
         "titleBar.inactiveBackground": "#1650ca99",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#1650ca"
+    "peacock.color": "#1650ca",
+    "WillLuke.nextjs.hasPrompted": true
 }
