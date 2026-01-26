@@ -1,4 +1,4 @@
-import { CreateMatch } from "@/components/forms/match/CreateMatch";
+import { CreateMatch } from "@/components/forms/admin/match/CreateMatch";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function CreateMatchPage() {

@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { createMatch } from "@/lib/actions/matches";
 import prisma from "@/lib/db";
-import { FormField } from "../FormField";
-import { FormSelectGameField } from "../FormSelectGameField";
+import { FormField } from "../../FormField";
+import { FormSelectGameField } from "../../FormSelectGameField";
 
 
 export async function CreateMatch() {
