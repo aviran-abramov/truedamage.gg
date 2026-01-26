@@ -1,9 +1,5 @@
 import { CreateMatch } from "@/components/forms/match/CreateMatch";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { createMatch } from "@/lib/actions/matches";
 
 export default function CreateMatchPage() {
     return (
