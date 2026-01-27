@@ -45,7 +45,7 @@ export async function loginWithGoogle() {
     if (url) redirect(url);
 }
 
-export async function logout(formData: FormData) {
+export async function logout() {
     try {
         await auth.api.signOut({
             headers: await headers()
