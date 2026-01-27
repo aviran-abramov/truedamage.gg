@@ -35,6 +35,16 @@ export async function login(formData: FormData) {
     redirect("/");
 }
 
+export async function loginWithGoogle() {
+    const { url } = await auth.api.signInSocial({
+        body: {
+            provider: "google"
+        }
+    });
+
+    if (url) redirect(url);
+}
+
 export async function logout(formData: FormData) {
     try {
         await auth.api.signOut({

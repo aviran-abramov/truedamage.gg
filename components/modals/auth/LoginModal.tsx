@@ -1,16 +1,23 @@
-import { DialogTitle } from '@radix-ui/react-dialog'
+import { DialogDescription, DialogTitle } from '@radix-ui/react-dialog'
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
 import Link from 'next/link'
 import { DialogHeader } from '@/components/ui/dialog'
 import { LoginForm } from '@/components/forms/auth/Login'
+import { GoogleAuthButton } from './GoogleAuthButton'
+import { ContinueWithSeparator } from './ContinueWithSeparator'
 
 export function LoginModal({ onAuthModalToShowClick }: { onAuthModalToShowClick: () => void }) {
+
     return (
         <React.Fragment>
             <DialogHeader>
-                <DialogTitle className='text-2xl font-bold'>Login</DialogTitle>
+                <DialogTitle className='text-2xl text-center font-bold'>Login</DialogTitle>
+                <DialogDescription className='text-muted-foreground text-center'>Sign in to your account to continue</DialogDescription>
             </DialogHeader>
+
+            <GoogleAuthButton />
+            <ContinueWithSeparator />
 
             <LoginForm />
 
@@ -21,6 +28,7 @@ export function LoginModal({ onAuthModalToShowClick }: { onAuthModalToShowClick:
                     <ArrowRight />
                 </Link>
             </div>
+
         </React.Fragment>
     )
 }

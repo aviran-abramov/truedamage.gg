@@ -4,15 +4,20 @@ import React from "react";
 import Link from "next/link";
 import { DialogHeader } from "@/components/ui/dialog";
 import { SignUpForm } from "@/components/forms/auth/SignUp";
+import { GoogleAuthButton } from "./GoogleAuthButton";
+import { ContinueWithSeparator } from "./ContinueWithSeparator";
 
 
 export function SignUpModal({ onAuthModalToShowClick }: { onAuthModalToShowClick: () => void }) {
     return (
         <React.Fragment>
             <DialogHeader>
-                <DialogTitle className='text-2xl font-bold'>Sign up</DialogTitle>
-                <DialogDescription>Create your account to get started</DialogDescription>
+                <DialogTitle className='text-2xl text-center font-bold'>Sign up</DialogTitle>
+                <DialogDescription className="text-muted-foreground text-center">Create your account to get started</DialogDescription>
             </DialogHeader>
+
+            <GoogleAuthButton />
+            <ContinueWithSeparator />
 
             <SignUpForm />
 
