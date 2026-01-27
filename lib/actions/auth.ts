@@ -35,10 +35,10 @@ export async function login(formData: FormData) {
     redirect("/");
 }
 
-export async function loginWithGoogle() {
+export async function loginWithOAuth(provider: "google" | "facebook") {
     const { url } = await auth.api.signInSocial({
         body: {
-            provider: "google"
+            provider
         }
     });
 

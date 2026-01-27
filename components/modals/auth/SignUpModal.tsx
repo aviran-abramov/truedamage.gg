@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { DialogHeader } from "@/components/ui/dialog";
 import { SignUpForm } from "@/components/forms/auth/SignUp";
-import { GoogleAuthButton } from "./GoogleAuthButton";
+import { OAuthButton } from "./OAuthButton";
 import { ContinueWithSeparator } from "./ContinueWithSeparator";
 
 
@@ -16,7 +16,8 @@ export function SignUpModal({ onAuthModalToShowClick }: { onAuthModalToShowClick
                 <DialogDescription className="text-muted-foreground text-center">Create your account to get started</DialogDescription>
             </DialogHeader>
 
-            <GoogleAuthButton />
+            <OAuthButton name='Google' provider='google' />
+            <OAuthButton name="Facebook" provider='facebook' />
             <ContinueWithSeparator />
 
             <SignUpForm />

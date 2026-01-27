@@ -4,8 +4,8 @@ import React from 'react'
 import Link from 'next/link'
 import { DialogHeader } from '@/components/ui/dialog'
 import { LoginForm } from '@/components/forms/auth/Login'
-import { GoogleAuthButton } from './GoogleAuthButton'
 import { ContinueWithSeparator } from './ContinueWithSeparator'
+import { OAuthButton } from './OAuthButton'
 
 export function LoginModal({ onAuthModalToShowClick }: { onAuthModalToShowClick: () => void }) {
 
@@ -16,7 +16,10 @@ export function LoginModal({ onAuthModalToShowClick }: { onAuthModalToShowClick:
                 <DialogDescription className='text-muted-foreground text-center'>Sign in to your account to continue</DialogDescription>
             </DialogHeader>
 
-            <GoogleAuthButton />
+            <div className='space-y-2.5'>
+                <OAuthButton name='Google' provider='google' />
+                <OAuthButton name="Facebook" provider='facebook' />
+            </div>
             <ContinueWithSeparator />
 
             <LoginForm />
