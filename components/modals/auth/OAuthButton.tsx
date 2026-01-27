@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { loginWithOAuth } from "@/lib/actions/auth";
+import { signInWithOAuth } from "@/lib/actions/auth";
 import Image from "next/image";
 
 export function OAuthButton({ name, provider }: { name: string, provider: "google" | "facebook" }) {
@@ -7,7 +7,7 @@ export function OAuthButton({ name, provider }: { name: string, provider: "googl
     return (
         <Button
             type="button"
-            onClick={() => loginWithOAuth(provider)}
+            onClick={() => signInWithOAuth(provider)}
             className="w-full cursor-pointer"
         >
             <Image src={`/icons/auth/${provider}-20px.svg`} alt="Google Icon" height={20} width={20} />

@@ -1,13 +1,13 @@
-import { LogoutForm } from "@/components/forms/auth/Logout";
+import { SignOutForm } from "@/components/forms/auth/SignOut";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 
-export function LogoutButton() {
+export function SignOutButton() {
     return (
-        <LogoutForm>
+        <SignOutForm>
             <Button type='submit' variant="outline" size="icon" className="cursor-pointer">
                 <LogOut />
             </Button>
-        </LogoutForm>
+        </SignOutForm>
     )
 }

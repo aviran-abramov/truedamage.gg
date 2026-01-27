@@ -24,7 +24,7 @@ export function SignUpModal({ onAuthModalToShowClick }: { onAuthModalToShowClick
 
             <Link onClick={onAuthModalToShowClick} href="#" className='hover:underline text-blue-400 flex items-center justify-start gap-1 underline underline-offset-1'>
                 <ArrowLeft />
-                Back to login
+                Back to sign in
             </Link>
         </React.Fragment>
     )

@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { login } from "@/lib/actions/auth";
+import { signIn } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
 
-export function LoginForm() {
+export function SignInForm() {
 
     return (
-        <form action={login} className='space-y-4'>
+        <form action={signIn} className='space-y-4'>
             <FormField
                 name="email"
                 label="Email Address"
@@ -21,7 +21,7 @@ export function LoginForm() {
             />
 
             <Button type="submit" className="w-full cursor-pointer">
-                LOGIN
+                SIGN IN
             </Button>
         </form>
     )

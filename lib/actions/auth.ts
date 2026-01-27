@@ -20,7 +20,7 @@ export async function signUp(formData: FormData) {
     redirect("/");
 }
 
-export async function login(formData: FormData) {
+export async function signIn(formData: FormData) {
     try {
         await auth.api.signInEmail({
             body: {
@@ -35,7 +35,7 @@ export async function login(formData: FormData) {
     redirect("/");
 }
 
-export async function loginWithOAuth(provider: "google" | "facebook") {
+export async function signInWithOAuth(provider: "google" | "facebook") {
     const { url } = await auth.api.signInSocial({
         body: {
             provider
@@ -45,7 +45,7 @@ export async function loginWithOAuth(provider: "google" | "facebook") {
     if (url) redirect(url);
 }
 
-export async function logout() {
+export async function signOut() {
     try {
         await auth.api.signOut({
             headers: await headers()

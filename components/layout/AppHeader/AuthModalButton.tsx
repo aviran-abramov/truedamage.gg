@@ -4,17 +4,17 @@ import { useState } from "react";
 import { UserIcon } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { LoginModal } from "@/components/modals/auth/LoginModal";
+import { SignInModal } from "@/components/modals/auth/SignInModal";
 import { SignUpModal } from "@/components/modals/auth/SignUpModal";
 
-type AuthModalType = "login" | "signup";
+type AuthModalType = "signIn" | "signUp";
 
 export function AuthModalButton() {
-    const [authModalToShow, setAuthModalToShow] = useState<AuthModalType>("login");
+    const [authModalToShow, setAuthModalToShow] = useState<AuthModalType>("signIn");
 
-    const handleAuthModalToShowClick = () => setAuthModalToShow(prevState => prevState === "login" ? "signup" : "login");
+    const handleAuthModalToShowClick = () => setAuthModalToShow(prevState => prevState === "signIn" ? "signUp" : "signIn");
     const handleOpenChange = (isOpen: boolean) => {
-        if (!isOpen) setAuthModalToShow("login");
+        if (!isOpen) setAuthModalToShow("signIn");
     };
 
     return (
@@ -26,11 +26,11 @@ export function AuthModalButton() {
             </DialogTrigger>
 
             <DialogContent>
-                {authModalToShow === "login" && (
-                    <LoginModal onAuthModalToShowClick={handleAuthModalToShowClick} />
+                {authModalToShow === "signIn" && (
+                    <SignInModal onAuthModalToShowClick={handleAuthModalToShowClick} />
                 )}
 
-                {authModalToShow === "signup" && (
+                {authModalToShow === "signUp" && (
                     <SignUpModal onAuthModalToShowClick={handleAuthModalToShowClick} />
                 )}
             </DialogContent>

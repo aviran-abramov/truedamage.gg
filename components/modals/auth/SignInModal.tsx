@@ -3,16 +3,16 @@ import { ArrowRight } from 'lucide-react'
 import React from 'react'
 import Link from 'next/link'
 import { DialogHeader } from '@/components/ui/dialog'
-import { LoginForm } from '@/components/forms/auth/Login'
+import { SignInForm } from '@/components/forms/auth/SignIn'
 import { ContinueWithSeparator } from './ContinueWithSeparator'
 import { OAuthButton } from './OAuthButton'
 
-export function LoginModal({ onAuthModalToShowClick }: { onAuthModalToShowClick: () => void }) {
+export function SignInModal({ onAuthModalToShowClick }: { onAuthModalToShowClick: () => void }) {
 
     return (
         <React.Fragment>
             <DialogHeader>
-                <DialogTitle className='text-2xl text-center font-bold'>Login</DialogTitle>
+                <DialogTitle className='text-2xl text-center font-bold'>Sign in</DialogTitle>
                 <DialogDescription className='text-muted-foreground text-center'>Sign in to your account to continue</DialogDescription>
             </DialogHeader>
 
@@ -22,7 +22,7 @@ export function LoginModal({ onAuthModalToShowClick }: { onAuthModalToShowClick:
             </div>
             <ContinueWithSeparator />
 
-            <LoginForm />
+            <SignInForm />
 
             <div className='flex items-center justify-center gap-1'>
                 <p>Not a member?</p>
