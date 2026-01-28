@@ -20,9 +20,6 @@ export async function signUp(formData: FormData) {
         console.log("Success!");
     } catch (error) {
         console.error("Error: Could not sign up the new user via form", error);
-        return {
-            error
-        };
     }
 
     redirect("/");
@@ -43,9 +40,6 @@ export async function signIn(formData: FormData) {
         console.log("Success!");
     } catch (error) {
         console.error("Error: Could not sign in the new user via form", error);
-        return {
-            error
-        };
     }
 
     redirect("/");
@@ -65,9 +59,6 @@ export async function signInWithOAuth(provider: "google" | "facebook") {
         console.log("Success!");
     } catch (error) {
         console.error("Error: Could not sign in the user via OAuth", error);
-        return {
-            error
-        };
     }
     redirect("/");
 }
@@ -84,9 +75,6 @@ export async function signOut() {
         console.log("Success!");
     } catch (error) {
         console.error("Error: Could not sign out the user", error);
-        return {
-            error
-        };
     }
 
     redirect("/");
