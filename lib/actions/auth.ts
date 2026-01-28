@@ -6,15 +6,23 @@ import { headers } from "next/headers";
 
 export async function signUp(formData: FormData) {
     try {
-        await auth.api.signUpEmail({
+        console.log("Attempting to sign up a new user via form");
+
+        const { user } = await auth.api.signUpEmail({
             body: {
                 name: formData.get("name") as string,
                 email: formData.get("email") as string,
                 password: formData.get("password") as string
             }
         });
+        if (!user) throw new Error("Could not sign up the new user via form");
+
+        console.log("Success!");
     } catch (error) {
-        console.log(error);
+        console.error("Error: Could not sign up the new user via form", error);
+        return {
+            error
+        };
     }
 
     redirect("/");
@@ -22,36 +30,63 @@ export async function signUp(formData: FormData) {
 
 export async function signIn(formData: FormData) {
     try {
-        await auth.api.signInEmail({
+        console.log("Attempting to sign in a user via form");
+
+        const { user } = await auth.api.signInEmail({
             body: {
                 email: formData.get("email") as string,
                 password: formData.get("password") as string
             },
         });
+        if (!user) throw new Error("Could not sign in the new user via form");
+
+        console.log("Success!");
     } catch (error) {
-        console.log(error);
+        console.error("Error: Could not sign in the new user via form", error);
+        return {
+            error
+        };
     }
 
     redirect("/");
 }
 
 export async function signInWithOAuth(provider: "google" | "facebook") {
-    const { url } = await auth.api.signInSocial({
-        body: {
-            provider
-        }
-    });
+    try {
+        console.log("Attempting to sign in a user via OAuth");
 
-    if (url) redirect(url);
+        const { url } = await auth.api.signInSocial({
+            body: {
+                provider
+            }
+        });
+        if (!url) throw new Error("Could not sign in the user via OAuth");
+
+        console.log("Success!");
+    } catch (error) {
+        console.error("Error: Could not sign in the user via OAuth", error);
+        return {
+            error
+        };
+    }
+    redirect("/");
 }
 
 export async function signOut() {
     try {
-        await auth.api.signOut({
+        console.log("Attempting to sign out a user");
+
+        const { success } = await auth.api.signOut({
             headers: await headers()
         });
+        if (!success) throw new Error("Could not sign out the user");
+
+        console.log("Success!");
     } catch (error) {
-        console.log(error);
+        console.error("Error: Could not sign out the user", error);
+        return {
+            error
+        };
     }
 
     redirect("/");
