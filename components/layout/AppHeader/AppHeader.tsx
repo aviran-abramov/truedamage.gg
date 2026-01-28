@@ -9,12 +9,12 @@ export async function AppHeader() {
         headers: await headers(),
     });
 
-    const isLoggedIn = !!session;
+    const isSignedIn = !!session;
     const isAdmin = session?.user.role === UserRole.ADMIN;
 
     return (
         <header className="border-b">
-            <UserBar isLoggedIn={isLoggedIn} />
+            <UserBar isSignedIn={isSignedIn} />
             {isAdmin && <AdminBar />}
         </header>
     )
