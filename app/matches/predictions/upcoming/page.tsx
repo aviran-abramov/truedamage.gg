@@ -1,3 +1,4 @@
+import { FilterByGame } from "@/components/matches/Filters/FilterByGame";
 import { PredictionList } from "@/components/matches/predictions/PredictionList";
 import { getMatchesWithPredictions } from "@/lib/actions/matches";
 import Image from "next/image"
@@ -17,6 +18,8 @@ export default async function UpcomingPredictionsPage() {
 
             <section className="flex flex-col max-w-5xl w-full">
                 <p className="text-3xl font-bold mb-4 py-4 text-center">Upcoming Predictions</p>
+
+                <FilterByGame />
 
                 {
                     matchesWithPredictions.success ? (
