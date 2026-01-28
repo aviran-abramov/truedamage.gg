@@ -2,7 +2,6 @@
 
 import { redirect } from "next/navigation";
 import prisma from "../db";
-import { Game } from "../generated/prisma/client";
 
 const createGameSlug = (name: string) => {
     const nameInLowerCase = name.toLocaleLowerCase();

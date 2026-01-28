@@ -3,7 +3,7 @@ import { getMatchesWithPredictions } from "@/lib/actions/matches";
 import Image from "next/image"
 
 export default async function UpcomingPredictionsPage() {
-    const result = await getMatchesWithPredictions();
+    const matchesWithPredictions = await getMatchesWithPredictions();
 
     return (
         <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col items-center">
@@ -15,14 +15,14 @@ export default async function UpcomingPredictionsPage() {
                 loading="eager"
             />
 
-            <section className="flex flex-col items-center max-w-5xl w-full">
-                <p className="text-3xl font-bold mb-4 py-4">Upcoming Predictions</p>
+            <section className="flex flex-col max-w-5xl w-full">
+                <p className="text-3xl font-bold mb-4 py-4 text-center">Upcoming Predictions</p>
 
                 {
-                    result.success ? (
-                        <PredictionList predictions={result.data} />
+                    matchesWithPredictions.success ? (
+                        <PredictionList predictions={matchesWithPredictions.data} />
                     ) : (
-                        <p>{result.errorMessage}</p>
+                        <p>{matchesWithPredictions.errorMessage}</p>
                     )
                 }
             </section>

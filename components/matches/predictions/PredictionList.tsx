@@ -5,7 +5,7 @@ export const PredictionList = ({ predictions = [] }: PredictionListProps) => {
     if (predictions.length === 0) return <EmptyPredictions />;
 
     return (
-        <ul className="w-full space-y-8">
+        <ul className="w-full space-y-8 my-4">
             {predictions.map((prediction) => (
                 <Prediction key={prediction.id} prediction={prediction} />
             ))}
