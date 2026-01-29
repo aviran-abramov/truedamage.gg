@@ -29,3 +29,17 @@ export async function createGame(formData: FormData) {
 
     redirect("/");
 }
+
+export async function getAllGames() {
+    try {
+        console.log("Attempting to get all games");
+
+        const games = await prisma.game.findMany();
+        if (!games) throw new Error("Could not retrieve all available games");
+
+        console.log("Success!");
+        return games;
+    } catch (error) {
+        console.error("Error: Could not retrieve all available games", error);
+    }
+}

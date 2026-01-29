@@ -4,10 +4,13 @@ import { createMatch } from "@/lib/actions/matches";
 import prisma from "@/lib/db";
 import { FormField } from "../../FormField";
 import { FormSelectGameField } from "../../FormSelectGameField";
+import { getAllGames } from "@/lib/actions/games";
 
 
 export async function CreateMatch() {
-    const games = await prisma.game.findMany();
+    // const games = await prisma.game.findMany();
+    const games = await getAllGames();
+    if (!games) return;
 
     return (
         <form action={createMatch} className="flex flex-col gap-4">
