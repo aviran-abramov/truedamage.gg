@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { Inter } from "next/font/google";
 import { AppHeader } from "@/components/layout/AppHeader/AppHeader";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -50,6 +51,8 @@ export default function RootLayout({
           <footer>
 
           </footer>
+
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
