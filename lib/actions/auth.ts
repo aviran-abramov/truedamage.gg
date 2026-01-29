@@ -46,19 +46,25 @@ export async function signIn(formData: FormData) {
 }
 
 export async function signInWithOAuth(provider: "google" | "facebook") {
-    try {
-        console.log("Attempting to sign in a user via OAuth");
+    let url: string | undefined;
 
-        const { url } = await auth.api.signInSocial({
+    try {
+        console.log("Attempting to move user to OAuth login");
+
+        const result = await auth.api.signInSocial({
             body: {
                 provider
             }
         });
-        if (!url) throw new Error("Could not sign in the user via OAuth");
-
-        console.log("Success!");
+        if (!result) throw new Error("Could not sign in the user via OAuth");
+        url = result.url;
     } catch (error) {
         console.error("Error: Could not sign in the user via OAuth", error);
+    }
+
+    if (url) {
+        console.log("Success!");
+        redirect(url);
     }
     redirect("/");
 }
