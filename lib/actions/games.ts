@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import prisma from "../db";
+import { CreateGameSchema } from "../schemas/game";
 
 const createGameSlug = (name: string) => {
     const nameInLowerCase = name.toLocaleLowerCase();
@@ -10,9 +11,22 @@ const createGameSlug = (name: string) => {
     return slug;
 };
 
-export async function createGame(formData: FormData) {
+export async function createGame(newGame: unknown) {
     try {
-        const name = formData.get("name") as string;
+        const result = CreateGameSchema.safeParse(newGame);
+        if (!result.success) {
+            let errorMessage = "";
+
+            result.error.issues.forEach((issue) => {
+                errorMessage += `${issue.path}: ${issue.message}.`
+            })
+
+            return {
+                error: errorMessage
+            };
+        }
+
+        const { name } = result.data;
         const slug = createGameSlug(name);
         const iconUrl = `/icons/games/${slug}.svg`;
 
@@ -22,12 +36,17 @@ export async function createGame(formData: FormData) {
                 slug,
                 iconUrl
             }
-        })
+        });
     } catch (error) {
         console.log("Error creating game", error);
+        return {
+            error: "Failed to create game."
+        };
     }
 
-    redirect("/");
+    return {
+        success: true
+    };
 }
 
 export async function getAllGames() {

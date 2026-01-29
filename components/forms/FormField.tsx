@@ -13,7 +13,11 @@ export const FormField = ({ name, label, type = "text", placeholder }: FormField
     return (
         <Field>
             {label && <FieldLabel>{label}</FieldLabel>}
-            <Input name={name} type={type} placeholder={placeholder} />
+            <Input
+                name={name}
+                type={type}
+                placeholder={placeholder}
+            />
         </Field>
     )
 }
