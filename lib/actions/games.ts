@@ -1,15 +1,8 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import prisma from "../db";
 import { CreateGameSchema } from "../schemas/game";
-
-const createGameSlug = (name: string) => {
-    const nameInLowerCase = name.toLocaleLowerCase();
-    const slug = nameInLowerCase.split(" ").join("-");
-
-    return slug;
-};
+import { createGameSlug } from "../helpers";
 
 export async function createGame(newGame: unknown) {
     try {
