@@ -4,16 +4,32 @@ import { redirect } from "next/navigation"
 import { auth } from "../auth";
 import { headers } from "next/headers";
 import { CreateSignInSchema } from "../schemas/auth/signIn";
+import { CreateSignUpSchema } from "../schemas/auth/signUp";
 
-export async function signUp(formData: FormData) {
+export async function signUp(newSignUp: unknown) {
     try {
         console.log("Attempting to sign up a new user via form");
 
+        const result = CreateSignUpSchema.safeParse(newSignUp);
+        if (!result.success) {
+            let errorMessage = "";
+
+            result.error.issues.forEach((issue) => {
+                errorMessage += `${issue.path}: ${issue.message}`
+            });
+
+            return {
+                error: errorMessage
+            };
+        }
+
+        const { name, email, password } = result.data;
+
         const { user } = await auth.api.signUpEmail({
             body: {
-                name: formData.get("name") as string,
-                email: formData.get("email") as string,
-                password: formData.get("password") as string
+                name,
+                email,
+                password
             }
         });
         if (!user) throw new Error("Could not sign up the new user via form");
@@ -23,7 +39,9 @@ export async function signUp(formData: FormData) {
         console.error("Error: Could not sign up the new user via form", error);
     }
 
-    redirect("/");
+    return {
+        success: true
+    };
 }
 
 export async function signIn(newSignIn: unknown) {
