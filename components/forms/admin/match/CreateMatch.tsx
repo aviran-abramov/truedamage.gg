@@ -28,10 +28,8 @@ export async function CreateMatch({ games }: CreateMatchProps) {
 
         const result = CreateMatchSchema.safeParse(newMatch);
         if (!result.success) {
-            if (!result.success) {
-                toast.warning(result.error.issues[0].message, { position: "top-center" });
-                return;
-            }
+            toast.warning(result.error.issues[0].message, { position: "top-center" });
+            return;
         }
 
         const response = await createMatch(result.data);
