@@ -1,7 +1,9 @@
 import { CreateTeamForm } from "@/components/forms/admin/teams/create/CreateTeam";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import prisma from "@/lib/db";
 
-export default function CreateTeamPage() {
+export default async function CreateTeamPage() {
+    const games = await prisma.game.findMany();
 
     return (
         <div className="max-w-md mx-auto py-10">
@@ -12,7 +14,7 @@ export default function CreateTeamPage() {
                 </CardHeader>
 
                 <CardContent>
-                    <CreateTeamForm />
+                    <CreateTeamForm games={games} />
                 </CardContent>
             </Card>
         </div>

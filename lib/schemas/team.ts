@@ -1,7 +1,7 @@
 import * as z from "zod";
 
 export const CreateTeamSchema = z.object({
-    game: z
+    gameName: z
         .string()
         .trim()
         .min(1, { error: "Game name field is required." })

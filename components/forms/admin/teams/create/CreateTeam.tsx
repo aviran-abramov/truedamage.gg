@@ -1,18 +1,53 @@
+"use client";
+
 import { FormField } from "@/components/forms/FormField";
 import { FormSelectGameField } from "@/components/forms/FormSelectGameField";
 import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { CreateTeam } from "@/lib/actions/teams";
-import prisma from "@/lib/db";
+import { Game } from "@/lib/generated/prisma/client";
+import { CreateTeamSchema } from "@/lib/schemas/team";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
-export async function CreateTeamForm() {
-    const games = await prisma.game.findMany();
+interface CreateTeamFormProps {
+    games: Game[];
+}
+
+export async function CreateTeamForm({ games }: CreateTeamFormProps) {
+    const router = useRouter();
+
+    const handleCreateTeam = async (formData: FormData) => {
+        const newTeam = {
+            gameName: formData.get("gameName") as string,
+            name: formData.get("name") as string,
+            countryName: formData.get("countryName") as string,
+            countryCode: formData.get("countryCode") as string,
+        };
+
+        const result = CreateTeamSchema.safeParse(newTeam);
+        if (!result.success) {
+            toast.warning(result.error.issues[0].message, { position: "top-center" });
+            return;
+        }
+
+        const response = await CreateTeam(newTeam);
+        if (response?.error) {
+            toast.error(response.error, { position: "top-center" });
+            return;
+        }
+
+        toast.success("Team created successfully!", { position: "top-center" });
+        setTimeout(() => {
+            router.push("/");
+        }, 1500);
+    }
 
     return (
-        <form action={CreateTeam} className="flex flex-col gap-4">
+        <form action={handleCreateTeam} className="flex flex-col gap-4">
             <FormSelectGameField
                 label="Game"
-                name="game"
+                name="gameName"
                 placeholder="Select a game"
                 title="Games"
                 games={games}
