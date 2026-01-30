@@ -13,7 +13,7 @@ interface FormSelectGameFieldProps {
 export function FormSelectGameField({ label, name, placeholder, title, games }: FormSelectGameFieldProps) {
 
     return (
-        <Field>
+        <Field className="gap-2.5">
             <FieldLabel>{label}</FieldLabel>
             <Select name={name}>
                 <SelectTrigger className="w-full max-w-48">

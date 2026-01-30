@@ -11,7 +11,7 @@ interface FormFieldProps {
 export const FormField = ({ name, label, type = "text", placeholder }: FormFieldProps) => {
 
     return (
-        <Field>
+        <Field className="gap-2.5">
             {label && <FieldLabel>{label}</FieldLabel>}
             <Input
                 name={name}
