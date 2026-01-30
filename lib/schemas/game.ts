@@ -5,9 +5,9 @@ export const CreateGameSchema = z.object({
         .string()
         .trim()
         .min(1, {
-            message: "Game name is required."
+            error: "Game name is required."
         })
         .max(100, {
-            message: "Game name must be 100 characters or less."
+            error: "Game name must be 100 characters or less."
         })
 });
