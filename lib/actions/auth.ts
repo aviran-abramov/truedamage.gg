@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation"
 import { auth } from "../auth";
 import { headers } from "next/headers";
+import { CreateSignInSchema } from "../schemas/auth/signIn";
 
 export async function signUp(formData: FormData) {
     try {
@@ -25,14 +26,28 @@ export async function signUp(formData: FormData) {
     redirect("/");
 }
 
-export async function signIn(formData: FormData) {
+export async function signIn(newSignIn: unknown) {
     try {
         console.log("Attempting to sign in a user via form");
 
+        const result = CreateSignInSchema.safeParse(newSignIn);
+        if (!result.success) {
+            let errorMessage = "";
+
+            result.error.issues.forEach((error) => {
+                errorMessage += `${error.path}: ${error.message}`
+            });
+
+            return {
+                error: errorMessage
+            };
+        }
+        const { email, password } = result.data;
+
         const { user } = await auth.api.signInEmail({
             body: {
-                email: formData.get("email") as string,
-                password: formData.get("password") as string
+                email,
+                password
             },
         });
         if (!user) throw new Error("Could not sign in the new user via form");
@@ -42,7 +57,9 @@ export async function signIn(formData: FormData) {
         console.error("Error: Could not sign in the new user via form", error);
     }
 
-    redirect("/");
+    return {
+        success: true
+    };
 }
 
 export async function signInWithOAuth(provider: "google" | "facebook") {
