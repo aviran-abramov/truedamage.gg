@@ -3,55 +3,60 @@
 import prisma from "../db";
 import { Prisma } from "../generated/prisma/client";
 import { redirect } from "next/navigation";
+import { CreateMatchSchema } from "../schemas/match";
 
 type ActionResult<T> =
     | { success: true; data: T }
     | { success: false; errorMessage: string };
 
-export async function createMatch(formData: FormData) {
+export async function createMatch(newMatch: unknown) {
     try {
-        const rawFormData = {
-            date: formData.get('date') as string,
-            time: formData.get('time') as string,
-            game: formData.get('game') as string,
-            league: formData.get('league') as string,
-            bestOf: Number(formData.get('bestOf')),
-            teamAName: formData.get('teamAName') as string,
-            teamBName: formData.get('teamBName') as string,
-            winnerPrediction: formData.get("winnerPrediction") as string
+        const result = CreateMatchSchema.safeParse(newMatch);
+        if (!result.success) {
+            let errorMessage = "";
+
+            result.error.issues.forEach((issue) => {
+                errorMessage += `${issue.path}: ${issue.message}`
+            });
+
+            return {
+                error: errorMessage
+            };
         }
+
+        const { date, time, league, gameName, bestOf, teamAName, teamBName, winnerPrediction } = result.data;
 
         const game = await prisma.game.findFirst({
             where: {
-                name: rawFormData.game
+                name: gameName
             }
         });
         if (!game) throw new Error("Game not found")
 
         const teamA = await prisma.team.findFirst({
             where: {
-                name: rawFormData.teamAName
+                name: teamAName
             }
         });
         if (!teamA) throw new Error("Team A not found")
 
         const teamB = await prisma.team.findFirst({
             where: {
-                name: rawFormData.teamBName
+                name: teamBName
             }
         });
         if (!teamB) throw new Error("Team B not found")
 
         await prisma.match.create({
             data: {
-                date: rawFormData.date,
-                time: rawFormData.time,
+                date,
+                time,
                 gameId: game.id,
-                league: rawFormData.league,
-                bestOf: rawFormData.bestOf,
+                league,
+                bestOf,
                 teamAId: teamA.id,
                 teamBId: teamB.id,
-                winnerPrediction: rawFormData.winnerPrediction
+                winnerPrediction
             }
         })
     } catch (error) {
@@ -59,7 +64,9 @@ export async function createMatch(formData: FormData) {
         return;
     }
 
-    redirect('/matches/predictions/upcoming');
+    return {
+        success: true
+    };
 }
 
 export type MatchWithRelations = Prisma.MatchGetPayload<{

@@ -1,17 +1,53 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { createMatch } from "@/lib/actions/matches";
 import { FormField } from "../../FormField";
 import { FormSelectGameField } from "../../FormSelectGameField";
-import { getAllGames } from "@/lib/actions/games";
-import * as z from "zod";
+import { Game } from "@/lib/generated/prisma/client";
+import { CreateMatchSchema } from "@/lib/schemas/match";
+import { toast } from "sonner";
 
-export async function CreateMatch() {
-    const games = await getAllGames();
-    if (!games) return;
+interface CreateMatchProps {
+    games: Game[];
+}
+
+export async function CreateMatch({ games }: CreateMatchProps) {
+    const handleCreateMatch = async (formData: FormData) => {
+        const newMatch = {
+            date: formData.get('date') as string,
+            time: formData.get('time') as string,
+            gameName: formData.get('gameName') as string,
+            league: formData.get('league') as string,
+            bestOf: Number(formData.get('bestOf')),
+            teamAName: formData.get('teamAName') as string,
+            teamBName: formData.get('teamBName') as string,
+            winnerPrediction: formData.get("winnerPrediction") as string
+        }
+
+        const result = CreateMatchSchema.safeParse(newMatch);
+        if (!result.success) {
+            if (!result.success) {
+                toast.warning(result.error.issues[0].message, { position: "top-center" });
+                return;
+            }
+        }
+
+        const response = await createMatch(result.data);
+        if (response?.error) {
+            toast.error(response.error, { position: "top-center" });
+            return;
+        }
+
+        toast.success("Match created successfully!", { position: "top-center" });
+        setTimeout(() => {
+            window.location.href = "/matches/predictions/upcoming";
+        }, 1500);
+    }
 
     return (
-        <form action={createMatch} className="flex flex-col gap-4">
+        <form action={handleCreateMatch} className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
                 <FormField
                     name="date"
@@ -38,7 +74,7 @@ export async function CreateMatch() {
             <div className="flex items-center gap-3">
                 <FormSelectGameField
                     label="Game"
-                    name="game"
+                    name="gameName"
                     placeholder="Select a game"
                     title="Games"
                     games={games}

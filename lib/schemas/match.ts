@@ -18,7 +18,7 @@ export const CreateMatchSchema = z.object({
         .trim()
         .min(1, { error: "League name field is required." })
         .max(255, { error: "League name field must be 255 characters or less." }),
-    game: z
+    gameName: z
         .string()
         .trim()
         .min(1, { error: "Game name field is required." })
