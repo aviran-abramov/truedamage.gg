@@ -8,12 +8,15 @@ import { FormSelectGameField } from "../../FormSelectGameField";
 import { Game } from "@/lib/generated/prisma/client";
 import { CreateMatchSchema } from "@/lib/schemas/match";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface CreateMatchProps {
     games: Game[];
 }
 
 export async function CreateMatch({ games }: CreateMatchProps) {
+    const router = useRouter();
+
     const handleCreateMatch = async (formData: FormData) => {
         const newMatch = {
             date: formData.get('date') as string,
@@ -40,7 +43,7 @@ export async function CreateMatch({ games }: CreateMatchProps) {
 
         toast.success("Match created successfully!", { position: "top-center" });
         setTimeout(() => {
-            window.location.href = "/matches/predictions/upcoming";
+            router.push("/matches/predictions/upcoming");
         }, 1500);
     }
 

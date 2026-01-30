@@ -5,8 +5,11 @@ import { signUp } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
 import { CreateSignUpSchema } from "@/lib/schemas/auth/signUp";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export function SignUpForm() {
+    const router = useRouter();
+
     const handleSignUp = async (formData: FormData) => {
         const newSignUp = {
             name: formData.get("name") as string,
@@ -28,7 +31,7 @@ export function SignUpForm() {
 
         toast.success("Signed up successfully!", { position: "top-center" });
         setTimeout(() => {
-            window.location.href = "/";
+            router.push("/");
         }, 1500);
     }
 
