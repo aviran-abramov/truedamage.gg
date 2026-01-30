@@ -1,14 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { createMatch } from "@/lib/actions/matches";
-import prisma from "@/lib/db";
 import { FormField } from "../../FormField";
 import { FormSelectGameField } from "../../FormSelectGameField";
 import { getAllGames } from "@/lib/actions/games";
-
+import * as z from "zod";
 
 export async function CreateMatch() {
-    // const games = await prisma.game.findMany();
     const games = await getAllGames();
     if (!games) return;
 
