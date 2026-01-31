@@ -14,7 +14,7 @@ interface CreateMatchProps {
     games: Game[];
 }
 
-export async function CreateMatch({ games }: CreateMatchProps) {
+export function CreateMatch({ games }: CreateMatchProps) {
     const router = useRouter();
 
     const handleCreateMatch = async (formData: FormData) => {
