@@ -44,7 +44,7 @@ export function ForgotPasswordForm() {
             />
 
             <Button type="submit" className="w-full cursor-pointer">
-                SIGN IN
+                RESET PASSWORD
             </Button>
         </form>
     )
