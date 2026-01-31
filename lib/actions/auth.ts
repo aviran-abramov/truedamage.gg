@@ -120,3 +120,33 @@ export async function signOut() {
 
     redirect("/");
 }
+
+export async function forgotPassword(newForgotPassword: unknown) {
+    try {
+        console.log("Attempting to sign in a user via form");
+
+        const result = CreateSignInSchema.safeParse(newForgotPassword);
+        if (!result.success) {
+            let errorMessage = "";
+
+            result.error.issues.forEach((error) => {
+                errorMessage += `${error.path}: ${error.message}`
+            });
+
+            return {
+                error: errorMessage
+            };
+        }
+
+        // ADD LOGIC LATER
+
+
+        console.log("Success!");
+    } catch (error) {
+        console.error("Error: Could not sign in the new user via form", error);
+    }
+
+    return {
+        success: true
+    };
+}

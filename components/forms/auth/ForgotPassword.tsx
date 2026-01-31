@@ -3,25 +3,20 @@
 import { Button } from "@/components/ui/button";
 import { signIn } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
-import { CreateSignInSchema } from "@/lib/schemas/auth/signIn";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { AuthModalType } from "@/lib/types/auth";
+import { CreateForgotPasswordSchema } from "@/lib/schemas/auth/forgotPassword";
 
-interface SignInFormProps {
-    onAuthModalToShowClick: (type: AuthModalType) => void;
-}
-
-export function SignInForm({ onAuthModalToShowClick }: SignInFormProps) {
+export function ForgotPasswordForm() {
     const router = useRouter();
 
-    const handleSignIn = async (formData: FormData) => {
-        const newSignIn = {
+    const handleForgotPassword = async (formData: FormData) => {
+        const newForgotPasswordRequest = {
             email: formData.get("email") as string,
             password: formData.get("password") as string
         };
 
-        const result = CreateSignInSchema.safeParse(newSignIn);
+        const result = CreateForgotPasswordSchema.safeParse(newForgotPasswordRequest);
         if (!result.success) {
             toast.warning(result.error.issues[0].message, { position: "top-center" });
             return;
@@ -40,24 +35,13 @@ export function SignInForm({ onAuthModalToShowClick }: SignInFormProps) {
     }
 
     return (
-        <form action={handleSignIn} className='space-y-4'>
+        <form action={handleForgotPassword} className='space-y-4'>
             <FormField
                 name="email"
                 label="Email Address"
                 type="email"
                 placeholder="johndoe@gmail.com"
             />
-
-            <FormField
-                name="password"
-                label="Password"
-                type="password"
-                placeholder="password"
-                hasAdditionalButton={true}
-                additionalButtonLabel="Forgot password"
-                onAuthModalToShowClick={onAuthModalToShowClick}
-            />
-
 
             <Button type="submit" className="w-full cursor-pointer">
                 SIGN IN
