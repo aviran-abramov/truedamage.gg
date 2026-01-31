@@ -1,4 +1,4 @@
-import GithubAccessTokenEmail from '@/components/email-template';
+import ForgotPasswordEmail from '@/components/email-template';
 import { Resend } from 'resend';
 
 
@@ -9,10 +9,10 @@ export async function POST() {
         const { data, error } = await resend.emails.send({
             from: 'Acme <onboarding@resend.dev>',
             to: [`${process.env.MY_EMAIL_ADDRESS}`],
-            subject: 'New Template',
+            subject: 'Recover your TrueDamage.gg password',
             // react: EmailTemplate({ firstName: 'John' }),
             // html: `<h1>Hello World2</h1>`
-            react: GithubAccessTokenEmail({ username: "johndoe" })
+            react: ForgotPasswordEmail({ username: "johndoe" })
         });
 
         if (error) {

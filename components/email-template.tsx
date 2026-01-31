@@ -13,34 +13,35 @@ import {
 } from '@react-email/components';
 // import tailwindConfig from '../tailwind.config';
 
-interface GithubAccessTokenEmailProps {
+interface ForgotPasswordEmailProps {
     username?: string;
 }
 
 const baseUrl = "https://demo.react.email";
 
-export const GithubAccessTokenEmail = ({
+export const ForgotPasswordEmail = ({
     username,
-}: GithubAccessTokenEmailProps) => (
+}: ForgotPasswordEmailProps) => (
     <Html>
         <Head />
         {/* <Tailwind config={tailwindConfig}> */}
         <Tailwind>
             <Body className="bg-white text-[#24292e] font-github">
                 <Preview>
-                    A fine-grained personal access token has been added to your account
+                    TrueDamage.gg password recovery
                 </Preview>
                 <Container className="max-w-120 mx-auto my-0 pt-5 pb-12 px-0">
-                    <Img
+                    {/* <Img
                         src={`${baseUrl}/static/github.png`}
                         width="32"
                         height="32"
                         alt="Github"
-                    />
+                    /> */}
 
                     <Text className="text-[24px] leading-tight">
-                        <strong>@{username}</strong>, a personal access was created on your
-                        account.
+                        {/* <strong>@{username}</strong>, a personal access was created on your
+                        account. */}
+                        TrueDamage.gg
                     </Text>
 
                     <Section className="p-6 border border-solid border-[#dedede] rounded-[5px] text-center">
@@ -48,24 +49,19 @@ export const GithubAccessTokenEmail = ({
                             Hey <strong>{username}</strong>!
                         </Text>
                         <Text className="mb-2.5 mt-0 text-left">
-                            A fine-grained personal access token (<Link>resend</Link>) was
-                            recently added to your account.
+                            We received a reqest to change your password. If you did not request the password change, please ignore this message.
                         </Text>
 
                         <Button className="text-sm bg-[#28a745] text-white leading-normal rounded-lg py-3 px-6">
-                            View your token
+                            Reset password
                         </Button>
                     </Section>
                     <Text className="text-center">
-                        <Link className="text-[#0366d6] text-[12px]">
-                            Your security audit log
-                        </Link>{' '}
-                        ・{' '}
                         <Link className="text-[#0366d6] text-[12px]">Contact support</Link>
                     </Text>
 
                     <Text className="text-[#6a737d] text-xs leading-6 text-center mt-15 mb-4">
-                        GitHub, Inc. ・88 Colin P Kelly Jr Street ・San Francisco, CA 94107
+                        TrueDamage.gg
                     </Text>
                 </Container>
             </Body>
@@ -73,8 +69,8 @@ export const GithubAccessTokenEmail = ({
     </Html>
 );
 
-GithubAccessTokenEmail.PreviewProps = {
+ForgotPasswordEmail.PreviewProps = {
     username: 'alanturing',
-} as GithubAccessTokenEmailProps;
+} as ForgotPasswordEmailProps;
 
-export default GithubAccessTokenEmail;
+export default ForgotPasswordEmail;
