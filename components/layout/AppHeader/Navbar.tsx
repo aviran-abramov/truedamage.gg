@@ -28,20 +28,6 @@ export const Navbar = () => {
                         <MatchLinkList />
                     </NavigationMenuContent>
                 </NavigationMenuItem>
-
-                {/* ARTICLES */}
-                <NavigationMenuItem className="hidden md:block">
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
-                        <Link href="/articles">Articles</Link>
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                {/* FAQ */}
-                <NavigationMenuItem className="hidden md:block">
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
-                        <Link href="/faq">FAQ</Link>
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
             </NavigationMenuList>
         </NavigationMenu >
     )
