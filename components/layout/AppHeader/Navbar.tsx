@@ -1,5 +1,5 @@
 
-import Link from "next/link"
+import Link from "next/link";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -8,11 +8,25 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
+
+const data = {
+    matches: [
+        { label: "Matches", href: "/matches/upcoming" },
+        { label: "Results", href: "/matches/results" },
+        { label: "Tournaments", href: "/matches/tournaments" },
+        { label: "Teams", href: "/matches/teams" },
+        { label: "Players", href: "/matches/players" },
+    ],
+    predictions: [
+        { label: "Predictions", href: "/matches/predictions/upcoming" },
+        { label: "Prediction Results", href: "/matches/predictions/results" }
+    ]
+}
 
 export const Navbar = () => {
     return (
-        <NavigationMenu>
+        <NavigationMenu viewport={false}>
             <NavigationMenuList>
                 {/* HOME */}
                 <NavigationMenuItem>
@@ -25,7 +39,15 @@ export const Navbar = () => {
                 <NavigationMenuItem className="hidden md:block">
                     <NavigationMenuTrigger>Match Center</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <MatchLinkList />
+                        <NavLinkMenu data={data.matches} />
+                    </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                {/* PREDICTIONS */}
+                <NavigationMenuItem className="hidden md:block">
+                    <NavigationMenuTrigger>Prediction Center</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                        <NavLinkMenu data={data.predictions} />
                     </NavigationMenuContent>
                 </NavigationMenuItem>
             </NavigationMenuList>
@@ -33,23 +55,18 @@ export const Navbar = () => {
     )
 }
 
-const matchLinks = [
-    { id: "matches", label: 'Matches', href: '/matches/upcoming' },
-    { id: "results", label: 'Results', href: '/matches/results' },
-    { id: "predictions", label: 'Predictions', href: '/matches/predictions/upcoming' },
-    { id: "prediction-results", label: 'Prediction Results', href: '/matches/predictions/results' },
-    { id: "tournaments", label: 'Tournaments', href: '/matches/tournaments' },
-    { id: "teams", label: 'Teams', href: '/matches/teams' },
-    { id: "players", label: 'Players', href: '/matches/players' },
-];
+interface NavLinkMenuProps {
+    label: string;
+    href: string;
+}
 
-function MatchLinkList() {
+function NavLinkMenu({ data }: { data: NavLinkMenuProps[] }) {
 
     return (
         <ul className="grid w-50 gap-4">
-            {matchLinks.map((match) => (
-                <MatchLink
-                    key={match.id}
+            {data.map((match) => (
+                <NavLinkItem
+                    key={match.href}
                     label={match.label}
                     href={match.href}
                 />
@@ -58,12 +75,12 @@ function MatchLinkList() {
     )
 }
 
-interface MatchLinkProps {
+interface NavLinkItemProps {
     label: string;
     href: string;
 }
 
-function MatchLink({ label, href }: MatchLinkProps) {
+function NavLinkItem({ label, href }: NavLinkItemProps) {
 
     return (
         <li>
