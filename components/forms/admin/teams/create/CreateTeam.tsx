@@ -14,7 +14,7 @@ interface CreateTeamFormProps {
     games: Game[];
 }
 
-export async function CreateTeamForm({ games }: CreateTeamFormProps) {
+export function CreateTeamForm({ games }: CreateTeamFormProps) {
     const router = useRouter();
 
     const handleCreateTeam = async (formData: FormData) => {
