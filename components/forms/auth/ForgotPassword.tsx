@@ -4,12 +4,9 @@ import { Button } from "@/components/ui/button";
 import { signIn } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { CreateForgotPasswordSchema } from "@/lib/schemas/auth/forgotPassword";
 
 export function ForgotPasswordForm() {
-    const router = useRouter();
-
     const handleForgotPassword = async (formData: FormData) => {
         const newForgotPasswordRequest = {
             email: formData.get("email") as string,
@@ -30,7 +27,7 @@ export function ForgotPasswordForm() {
 
         toast.success("Signed in successfully!", { position: "top-center" });
         setTimeout(() => {
-            router.push("/");
+            window.location.href = "/";
         }, 1500);
     }
 

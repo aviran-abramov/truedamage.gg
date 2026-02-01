@@ -7,7 +7,6 @@ import { CardFooter } from "@/components/ui/card";
 import { CreateTeam } from "@/lib/actions/teams";
 import { Game } from "@/lib/generated/prisma/client";
 import { CreateTeamSchema } from "@/lib/schemas/team";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 interface CreateTeamFormProps {
@@ -15,8 +14,6 @@ interface CreateTeamFormProps {
 }
 
 export function CreateTeamForm({ games }: CreateTeamFormProps) {
-    const router = useRouter();
-
     const handleCreateTeam = async (formData: FormData) => {
         const newTeam = {
             gameName: formData.get("gameName") as string,
@@ -39,7 +36,7 @@ export function CreateTeamForm({ games }: CreateTeamFormProps) {
 
         toast.success("Team created successfully!", { position: "top-center" });
         setTimeout(() => {
-            router.push("/");
+            window.location.href = "/";
         }, 1500);
     }
 

@@ -5,7 +5,6 @@ import { signIn } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
 import { CreateSignInSchema } from "@/lib/schemas/auth/signIn";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { AuthModalType } from "@/lib/types/auth";
 
 interface SignInFormProps {
@@ -13,8 +12,6 @@ interface SignInFormProps {
 }
 
 export function SignInForm({ onAuthModalToShowClick }: SignInFormProps) {
-    const router = useRouter();
-
     const handleSignIn = async (formData: FormData) => {
         const newSignIn = {
             email: formData.get("email") as string,
@@ -35,7 +32,7 @@ export function SignInForm({ onAuthModalToShowClick }: SignInFormProps) {
 
         toast.success("Signed in successfully!", { position: "top-center" });
         setTimeout(() => {
-            router.push("/");
+            window.location.href = "/";
         }, 1500);
     }
 

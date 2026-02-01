@@ -5,12 +5,9 @@ import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { createGame } from "@/lib/actions/games";
 import { CreateGameSchema } from "@/lib/schemas/game";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export function CreateGameForm() {
-    const router = useRouter();
-
     const handleCreateGame = async (formData: FormData) => {
         const newGame = {
             name: formData.get("name") as string
@@ -30,7 +27,7 @@ export function CreateGameForm() {
 
         toast.success("Game created successfully!", { position: "top-center" });
         setTimeout(() => {
-            router.push("/");
+            window.location.href = "/";
         }, 1500);
     }
 
