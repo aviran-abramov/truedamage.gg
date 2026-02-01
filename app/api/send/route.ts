@@ -1,4 +1,4 @@
-import ForgotPasswordEmail from '@/components/email-template';
+import ForgotPasswordEmail from '@/components/resend/forgot-password-email-template';
 import { Resend } from 'resend';
 
 
