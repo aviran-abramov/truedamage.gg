@@ -5,9 +5,8 @@ import { ContinueWithSeparator } from '@/components/modals/auth/ContinueWithSepa
 import { OAuthButtons } from '@/components/modals/auth/OAuthButtons';
 import { DialogContent } from '@/components/ui/dialog'
 import { AuthModalType } from '@/lib/types/auth';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
 import { AuthModalHeader } from './AuthModalHeader';
+import { AuthModalFooter } from './AuthModalFooter';
 
 interface AuthModalProps {
     authModalToShow: AuthModalType;
@@ -33,7 +32,7 @@ export function AuthModal({
             {authModalToShow === "signUp" && <SignUpForm />}
             {authModalToShow === "forgotPassword" && <ForgotPasswordForm />}
 
-            <AuthModalDialogFooter
+            <AuthModalFooter
                 authModalToShow={authModalToShow}
                 onAuthModalToShowClick={onAuthModalToShowClick}
             />
@@ -41,38 +40,3 @@ export function AuthModal({
     )
 }
 
-interface AuthModalDialogFooterProps {
-    authModalToShow: AuthModalType;
-    onAuthModalToShowClick: (type: AuthModalType) => void;
-}
-
-const AuthModalDialogFooter = ({
-    authModalToShow,
-    onAuthModalToShowClick
-}: AuthModalDialogFooterProps) => {
-
-    return (
-        authModalToShow === "signIn" ? (
-            <div className='flex items-center justify-center gap-1'>
-                <p>Not a member?</p>
-                <Link
-                    onClick={() => onAuthModalToShowClick("signUp")}
-                    href="#"
-                    className='hover:underline text-blue-400 flex items-center justify-end gap-1 underline-offset-1'
-                >
-                    Join now
-                    <ArrowRight />
-                </Link>
-            </div>
-        ) : (
-            <Link
-                onClick={() => onAuthModalToShowClick("signIn")}
-                href="#"
-                className='hover:underline text-blue-400 flex items-center justify-start gap-1 underline-offset-1'
-            >
-                <ArrowLeft />
-                Back to sign in
-            </Link>
-        )
-    )
-}
