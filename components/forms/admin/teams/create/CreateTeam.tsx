@@ -78,10 +78,6 @@ export async function CreateTeamForm({ games }: CreateTeamFormProps) {
                 <Button type="submit" className="w-full cursor-pointer">
                     Create Team
                 </Button>
-
-                <Button variant="outline" className="w-full cursor-pointer">
-                    Reset Form
-                </Button>
             </CardFooter>
         </form>
     )
