@@ -3,10 +3,11 @@ import { SignInForm } from '@/components/forms/auth/SignIn';
 import { SignUpForm } from '@/components/forms/auth/SignUp';
 import { ContinueWithSeparator } from '@/components/modals/auth/ContinueWithSeparator';
 import { OAuthButtons } from '@/components/modals/auth/OAuthButtons';
-import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { DialogContent } from '@/components/ui/dialog'
 import { AuthModalType } from '@/lib/types/auth';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { AuthModalHeader } from './AuthModalHeader';
 
 interface AuthModalProps {
     authModalToShow: AuthModalType;
@@ -19,7 +20,7 @@ export function AuthModal({
 }: AuthModalProps) {
     return (
         <DialogContent>
-            <AuthModalDialogHeader authModalToShow={authModalToShow} />
+            <AuthModalHeader authModalToShow={authModalToShow} />
 
             {authModalToShow !== "forgotPassword" && (
                 <>
@@ -37,42 +38,6 @@ export function AuthModal({
                 onAuthModalToShowClick={onAuthModalToShowClick}
             />
         </DialogContent>
-    )
-}
-
-
-interface AuthModalDialogHeaderProps {
-    authModalToShow: "signIn" | "signUp" | "forgotPassword";
-}
-
-const AuthModalDialogHeader = ({ authModalToShow }: AuthModalDialogHeaderProps) => {
-    let title;
-    let description;
-
-    if (authModalToShow === "signIn") {
-        title = "Sign in";
-        description = "Sign in to your account to continue";
-    }
-
-    if (authModalToShow === "signUp") {
-        title = "Sign up";
-        description = "Create your account to get started";
-    }
-
-    if (authModalToShow === "forgotPassword") {
-        title = "Forgot password"
-        description = "Type in your email address in the form below to reset your password";
-    }
-
-    return (
-        <DialogHeader>
-            <DialogTitle className='text-2xl text-center font-bold'>
-                {title}
-            </DialogTitle>
-            <DialogDescription className='text-muted-foreground text-center'>
-                {description}
-            </DialogDescription>
-        </DialogHeader>
     )
 }
 
