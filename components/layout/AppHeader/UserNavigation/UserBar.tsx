@@ -1,8 +1,8 @@
-import { AppLogo } from './AppLogo';
 import { ModeToggle } from '@/components/mode-toggle';
 import { SignOutButton } from './Auth/SignOutButton';
 import { AuthModalButton } from './Auth/AuthModalTriggerButton';
 import { Navbar } from './Navbar';
+import { AppLogo } from './AppLogo';
 
 interface UserBarProps {
     isSignedIn: boolean;
