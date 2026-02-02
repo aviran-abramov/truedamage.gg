@@ -1,10 +1,11 @@
 import { CreateGameForm } from "@/components/forms/admin/games/create/CreateGame";
+import { FormPageContainer } from "@/components/layout/FormPageContainer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function CreateGamePage() {
 
     return (
-        <div className="max-w-md mx-auto py-10">
+        <FormPageContainer>
             <Card>
                 <CardHeader>
                     <CardTitle className="text-center text-2xl">Create Game</CardTitle>
@@ -15,6 +16,6 @@ export default function CreateGamePage() {
                     <CreateGameForm />
                 </CardContent>
             </Card>
-        </div>
+        </FormPageContainer>
     )
 }

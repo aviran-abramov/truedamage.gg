@@ -1,4 +1,5 @@
 import { CreateMatch } from "@/components/forms/admin/match/CreateMatch";
+import { FormPageContainer } from "@/components/layout/FormPageContainer";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllGames } from "@/lib/actions/games";
 
@@ -7,7 +8,7 @@ export default async function CreateMatchPage() {
     if (!games) return;
 
     return (
-        <div className="max-w-md mx-auto py-10">
+        <FormPageContainer>
             <Card className="">
                 <CardHeader>
                     <h2 className="text-center text-2xl font-bold">Create Match</h2>
@@ -17,7 +18,7 @@ export default async function CreateMatchPage() {
                     <CreateMatch games={games} />
                 </CardContent>
             </Card>
-        </div>
+        </FormPageContainer>
 
     )
 }
