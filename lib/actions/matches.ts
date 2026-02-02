@@ -77,6 +77,26 @@ export type MatchWithRelations = Prisma.MatchGetPayload<{
     }
 }>;
 
+export async function getMatches() {
+    try {
+        const matches = await prisma.match.findMany({
+            include: {
+                game: true,
+                teamA: true,
+                teamB: true
+            },
+            orderBy: {
+                date: "desc"
+            }
+        });
+
+        return matches
+    } catch (error) {
+        console.error("getMatches failed:", error);
+        return [];
+    }
+}
+
 export async function getMatchesWithPredictions(): Promise<ActionResult<MatchWithRelations[]>> {
     try {
         const predictions = await prisma.match.findMany({
