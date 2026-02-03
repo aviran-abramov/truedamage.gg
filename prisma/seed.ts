@@ -3,6 +3,7 @@ import { games } from "@/lib/data/seed/games";
 import { matches } from "@/lib/data/seed/matches";
 import { teams } from "@/lib/data/seed/teams";
 import prisma from "@/lib/db";
+import { createId } from "@/lib/helpers";
 
 async function seedUserTable() {
     try {
@@ -37,6 +38,7 @@ async function seedGameTable() {
         for (const game of games) {
             await prisma.game.create({
                 data: {
+                    id: createId(game.name),
                     name: game.name,
                     slug: game.slug,
                     iconUrl: game.iconUrl

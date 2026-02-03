@@ -81,7 +81,7 @@ model Verification {
 }
 
 model Game {
-  id      String  @id @default(cuid())
+  id      String  @id
   name    String  @unique @db.VarChar(255)
   slug    String  @unique @db.VarChar(255)
   iconUrl String? // "/icons/lol.svg"
