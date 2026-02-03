@@ -12,15 +12,18 @@ import {
 
 const data = {
     matches: [
-        { label: "Matches", href: "/matches/upcoming" },
-        { label: "Results", href: "/matches/results" },
-        { label: "Tournaments", href: "/matches/tournaments" },
-        { label: "Teams", href: "/matches/teams" },
-        { label: "Players", href: "/matches/players" },
+        { label: "Upcoming Matches", href: "/matches/upcoming" },
+        { label: "Match Results", href: "/matches/results" },
     ],
     predictions: [
-        { label: "Predictions", href: "/matches/predictions/upcoming" },
+        { label: "Upcoming Predictions", href: "/matches/predictions/upcoming" },
         { label: "Prediction Results", href: "/matches/predictions/results" }
+    ],
+    esportsData: [
+        { label: "Games", href: "/games" },
+        { label: "Tournaments", href: "/tournaments" },
+        { label: "Teams", href: "/teams" },
+        { label: "Players", href: "/players" },
     ]
 }
 
@@ -28,16 +31,9 @@ export const Navbar = () => {
     return (
         <NavigationMenu viewport={false}>
             <NavigationMenuList>
-                {/* HOME */}
-                <NavigationMenuItem>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
-                        <Link href="/">Home</Link>
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
-
                 {/* MATCHES */}
                 <NavigationMenuItem className="hidden md:block">
-                    <NavigationMenuTrigger>Match Center</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Matches</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <NavLinkMenu data={data.matches} />
                     </NavigationMenuContent>
@@ -45,9 +41,17 @@ export const Navbar = () => {
 
                 {/* PREDICTIONS */}
                 <NavigationMenuItem className="hidden md:block">
-                    <NavigationMenuTrigger>Prediction Center</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Predictions</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <NavLinkMenu data={data.predictions} />
+                    </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                {/* WIKI */}
+                <NavigationMenuItem className="hidden md:block">
+                    <NavigationMenuTrigger>Esports Data</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                        <NavLinkMenu data={data.esportsData} />
                     </NavigationMenuContent>
                 </NavigationMenuItem>
             </NavigationMenuList>
