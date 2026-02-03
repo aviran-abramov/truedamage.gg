@@ -1,19 +1,10 @@
-export const createGameSlug = (name: string) => {
-    const nameInLowerCase = name.toLocaleLowerCase();
-    const slug = nameInLowerCase.split(" ").join("-");
+// Removes unnecessary spaces, lower cases, replacing special characters with hyphens
+const createSlug = (name: string) => name
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
-    return slug;
-};
+const generateFiveNumbers = () => Math.floor(10000 + Math.random() * 90000);
 
-export const generateFiveNumbers = () => Math.floor(10000 + Math.random() * 90000);
-
-export const createTeamSlug = (name: string) => {
-    const nameInLowerCaseWithHyphens = name
-        .toLocaleLowerCase()
-        .split(" ")
-        .join("-");
-    const numbers = generateFiveNumbers();
-    const slug = `${numbers}-${nameInLowerCaseWithHyphens}`;
-
-    return slug;
-};
+export const createId = (name: string) => `${generateFiveNumbers()}-${createSlug(name)}`;
