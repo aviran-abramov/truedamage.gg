@@ -1,5 +1,5 @@
 // Removes unnecessary spaces, lower cases, replacing special characters with hyphens
-const createSlug = (name: string) => name
+export const createSlug = (name: string) => name
     .trim()
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")

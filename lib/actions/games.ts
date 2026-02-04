@@ -2,7 +2,7 @@
 
 import prisma from "../db";
 import { CreateGameSchema } from "../schemas/game";
-import { createId } from "../helpers";
+import { createId, createSlug } from "../helpers";
 
 export async function createGame(newGame: unknown) {
     try {
@@ -20,7 +20,7 @@ export async function createGame(newGame: unknown) {
         }
 
         const { name, shortName } = result.data;
-        const slug = createId(name);
+        const slug = createSlug(name);
         const iconUrl = `/icons/games/${slug}.svg`;
         const id = createId(name);
 
