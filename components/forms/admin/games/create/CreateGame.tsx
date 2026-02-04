@@ -14,9 +14,12 @@ export function CreateGameForm() {
     const handleIsShortNameFieldVisibleClick = () => setIsShortNameFieldVisible(prevState => !prevState);
 
     const handleCreateGame = async (formData: FormData) => {
+        const name = formData.get("name") as string;
+        const shortNameInput = formData.get("shortName") as string;
+        
         const newGame = {
-            name: formData.get("name") as string,
-            shortName: formData.get("shortName") as string || formData.get("shortName") as string
+            name,
+            shortName: shortNameInput?.trim() || undefined
         };
 
         const result = CreateGameSchema.safeParse(newGame);
