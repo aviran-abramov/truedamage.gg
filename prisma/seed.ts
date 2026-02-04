@@ -40,7 +40,7 @@ async function seedGameTable() {
                 data: {
                     id: createId(game.name),
                     name: game.name,
-                    shortName: game.shortName,
+                    shortName: game.shortName || game.name,
                     slug: game.slug,
                     iconUrl: game.iconUrl
                 }
