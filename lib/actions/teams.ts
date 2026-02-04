@@ -1,8 +1,8 @@
 "use server";
 
 import prisma from "../db";
+import { createId } from "../helpers";
 import { CreateTeamSchema } from "../schemas/team";
-import { createTeamSlug } from "../helpers";
 
 export async function CreateTeam(newTeam: unknown) {
     try {
@@ -20,7 +20,7 @@ export async function CreateTeam(newTeam: unknown) {
         }
 
         const { name, gameName, countryName, countryCode } = result.data;
-        const slug = createTeamSlug(name);
+        const slug = createId(name);
         const game = await prisma.game.findFirst({
             where: {
                 name: gameName
