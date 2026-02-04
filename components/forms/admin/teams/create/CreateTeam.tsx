@@ -4,7 +4,7 @@ import { FormField } from "@/components/forms/FormField";
 import { FormSelectGameField } from "@/components/forms/FormSelectGameField";
 import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
-import { CreateTeam } from "@/lib/actions/teams";
+import { createTeam } from "@/lib/actions/teams";
 import { Game } from "@/lib/generated/prisma/client";
 import { CreateTeamSchema } from "@/lib/schemas/team";
 import { toast } from "sonner";
@@ -28,7 +28,7 @@ export function CreateTeamForm({ games }: CreateTeamFormProps) {
             return;
         }
 
-        const response = await CreateTeam(newTeam);
+        const response = await createTeam(newTeam);
         if (response?.error) {
             toast.error(response.error, { position: "top-center" });
             return;

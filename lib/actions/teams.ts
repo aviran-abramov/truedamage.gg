@@ -4,7 +4,7 @@ import prisma from "../db";
 import { createId } from "../helpers";
 import { CreateTeamSchema } from "../schemas/team";
 
-export async function CreateTeam(newTeam: unknown) {
+export async function createTeam(newTeam: unknown) {
     try {
         const result = CreateTeamSchema.safeParse(newTeam);
         if (!result.success) {
