@@ -24,7 +24,7 @@ export default async function UpcomingMatchesPage() {
 
                 <div className="grid grid-cols-12 gap-4">
                     <MatchPreviewList matches={matches} />
-                    <div className="col-span-4 bg-red-600">hi</div>
+                    <div className="col-span-4 bg-red-600">TODO: Filters section</div>
                 </div>
             </section>
         </AppContainer>
@@ -106,8 +106,9 @@ const MatchPreviewHeader = ({
                         width={16}
                         height={16}
                     />
-                    <h3 className="font-semibold">{gameName} - {league}</h3>
+                    <span>-</span>
                     <Badge variant={"default"}>BO{bestOf}</Badge>
+                    <h3 className="font-semibold">{gameName} - {league}</h3>
                 </div>
                 <time className="block text-sm font-bold" dateTime={`${date}T${time}`}>
                     {date} at {time}
