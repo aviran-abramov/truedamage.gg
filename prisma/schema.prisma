@@ -81,10 +81,11 @@ model Verification {
 }
 
 model Game {
-  id      String  @id
-  name    String  @unique @db.VarChar(255)
-  slug    String  @unique @db.VarChar(255)
-  iconUrl String? // "/icons/lol.svg"
+  id        String  @id
+  name      String  @unique @db.VarChar(255)
+  shortName String
+  slug      String  @unique @db.VarChar(255)
+  iconUrl   String? // "/icons/lol.svg"
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

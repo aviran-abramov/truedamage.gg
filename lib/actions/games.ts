@@ -19,7 +19,7 @@ export async function createGame(newGame: unknown) {
             };
         }
 
-        const { name } = result.data;
+        const { name, shortName } = result.data;
         const slug = createId(name);
         const iconUrl = `/icons/games/${slug}.svg`;
         const id = createId(name);
@@ -28,6 +28,7 @@ export async function createGame(newGame: unknown) {
             data: {
                 id,
                 name,
+                shortName: shortName || name,
                 slug,
                 iconUrl
             }

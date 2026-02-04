@@ -9,5 +9,11 @@ export const CreateGameSchema = z.object({
         })
         .max(100, {
             error: "Game name must be 100 characters or less."
+        }),
+    shortName: z
+        .string()
+        .trim()
+        .max(10, {
+            error: "Short name must be 10 characters or less."
         })
 });

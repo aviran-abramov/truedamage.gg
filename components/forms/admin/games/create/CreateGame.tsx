@@ -5,12 +5,18 @@ import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { createGame } from "@/lib/actions/games";
 import { CreateGameSchema } from "@/lib/schemas/game";
+import { useState } from "react";
 import { toast } from "sonner";
 
 export function CreateGameForm() {
+    const [isShortNameFieldVisible, setIsShortNameFieldVisible] = useState<boolean>(false);
+
+    const handleIsShortNameFieldVisibleClick = () => setIsShortNameFieldVisible(prevState => !prevState);
+
     const handleCreateGame = async (formData: FormData) => {
         const newGame = {
-            name: formData.get("name") as string
+            name: formData.get("name") as string,
+            shortName: formData.get("shortName") as string || formData.get("shortName") as string
         };
 
         const result = CreateGameSchema.safeParse(newGame);
@@ -39,6 +45,24 @@ export function CreateGameForm() {
                 type="text"
                 placeholder="League of Legends"
             />
+
+            {isShortNameFieldVisible && (
+                <FormField
+                    name="shortName"
+                    label="Short Name (optional)"
+                    type="text"
+                    placeholder="LoL"
+                />
+            )}
+
+            <Button
+                type="button"
+                variant={"secondary"}
+                onClick={handleIsShortNameFieldVisibleClick}
+                className="cursor-pointer self-start"
+            >
+                {isShortNameFieldVisible ? "Hide Short Name Field" : "Show Short Name Field"}
+            </Button>
 
             <CardFooter className="flex flex-col gap-2 border-t">
                 <Button type="submit" className="w-full cursor-pointer">
