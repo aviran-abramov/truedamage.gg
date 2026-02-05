@@ -5,13 +5,18 @@ import { PageBanner } from "@/components/PageBanner";
 import { PageTitle } from "@/components/PageTitle";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { getAllGames } from "@/lib/actions/games";
 import { getMatches, MatchWithRelations } from "@/lib/actions/matches";
-import { Team } from "@/lib/generated/prisma/client";
+import { getAllTeams } from "@/lib/actions/teams";
+import { Game, Team } from "@/lib/generated/prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function UpcomingMatchesPage() {
-    const matches = await getMatches();
+    const matches = (await getMatches()) ?? [];
+    const games = (await getAllGames()) ?? [];
+    const teams = (await getAllTeams()) ?? [];
 
     return (
         <AppContainer>
@@ -22,7 +27,7 @@ export default async function UpcomingMatchesPage() {
 
                 <div className="grid grid-cols-12 gap-4">
                     <MatchPreviewList matches={matches} />
-                    <Filters />
+                    <Filters games={games} teams={teams} />
                 </div>
             </section>
         </AppContainer>
@@ -167,13 +172,90 @@ const MatchPreviewContent = ({ teamA, teamB }: MatchPreviewContentProps) => {
     )
 }
 
-const Filters = () => {
+interface FiltersProps {
+    games: Game[];
+    teams: Team[];
+}
+
+const Filters = ({ games, teams }: FiltersProps) => {
 
     return (
-        <aside className="col-span-4 bg-red-600">
-            <div className="text-black dark:text-white text-sm bg-[#F1F1F5] dark:bg-[#191921]">
-                test
+        <aside className="col-span-4 space-y-6">
+            {/* GAMES */}
+            <div className="rounded-sm p-4 text-black dark:text-white text-sm bg-[#F1F1F5] dark:bg-[#191921]">
+                <FilterTitle>Games</FilterTitle>
+                <ul className="flex items-center flex-wrap gap-2">
+                    {games.map((game) => (
+                        <li key={game.id}>
+                            <Button variant={"outline"} className="cursor-pointer rounded-sm">
+                                <Image className="dark:invert" src={game.iconUrl || "/icons/x.png"} alt={`${game.name} logo`} height={20} width={20} />
+                                {game.shortName}
+                            </Button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            {/* TEAMS */}
+            <div className="rounded-sm p-4 text-black dark:text-white text-sm bg-[#F1F1F5] dark:bg-[#191921]">
+                <FilterTitle>Teams</FilterTitle>
+                <ul className="flex items-center flex-wrap gap-2">
+                    {teams.slice(0, 6).map((team) => (
+                        <li key={team.id}>
+                            <Button variant={"outline"} className="cursor-pointer rounded-sm">
+                                <Image className="dark:invert" src={"/icons/x.png"} alt={`${team.name} logo`} height={20} width={20} />
+                                {team.name}
+                            </Button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            {/* TOURNAMENTS */}
+            <div className="rounded-sm p-4 text-black dark:text-white text-sm bg-[#F1F1F5] dark:bg-[#191921]">
+                <FilterTitle>Tournaments</FilterTitle>
+                <ul className="flex items-center flex-wrap gap-2">
+                    <li>
+                        <Button variant={"outline"} className="cursor-pointer rounded-sm">
+                            <Image className="dark:invert" src={"/icons/x.png"} alt={`League name logo`} height={20} width={20} />
+                            LCK
+                        </Button>
+                    </li>
+                    <li>
+                        <Button variant={"outline"} className="cursor-pointer rounded-sm">
+                            <Image className="dark:invert" src={"/icons/x.png"} alt={`League name logo`} height={20} width={20} />
+                            LPL
+                        </Button>
+                    </li>
+                    <li>
+                        <Button variant={"outline"} className="cursor-pointer rounded-sm">
+                            <Image className="dark:invert" src={"/icons/x.png"} alt={`League name logo`} height={20} width={20} />
+                            IEM
+                        </Button>
+                    </li>
+                    <li>
+                        <Button variant={"outline"} className="cursor-pointer rounded-sm">
+                            <Image className="dark:invert" src={"/icons/x.png"} alt={`League name logo`} height={20} width={20} />
+                            NCS
+                        </Button>
+                    </li>
+                    <li>
+                        <Button variant={"outline"} className="cursor-pointer rounded-sm">
+                            <Image className="dark:invert" src={"/icons/x.png"} alt={`League name logo`} height={20} width={20} />
+                            CCT EU
+                        </Button>
+                    </li>
+                </ul>
             </div>
         </aside>
     )
+}
+
+interface FilterTitleProps {
+    children: string;
+}
+
+const FilterTitle = ({ children }: FilterTitleProps) => {
+
+    return <h4 className="text-2xl font-semibold mb-2">{children}</h4>
 }
