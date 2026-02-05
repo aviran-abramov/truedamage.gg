@@ -7,4 +7,4 @@ export const createSlug = (name: string) => name
 
 const generateFiveNumbers = () => Math.floor(10000 + Math.random() * 90000);
 
-export const createId = (name: string) => `${generateFiveNumbers()}-${createSlug(name)}`;
+export const createIdWithNumbers = (name: string) => `${generateFiveNumbers()}-${createSlug(name)}`;
