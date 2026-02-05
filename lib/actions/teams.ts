@@ -46,3 +46,17 @@ export async function createTeam(newTeam: unknown) {
         success: true
     };
 }
+
+export async function getAllTeams() {
+    try {
+        console.log("Attempting to get all teams");
+
+        const teams = await prisma.team.findMany();
+        if (!teams) throw new Error("Could not retrieve all available teams");
+
+        console.log("Success!");
+        return teams;
+    } catch (error) {
+        console.error("Error: Could not retrieve all available teams", error);
+    }
+}
