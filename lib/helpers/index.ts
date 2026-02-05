@@ -8,3 +8,5 @@ export const createSlug = (name: string) => name
 const generateFiveNumbers = () => Math.floor(10000 + Math.random() * 90000);
 
 export const createIdWithNumbers = (name: string) => `${generateFiveNumbers()}-${createSlug(name)}`;
+
+export const createIconUrl = (slug: string) => `/icons/games/${slug}.svg`;
