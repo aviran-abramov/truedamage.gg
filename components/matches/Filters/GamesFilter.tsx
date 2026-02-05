@@ -16,7 +16,13 @@ export const GamesFilter = ({ games }: GamesFilterProps) => {
                 {games.map((game) => (
                     <li key={game.id}>
                         <Button variant={"outline"} className="cursor-pointer rounded-sm">
-                            <Image className="dark:invert" src={game.iconUrl || "/icons/x.png"} alt={`${game.name} logo`} height={20} width={20} />
+                            <Image
+                                className="dark:invert"
+                                src={game.iconUrl || "/icons/x.png"}
+                                alt={`${game.name} logo`}
+                                height={20}
+                                width={20}
+                            />
                             {game.shortName}
                         </Button>
                     </li>
