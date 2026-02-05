@@ -6,7 +6,6 @@ import { PageTitle } from "@/components/PageTitle";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { getAllGames } from "@/lib/actions/games";
 import { getMatches, MatchWithRelations } from "@/lib/actions/matches";
 import { getAllTeams } from "@/lib/actions/teams";
 import { Game, Team } from "@/lib/generated/prisma/client";
@@ -15,8 +14,18 @@ import Link from "next/link";
 
 export default async function UpcomingMatchesPage() {
     const matches = (await getMatches()) ?? [];
-    const games = (await getAllGames()) ?? [];
     const teams = (await getAllTeams()) ?? [];
+    const games: Game[] = [];
+
+
+    for (const match of matches) {
+        const game = match.game;
+        const isGameAlreadyExists = games.find(game => game.id === match.game.id);
+
+        if (!isGameAlreadyExists) {
+            games.push(game);
+        }
+    }
 
     return (
         <AppContainer>
