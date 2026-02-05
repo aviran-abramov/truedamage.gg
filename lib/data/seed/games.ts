@@ -28,13 +28,6 @@ export const games = [
         iconUrl: "/icons/games/dota-2.svg",
     },
     {
-        id: "90844-overwatch-2",
-        name: "Overwatch 2",
-        shortName: "OW2",
-        slug: "overwatch-2",
-        iconUrl: "/icons/games/overwatch-2.svg",
-    },
-    {
         id: "34726-mobile-legends",
         name: "Mobile Legends",
         shortName: "MLBB",
