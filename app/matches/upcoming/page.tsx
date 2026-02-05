@@ -5,12 +5,10 @@ import { PageBanner } from "@/components/PageBanner";
 import { PageTitle } from "@/components/PageTitle";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { getMatches, MatchWithRelations } from "@/lib/actions/matches";
 import { Team } from "@/lib/generated/prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 export default async function UpcomingMatchesPage() {
     const matches = await getMatches();
@@ -24,7 +22,7 @@ export default async function UpcomingMatchesPage() {
 
                 <div className="grid grid-cols-12 gap-4">
                     <MatchPreviewList matches={matches} />
-                    <div className="col-span-4 bg-red-600">TODO: Filters section</div>
+                    <Filters />
                 </div>
             </section>
         </AppContainer>
@@ -108,7 +106,7 @@ const MatchPreviewHeader = ({
                     />
                     <span>-</span>
                     <Badge variant={"default"}>BO{bestOf}</Badge>
-                    <h3 className="font-semibold">{gameName} - {league}</h3>
+                    <h4 className="font-semibold">{gameName} - {league}</h4>
                 </div>
                 <time className="block text-sm font-bold" dateTime={`${date}T${time}`}>
                     {date} at {time}
@@ -166,5 +164,16 @@ const MatchPreviewContent = ({ teamA, teamB }: MatchPreviewContentProps) => {
                 />
             </div>
         </div>
+    )
+}
+
+const Filters = () => {
+
+    return (
+        <aside className="col-span-4 bg-red-600">
+            <div className="text-black dark:text-white text-sm bg-[#F1F1F5] dark:bg-[#191921]">
+                test
+            </div>
+        </aside>
     )
 }
