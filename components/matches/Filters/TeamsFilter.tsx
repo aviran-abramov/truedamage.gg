@@ -21,7 +21,7 @@ export const TeamsFilter = ({ teams }: TeamsFilterProps) => {
 
             <TeamsList teams={visibleTeams} />
 
-            <SearchByTeamFilter />
+            <SearchByTeamFilter teams={visibleTeams} />
         </div>
     )
 }
@@ -52,7 +52,11 @@ const TeamsList = ({ teams }: TeamsListProps) => {
     )
 }
 
-const SearchByTeamFilter = () => {
+interface SearchByTeamFilterProps {
+    teams: Team[];
+}
+
+const SearchByTeamFilter = ({ teams }: SearchByTeamFilterProps) => {
 
     return (
         <InputGroup className="max-w-xs rounded-sm">
