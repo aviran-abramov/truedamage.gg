@@ -6,8 +6,8 @@ import { MatchPreviewList } from "@/components/matches/upcoming/MatchPreviewList
 import { PageBanner } from "@/components/PageBanner";
 import { PageTitle } from "@/components/PageTitle";
 import { getMatches } from "@/lib/actions/matches";
-import { getAllTeams, getAllTeamsWithGames } from "@/lib/actions/teams";
-import { Game, Prisma } from "@/lib/generated/prisma/client";
+import { getAllTeamsWithGames } from "@/lib/actions/teams";
+import { Game } from "@/lib/generated/prisma/client";
 
 export default async function UpcomingMatchesPage() {
     const matches = (await getMatches()) ?? [];

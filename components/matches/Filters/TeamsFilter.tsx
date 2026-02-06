@@ -9,6 +9,7 @@ import { Combobox, ComboboxCollection, ComboboxContent, ComboboxEmpty, ComboboxG
 import { TeamsWithGamesRelation } from "@/lib/types/teams";
 import { InputGroupAddon } from "@/components/ui/input-group";
 import { Search } from "lucide-react";
+import { object } from "zod";
 
 
 interface TeamsFilterProps {
@@ -128,11 +129,13 @@ const SearchByTeamFilter = ({ availableTeams, onSearchByFilterPick }: SearchByTe
     for (const team of availableTeams) {
         const gameName = team.game.name;
 
-        if (!comboBoxTeamsData.some(i => i.value === gameName)) {
+        if (!comboBoxTeamsData.some(object => object.value === gameName)) {
             comboBoxTeamsData.push({
                 value: gameName,
                 items: [team.name]
             })
+        } else {
+            comboBoxTeamsData.find(object => object.value === gameName)?.items.push(team.name);
         }
 
     }
