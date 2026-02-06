@@ -9,12 +9,9 @@ import { toast } from "sonner";
 
 export function CreateGameForm() {
     const handleCreateGame = async (formData: FormData) => {
-        const name = formData.get("name") as string;
-        const shortNameInput = formData.get("shortName") as string;
-
         const newGame = {
-            name,
-            shortName: shortNameInput?.trim() || undefined
+            name: formData.get("name") as string,
+            shortName: formData.get("shortName") as string || formData.get("name") as string
         };
 
         const result = CreateGameSchema.safeParse(newGame);
