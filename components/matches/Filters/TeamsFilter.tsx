@@ -25,11 +25,20 @@ export const TeamsFilter = ({ teams }: TeamsFilterProps) => {
         }
     }
 
+    const handleVisibleTeamClick = (id: string) => {
+        const selectedTeam = teams.find(team => team.id === id);
+
+        if (selectedTeam) {
+            setVisibleTeams(prevState => prevState.filter(t => t.id !== id));
+            setSearchFilterOptions(prevState => [...prevState, selectedTeam]);
+        }
+    };
+
     return (
         <div className="rounded-sm p-4 text-black dark:text-white text-sm bg-[#F1F1F5] dark:bg-[#191921] space-y-3 flex flex-col w-full">
             <FilterTitle>Teams</FilterTitle>
 
-            <VisibleTeamsList teams={visibleTeams} />
+            <VisibleTeamsList teams={visibleTeams} onTeamClick={handleVisibleTeamClick} />
 
             <SearchByTeamFilter availableTeams={searchFilterOptions} onSearchByFilterPick={handleSearchByFilterPick} />
         </div>
@@ -38,15 +47,16 @@ export const TeamsFilter = ({ teams }: TeamsFilterProps) => {
 
 interface VisibleTeamsListProps {
     teams: Team[];
+    onTeamClick: (id: string) => void;
 }
 
-const VisibleTeamsList = ({ teams }: VisibleTeamsListProps) => {
+const VisibleTeamsList = ({ teams, onTeamClick }: VisibleTeamsListProps) => {
 
     return (
         <ul className="flex items-center flex-wrap gap-2">
             {teams.map((team) => (
                 <li key={team.id}>
-                    <Button variant={"outline"} className="cursor-pointer rounded-sm">
+                    <Button variant={"outline"} onClick={() => onTeamClick(team.id)} className="cursor-pointer rounded-sm">
                         <Image
                             className="dark:invert"
                             src={"/icons/x.png"}
