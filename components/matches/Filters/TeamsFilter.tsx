@@ -5,8 +5,10 @@ import { FilterTitle } from "./FilterTitle";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
-import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from "@/components/ui/combobox";
+import { Combobox, ComboboxCollection, ComboboxContent, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxLabel, ComboboxList } from "@/components/ui/combobox";
 import { TeamsWithGamesRelation } from "@/lib/types/teams";
+import { InputGroupAddon } from "@/components/ui/input-group";
+import { Search } from "lucide-react";
 
 
 interface TeamsFilterProps {
@@ -74,6 +76,42 @@ const VisibleTeamsList = ({ teams, onTeamClick }: VisibleTeamsListProps) => {
     )
 }
 
+const timezones = [
+    {
+        value: "Americas",
+        items: [
+            "(GMT-5) New York",
+            "(GMT-8) Los Angeles",
+            "(GMT-6) Chicago",
+            "(GMT-5) Toronto",
+            "(GMT-8) Vancouver",
+            "(GMT-3) São Paulo",
+        ],
+    },
+    {
+        value: "Europe",
+        items: [
+            "(GMT+0) London",
+            "(GMT+1) Paris",
+            "(GMT+1) Berlin",
+            "(GMT+1) Rome",
+            "(GMT+1) Madrid",
+            "(GMT+1) Amsterdam",
+        ],
+    },
+    {
+        value: "Asia/Pacific",
+        items: [
+            "(GMT+9) Tokyo",
+            "(GMT+8) Shanghai",
+            "(GMT+8) Singapore",
+            "(GMT+4) Dubai",
+            "(GMT+11) Sydney",
+            "(GMT+9) Seoul",
+        ],
+    },
+] as const
+
 interface SearchByTeamFilterProps {
     availableTeams: TeamsWithGamesRelation[];
     onSearchByFilterPick: (id: string) => void;
@@ -82,17 +120,26 @@ interface SearchByTeamFilterProps {
 const SearchByTeamFilter = ({ availableTeams, onSearchByFilterPick }: SearchByTeamFilterProps) => {
 
     return (
-        <Combobox items={availableTeams}>
-            <ComboboxInput placeholder="Search for Teams" />
-            <ComboboxContent>
-                <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <Combobox items={timezones}>
+            <ComboboxInput placeholder="Select a timezone">
+                <InputGroupAddon>
+                    <Search />
+                </InputGroupAddon>
+            </ComboboxInput>
+            <ComboboxContent alignOffset={-28} className="w-60">
+                <ComboboxEmpty>No timezones found.</ComboboxEmpty>
                 <ComboboxList>
-                    {(team: Team) => (
-                        <ComboboxItem key={team.id} value={team.name} onClick={() => onSearchByFilterPick(team.id)} >
-                            <div className="flex items-center justify-between">
-                                <p>{team.name}</p>
-                            </div>
-                        </ComboboxItem>
+                    {(group) => (
+                        <ComboboxGroup key={group.value} items={group.items}>
+                            <ComboboxLabel>{group.value}</ComboboxLabel>
+                            <ComboboxCollection>
+                                {(item) => (
+                                    <ComboboxItem key={item} value={item}>
+                                        {item}
+                                    </ComboboxItem>
+                                )}
+                            </ComboboxCollection>
+                        </ComboboxGroup>
                     )}
                 </ComboboxList>
             </ComboboxContent>
