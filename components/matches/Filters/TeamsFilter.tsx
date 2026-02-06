@@ -1,6 +1,6 @@
 "use client";
 
-import { Game, Prisma, Team } from "@/lib/generated/prisma/client";
+import { Team } from "@/lib/generated/prisma/client";
 import { FilterTitle } from "./FilterTitle";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";

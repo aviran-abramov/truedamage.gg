@@ -2,7 +2,6 @@
 
 import prisma from "../db";
 import { Prisma } from "../generated/prisma/client";
-import { redirect } from "next/navigation";
 import { CreateMatchSchema } from "../schemas/match";
 
 type ActionResult<T> =

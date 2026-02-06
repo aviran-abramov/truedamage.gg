@@ -1,4 +1,4 @@
-import { Game, Prisma, Team } from "@/lib/generated/prisma/client";
+import { Game } from "@/lib/generated/prisma/client";
 import { GamesFilter } from "./GamesFilter";
 import { TeamsFilter } from "./TeamsFilter";
 import { TournamentsFilter } from "./TournamentsFilter";
