@@ -13,6 +13,7 @@ interface TeamsFilterProps {
 
 export const TeamsFilter = ({ teams }: TeamsFilterProps) => {
     const [visibleTeams, setVisibleTeams] = useState(teams.slice(0, 6));
+    const [searchFilterOptions, setSearchFilterOptions] = useState(teams.slice(6));
 
     const handleSearchByFilterPick = (id: string) => {
         const team = teams.find(t => t.id === id);
@@ -28,7 +29,7 @@ export const TeamsFilter = ({ teams }: TeamsFilterProps) => {
 
             <VisibleTeamsList teams={visibleTeams} />
 
-            <SearchByTeamFilter teams={teams} onSearchByFilterPick={handleSearchByFilterPick} />
+            <SearchByTeamFilter availableTeams={searchFilterOptions} onSearchByFilterPick={handleSearchByFilterPick} />
         </div>
     )
 }
@@ -60,14 +61,14 @@ const VisibleTeamsList = ({ teams }: VisibleTeamsListProps) => {
 }
 
 interface SearchByTeamFilterProps {
-    teams: Team[];
+    availableTeams: Team[];
     onSearchByFilterPick: (id: string) => void
 }
 
-const SearchByTeamFilter = ({ teams, onSearchByFilterPick }: SearchByTeamFilterProps) => {
+const SearchByTeamFilter = ({ availableTeams, onSearchByFilterPick }: SearchByTeamFilterProps) => {
 
     return (
-        <Combobox items={teams}>
+        <Combobox items={availableTeams}>
             <ComboboxInput placeholder="Search for Teams" />
             <ComboboxContent>
                 <ComboboxEmpty>No items found.</ComboboxEmpty>
