@@ -1,13 +1,11 @@
 # **TrueDamage.gg**
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Table of Contents
 <ol>
     <li>
         <a href="#about-the-project">About The Project</a>
         <ul>
-            <li><a href="#why-i-built-this-project">Tech Stack</a></li>
+            <li><a href="#why-i-built-this-project">Why I Built This Project</a></li>
             <li><a href="#technologies">Tech Stack</a></li>
         </ul>
     </li>
@@ -17,12 +15,23 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 <p>Instead of tutorial CRUD YouTube projects that most of juniors do and use the "copy paste" method, I decided to work on a field that I know very well and like as a hobby.</p>
 
 ### Why I built this project
-<p>As a gamer, and as a person who is working with computer 24/7 since the age of 3, I decided to build a project about eSports. I created a website which provides data about games, tournaments, teams, players and even predict which team is going to win the match.</p>
-
-
+<p>As a former heavy gamer, and as a person who is working with computer 24/7 since the age of 3, I decided to build a project about eSports. I created a website which provides data about games, tournaments, teams, players and even predict which team is going to win the match.</p>
 
 ### Tech Stack
-<p>This is the list of all technologies I used to build this project. It includes all the frameworks and libraries applied to this project.</p>
+
+<ul>
+    <li>NextJS - Framework for both backend and frontend</li>
+    <li>TypeScript</li>
+    <li>Prisma - Database ORM</li>
+    <li>PostgreSQL - Relational database</li>
+    <li>Zod - Data validation</li>
+    <li>React-Hook-Form - Form state management</li>
+    <li>Better Auth - Authentication</li>
+    <li>Resend - Email service</li>
+    <li>ShadCN - UI library</li>
+    <li>TailwindCSS - CSS framework</li>
+    <li>Vercel - Deployment</li>
+</ul>
 
 
 ## Getting Started
