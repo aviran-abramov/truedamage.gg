@@ -9,7 +9,6 @@ import { Combobox, ComboboxCollection, ComboboxContent, ComboboxEmpty, ComboboxG
 import { TeamsWithGamesRelation } from "@/lib/types/teams";
 import { InputGroupAddon } from "@/components/ui/input-group";
 import { Search } from "lucide-react";
-import { object } from "zod";
 
 
 interface TeamsFilterProps {
@@ -77,42 +76,6 @@ const VisibleTeamsList = ({ teams, onTeamClick }: VisibleTeamsListProps) => {
     )
 }
 
-const timezones = [
-    {
-        value: "Americas",
-        items: [
-            "(GMT-5) New York",
-            "(GMT-8) Los Angeles",
-            "(GMT-6) Chicago",
-            "(GMT-5) Toronto",
-            "(GMT-8) Vancouver",
-            "(GMT-3) São Paulo",
-        ],
-    },
-    {
-        value: "Europe",
-        items: [
-            "(GMT+0) London",
-            "(GMT+1) Paris",
-            "(GMT+1) Berlin",
-            "(GMT+1) Rome",
-            "(GMT+1) Madrid",
-            "(GMT+1) Amsterdam",
-        ],
-    },
-    {
-        value: "Asia/Pacific",
-        items: [
-            "(GMT+9) Tokyo",
-            "(GMT+8) Shanghai",
-            "(GMT+8) Singapore",
-            "(GMT+4) Dubai",
-            "(GMT+11) Sydney",
-            "(GMT+9) Seoul",
-        ],
-    },
-] as const
-
 interface SearchByTeamFilterProps {
     availableTeams: TeamsWithGamesRelation[];
     onSearchByFilterPick: (id: string) => void;
@@ -137,7 +100,14 @@ const SearchByTeamFilter = ({ availableTeams, onSearchByFilterPick }: SearchByTe
         } else {
             comboBoxTeamsData.find(object => object.value === gameName)?.items.push(team.name);
         }
+    }
 
+    const handleTeamSelect = (gameName: string, teamName: string) => {
+        const selectedTeam = availableTeams.find(team => team.game.name === gameName && team.name === teamName);
+
+        if (selectedTeam) {
+            onSearchByFilterPick(selectedTeam.id);
+        }
     }
 
     return (
@@ -150,12 +120,12 @@ const SearchByTeamFilter = ({ availableTeams, onSearchByFilterPick }: SearchByTe
             <ComboboxContent alignOffset={-28} className="w-60">
                 <ComboboxEmpty>No teams found.</ComboboxEmpty>
                 <ComboboxList>
-                    {(group) => (
+                    {(group: ComboBoxData) => (
                         <ComboboxGroup key={group.value} items={group.items}>
                             <ComboboxLabel>{group.value}</ComboboxLabel>
                             <ComboboxCollection>
                                 {(item) => (
-                                    <ComboboxItem key={item} value={item}>
+                                    <ComboboxItem key={item} value={item} onClick={() => handleTeamSelect(group.value, item)}>
                                         {item}
                                     </ComboboxItem>
                                 )}
