@@ -2,16 +2,11 @@ import { Game, Prisma, Team } from "@/lib/generated/prisma/client";
 import { GamesFilter } from "./GamesFilter";
 import { TeamsFilter } from "./TeamsFilter";
 import { TournamentsFilter } from "./TournamentsFilter";
-
-type TeamsWithGameRelation = Prisma.TeamGetPayload<{
-    include: {
-        game: true
-    }
-}>;
+import { TeamsWithGamesRelation } from "@/lib/types/teams";
 
 interface UpcomingMatchesFiltersProps {
     games: Game[];
-    teams: TeamsWithGameRelation[];
+    teams: TeamsWithGamesRelation[];
 }
 
 export const UpcomingMatchesFilters = ({ games, teams }: UpcomingMatchesFiltersProps) => {

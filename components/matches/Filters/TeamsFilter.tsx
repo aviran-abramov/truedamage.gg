@@ -6,15 +6,11 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
 import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from "@/components/ui/combobox";
+import { TeamsWithGamesRelation } from "@/lib/types/teams";
 
-type TeamsWithGameRelation = Prisma.TeamGetPayload<{
-    include: {
-        game: true
-    }
-}>;
 
 interface TeamsFilterProps {
-    teams: TeamsWithGameRelation[];
+    teams: TeamsWithGamesRelation[];
 }
 
 export const TeamsFilter = ({ teams }: TeamsFilterProps) => {
@@ -79,7 +75,7 @@ const VisibleTeamsList = ({ teams, onTeamClick }: VisibleTeamsListProps) => {
 }
 
 interface SearchByTeamFilterProps {
-    availableTeams: TeamsWithGameRelation[];
+    availableTeams: TeamsWithGamesRelation[];
     onSearchByFilterPick: (id: string) => void;
 }
 
