@@ -19,18 +19,18 @@ export const TeamsFilter = ({ teams }: TeamsFilterProps) => {
         <div className="rounded-sm p-4 text-black dark:text-white text-sm bg-[#F1F1F5] dark:bg-[#191921] space-y-3 flex flex-col w-full">
             <FilterTitle>Teams</FilterTitle>
 
-            <TeamsList teams={visibleTeams} />
+            <VisibleTeamsList teams={visibleTeams} />
 
             <SearchByTeamFilter teams={teams} />
         </div>
     )
 }
 
-interface TeamsListProps {
+interface VisibleTeamsListProps {
     teams: Team[];
 }
 
-const TeamsList = ({ teams }: TeamsListProps) => {
+const VisibleTeamsList = ({ teams }: VisibleTeamsListProps) => {
 
     return (
         <ul className="flex items-center flex-wrap gap-2">
