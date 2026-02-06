@@ -1,6 +1,6 @@
 "use client";
 
-import { Prisma, Team } from "@/lib/generated/prisma/client";
+import { Game, Prisma, Team } from "@/lib/generated/prisma/client";
 import { FilterTitle } from "./FilterTitle";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -117,17 +117,35 @@ interface SearchByTeamFilterProps {
     onSearchByFilterPick: (id: string) => void;
 }
 
+interface ComboBoxData {
+    value: string;
+    items: string[];
+}
+
 const SearchByTeamFilter = ({ availableTeams, onSearchByFilterPick }: SearchByTeamFilterProps) => {
+    const comboBoxTeamsData: ComboBoxData[] = [];
+
+    for (const team of availableTeams) {
+        const gameName = team.game.name;
+
+        if (!comboBoxTeamsData.some(i => i.value === gameName)) {
+            comboBoxTeamsData.push({
+                value: gameName,
+                items: [team.name]
+            })
+        }
+
+    }
 
     return (
-        <Combobox items={timezones}>
-            <ComboboxInput placeholder="Select a timezone">
+        <Combobox items={comboBoxTeamsData}>
+            <ComboboxInput placeholder="Search for Teams">
                 <InputGroupAddon>
                     <Search />
                 </InputGroupAddon>
             </ComboboxInput>
             <ComboboxContent alignOffset={-28} className="w-60">
-                <ComboboxEmpty>No timezones found.</ComboboxEmpty>
+                <ComboboxEmpty>No teams found.</ComboboxEmpty>
                 <ComboboxList>
                     {(group) => (
                         <ComboboxGroup key={group.value} items={group.items}>
