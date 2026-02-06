@@ -17,9 +17,11 @@ export const TeamsFilter = ({ teams }: TeamsFilterProps) => {
 
     const handleSearchByFilterPick = (id: string) => {
         const team = teams.find(t => t.id === id);
+        const optionsWithoutPick = searchFilterOptions.filter(t => t.id !== id)
 
         if (team) {
-            setVisibleTeams(prevState => [...prevState, team])
+            setVisibleTeams(prevState => [...prevState, team]);
+            setSearchFilterOptions(optionsWithoutPick);
         }
     }
 
