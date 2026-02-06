@@ -1,14 +1,20 @@
 "use client";
 
-import { Team } from "@/lib/generated/prisma/client";
+import { Prisma, Team } from "@/lib/generated/prisma/client";
 import { FilterTitle } from "./FilterTitle";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
 import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from "@/components/ui/combobox";
 
+type TeamsWithGameRelation = Prisma.TeamGetPayload<{
+    include: {
+        game: true
+    }
+}>;
+
 interface TeamsFilterProps {
-    teams: Team[];
+    teams: TeamsWithGameRelation[];
 }
 
 export const TeamsFilter = ({ teams }: TeamsFilterProps) => {
@@ -73,8 +79,8 @@ const VisibleTeamsList = ({ teams, onTeamClick }: VisibleTeamsListProps) => {
 }
 
 interface SearchByTeamFilterProps {
-    availableTeams: Team[];
-    onSearchByFilterPick: (id: string) => void
+    availableTeams: TeamsWithGameRelation[];
+    onSearchByFilterPick: (id: string) => void;
 }
 
 const SearchByTeamFilter = ({ availableTeams, onSearchByFilterPick }: SearchByTeamFilterProps) => {
@@ -95,14 +101,5 @@ const SearchByTeamFilter = ({ availableTeams, onSearchByFilterPick }: SearchByTe
                 </ComboboxList>
             </ComboboxContent>
         </Combobox>
-
-        // TODO: Make it look like this input group
-        // <InputGroup className="max-w-xs rounded-sm">
-        //     <InputGroupInput placeholder="Search for teams" className="w-full" />
-        //     <InputGroupAddon>
-        //         <Search />
-        //     </InputGroupAddon>
-        //     <InputGroupAddon align="inline-end">{teams.length} results</InputGroupAddon>
-        // </InputGroup>
     )
 }
