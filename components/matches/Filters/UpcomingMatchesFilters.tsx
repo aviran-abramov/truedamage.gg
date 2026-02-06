@@ -2,11 +2,11 @@ import { Game, Prisma, Team } from "@/lib/generated/prisma/client";
 import { GamesFilter } from "./GamesFilter";
 import { TeamsFilter } from "./TeamsFilter";
 import { TournamentsFilter } from "./TournamentsFilter";
-import { TeamsWithGamesRelation } from "@/lib/types/teams";
+import { TeamWithGame } from "@/lib/types/teams";
 
 interface UpcomingMatchesFiltersProps {
     games: Game[];
-    teams: TeamsWithGamesRelation[];
+    teams: TeamWithGame[];
 }
 
 export const UpcomingMatchesFilters = ({ games, teams }: UpcomingMatchesFiltersProps) => {

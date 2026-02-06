@@ -6,13 +6,13 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
 import { Combobox, ComboboxCollection, ComboboxContent, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxLabel, ComboboxList } from "@/components/ui/combobox";
-import { TeamsWithGamesRelation } from "@/lib/types/teams";
+import { TeamWithGame } from "@/lib/types/teams";
 import { InputGroupAddon } from "@/components/ui/input-group";
 import { Search } from "lucide-react";
 
 
 interface TeamsFilterProps {
-    teams: TeamsWithGamesRelation[];
+    teams: TeamWithGame[];
 }
 
 export const TeamsFilter = ({ teams }: TeamsFilterProps) => {
@@ -77,7 +77,7 @@ const VisibleTeamsList = ({ teams, onTeamClick }: VisibleTeamsListProps) => {
 }
 
 interface SearchByTeamFilterProps {
-    availableTeams: TeamsWithGamesRelation[];
+    availableTeams: TeamWithGame[];
     onSearchByFilterPick: (id: string) => void;
 }
 
