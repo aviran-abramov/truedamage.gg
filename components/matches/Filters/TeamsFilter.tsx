@@ -21,7 +21,7 @@ export const TeamsFilter = ({ teams }: TeamsFilterProps) => {
 
             <TeamsList teams={visibleTeams} />
 
-            <SearchByTeamFilter teams={visibleTeams} />
+            <SearchByTeamFilter teams={teams} />
         </div>
     )
 }
