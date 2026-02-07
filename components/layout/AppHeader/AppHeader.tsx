@@ -1,5 +1,3 @@
-import { headers } from 'next/headers';
-import { auth } from '@/lib/auth';
 import { AdminBar } from './AdminNavigation/AdminBar';
 import { UserRole } from '@/lib/generated/prisma/enums';
 import { UserBar } from './UserNavigation/UserBar';
