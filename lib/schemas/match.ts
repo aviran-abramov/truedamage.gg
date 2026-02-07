@@ -13,7 +13,7 @@ export const CreateMatchSchema = z.object({
         .regex(/^\d{2}:\d{2}$/, {
             error: "Time must be in format HH:MM"
         }),
-    league: z
+    tournament: z
         .string()
         .trim()
         .min(1, { error: "League name field is required." })

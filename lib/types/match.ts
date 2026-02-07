@@ -16,7 +16,7 @@ export interface PredictionProps {
 export interface PredictionHeaderProps {
     gameIconPath: string;
     gameName: string;
-    league: string
+    tournament: string
 }
 
 export interface PredictionContentProps {

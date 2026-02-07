@@ -117,7 +117,7 @@ model Match {
   id               String  @id @default(cuid())
   date             String // 2026-01-12
   time             String // 11:00
-  league           String  @db.VarChar(255)
+  tournament       String  @db.VarChar(255)
   bestOf           Int
   winnerPrediction String?
 

@@ -15,7 +15,7 @@ export const Prediction = ({ prediction }: PredictionProps) => {
             <PredictionHeader
                 gameIconPath={gameIconPath}
                 gameName={prediction.game.name}
-                league={prediction.league}
+                tournament={prediction.tournament}
             />
 
             <PredictionContent>
@@ -44,7 +44,7 @@ export const Prediction = ({ prediction }: PredictionProps) => {
     )
 }
 
-const PredictionHeader = ({ gameIconPath, gameName, league }: PredictionHeaderProps) => {
+const PredictionHeader = ({ gameIconPath, gameName, tournament }: PredictionHeaderProps) => {
 
     return (
         <Alert className="rounded-b-none text-black dark:text-white">
@@ -56,7 +56,7 @@ const PredictionHeader = ({ gameIconPath, gameName, league }: PredictionHeaderPr
                     width={20}
                     height={20}
                 />
-                <h3 className="font-semibold">{gameName} - {league}</h3>
+                <h3 className="font-semibold">{gameName} - {tournament}</h3>
             </AlertTitle>
         </Alert>
     )

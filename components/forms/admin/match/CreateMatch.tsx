@@ -19,7 +19,7 @@ export function CreateMatch({ games }: CreateMatchProps) {
             date: formData.get('date') as string,
             time: formData.get('time') as string,
             gameName: formData.get('gameName') as string,
-            league: formData.get('league') as string,
+            tournament: formData.get('tournament') as string,
             bestOf: Number(formData.get('bestOf')),
             teamAName: formData.get('teamAName') as string,
             teamBName: formData.get('teamBName') as string,
@@ -63,8 +63,8 @@ export function CreateMatch({ games }: CreateMatchProps) {
             </div>
 
             <FormField
-                name="league"
-                label="League"
+                name="tournament"
+                label="Tournament"
                 type="text"
                 placeholder="LoL Champions Korea (LCK) Cup 2026"
             />

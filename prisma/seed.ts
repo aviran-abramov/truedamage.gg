@@ -120,7 +120,7 @@ async function seedMatchTable() {
                 data: {
                     date: match.date,
                     time: match.time,
-                    league: match.league,
+                    tournament: match.tournament,
                     teamAId: teamA.id,
                     teamBId: teamB.id,
                     gameId: game.id,

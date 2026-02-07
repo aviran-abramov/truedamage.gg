@@ -19,7 +19,7 @@ export const MatchPreview = ({ match }: MatchPreviewProps) => {
                 <MatchPreviewHeader
                     gameIconPath={match.game.iconUrl ? match.game.iconUrl : "/icons/x.png"}
                     gameName={match.game.name}
-                    league={match.league}
+                    tournament={match.tournament}
                     date={match.date}
                     time={match.time}
                     bestOf={match.bestOf}
@@ -36,7 +36,7 @@ export const MatchPreview = ({ match }: MatchPreviewProps) => {
 interface MatchHeaderProps {
     gameIconPath: string;
     gameName: string;
-    league: string;
+    tournament: string;
     bestOf: number;
     date: string;
     time: string;
@@ -45,7 +45,7 @@ interface MatchHeaderProps {
 const MatchPreviewHeader = ({
     gameIconPath,
     gameName,
-    league,
+    tournament,
     bestOf,
     date,
     time
@@ -64,7 +64,7 @@ const MatchPreviewHeader = ({
                     />
                     <span>-</span>
                     <Badge variant={"default"}>BO{bestOf}</Badge>
-                    <h4 className="font-semibold">{gameName} - {league}</h4>
+                    <h4 className="font-semibold">{gameName} - {tournament}</h4>
                 </div>
                 <time className="block text-sm font-bold" dateTime={`${date}T${time}`}>
                     {date} at {time}

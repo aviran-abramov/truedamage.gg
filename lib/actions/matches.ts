@@ -23,7 +23,7 @@ export async function createMatch(newMatch: unknown) {
             };
         }
 
-        const { date, time, league, gameName, bestOf, teamAName, teamBName, winnerPrediction } = result.data;
+        const { date, time, tournament, gameName, bestOf, teamAName, teamBName, winnerPrediction } = result.data;
 
         const game = await prisma.game.findFirst({
             where: {
@@ -51,7 +51,7 @@ export async function createMatch(newMatch: unknown) {
                 date,
                 time,
                 gameId: game.id,
-                league,
+                tournament,
                 bestOf,
                 teamAId: teamA.id,
                 teamBId: teamB.id,
