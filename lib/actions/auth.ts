@@ -3,8 +3,8 @@
 import { redirect } from "next/navigation"
 import { auth } from "../auth";
 import { headers } from "next/headers";
-import { CreateSignInSchema } from "../schemas/auth/signIn";
-import { CreateSignUpSchema } from "../schemas/auth/signUp";
+import { CreateSignInSchema } from "../validators/auth/signIn";
+import { CreateSignUpSchema } from "../validators/auth/signUp";
 
 export async function signUp(newSignUp: unknown) {
     try {

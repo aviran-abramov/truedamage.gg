@@ -2,7 +2,7 @@
 
 import prisma from "../db";
 import { createIdWithNumbers } from "../helpers";
-import { CreateTeamSchema } from "../schemas/team";
+import { CreateTeamSchema } from "../validators/team";
 
 export async function createTeam(newTeam: unknown) {
     try {

@@ -6,7 +6,7 @@ import { createMatch } from "@/lib/actions/matches";
 import { FormField } from "../../FormField";
 import { FormSelectGameField } from "../../FormSelectGameField";
 import { Game } from "@/lib/generated/prisma/client";
-import { CreateMatchSchema } from "@/lib/schemas/match";
+import { CreateMatchSchema } from "@/lib/validators/match";
 import { toast } from "sonner";
 
 interface CreateMatchProps {

@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { signUp } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
-import { CreateSignUpSchema } from "@/lib/schemas/auth/signUp";
+import { CreateSignUpSchema } from "@/lib/validators/auth/signUp";
 import { toast } from "sonner";
 
 export function SignUpForm() {

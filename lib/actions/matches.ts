@@ -2,7 +2,7 @@
 
 import prisma from "../db";
 import { Prisma } from "../generated/prisma/client";
-import { CreateMatchSchema } from "../schemas/match";
+import { CreateMatchSchema } from "../validators/match";
 
 type ActionResult<T> =
     | { success: true; data: T }

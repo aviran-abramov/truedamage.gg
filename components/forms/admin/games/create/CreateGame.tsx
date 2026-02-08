@@ -4,7 +4,7 @@ import { FormField } from "@/components/forms/FormField";
 import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { createGame } from "@/lib/actions/games";
-import { CreateGameSchema } from "@/lib/schemas/game";
+import { CreateGameSchema } from "@/lib/validators/game";
 import { toast } from "sonner";
 
 export function CreateGameForm() {

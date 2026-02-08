@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "../db";
-import { CreateGameSchema } from "../schemas/game";
+import { CreateGameSchema } from "../validators/game";
 import { createIconUrl, createSlug } from "../helpers";
 
 export async function createGame(newGame: unknown) {

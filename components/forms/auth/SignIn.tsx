@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { signIn } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
-import { CreateSignInSchema } from "@/lib/schemas/auth/signIn";
+import { CreateSignInSchema } from "@/lib/validators/auth/signIn";
 import { toast } from "sonner";
 import { AuthModalType } from "@/lib/types/auth";
 

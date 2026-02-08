@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { signIn } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
 import { toast } from "sonner";
-import { CreateForgotPasswordSchema } from "@/lib/schemas/auth/forgotPassword";
+import { CreateForgotPasswordSchema } from "@/lib/validators/auth/forgotPassword";
 
 export function ForgotPasswordForm() {
     const handleForgotPassword = async (formData: FormData) => {

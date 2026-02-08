@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { createTeam } from "@/lib/actions/teams";
 import { Game } from "@/lib/generated/prisma/client";
-import { CreateTeamSchema } from "@/lib/schemas/team";
+import { CreateTeamSchema } from "@/lib/validators/team";
 import { toast } from "sonner";
 
 interface CreateTeamFormProps {
