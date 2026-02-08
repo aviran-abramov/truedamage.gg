@@ -3,7 +3,7 @@
 ## Table of Contents
 <ol>
     <li>
-        <a href="#about-the-project">About The Project</a>
+        <a href="#overview">Overview</a>
     </li>
     <li>
         <a href="#tech-stack">Tech Stack</a>
@@ -13,7 +13,7 @@
     </li>
 </ol>
 
-## About The Project
+## Overview
 <p>Instead of tutorial CRUD YouTube projects that most of the juniors do and use the "copy paste" method, I decided to work on a field that I know very well and like as a hobby to create a real project.</p>
 
 ### Why I built this project
