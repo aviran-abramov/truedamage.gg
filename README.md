@@ -4,20 +4,22 @@
 <ol>
     <li>
         <a href="#about-the-project">About The Project</a>
-        <ul>
-            <li><a href="#why-i-built-this-project">Why I Built This Project</a></li>
-            <li><a href="#technologies">Tech Stack</a></li>
-        </ul>
+    </li>
+    <li>
+        <a href="#tech-stack">Tech Stack</a>
+    </li>
+    <li>
+        <a href="#features">Features</a>
     </li>
 </ol>
 
 ## About The Project
-<p>Instead of tutorial CRUD YouTube projects that most of juniors do and use the "copy paste" method, I decided to work on a field that I know very well and like as a hobby.</p>
+<p>Instead of tutorial CRUD YouTube projects that most of the juniors do and use the "copy paste" method, I decided to work on a field that I know very well and like as a hobby to create a real project.</p>
 
 ### Why I built this project
-<p>As a former heavy gamer, and as a person who is working with computer 24/7 since the age of 3, I decided to build a project about eSports. I created a website which provides data about games, tournaments, teams, players and even predict which team is going to win the match.</p>
+<p>As a former heavy gamer, and as a person who is working with computer 24/7 since the age of 3, I decided to build a project about eSports. I created a website which provides data about games, tournaments, teams, players and even predict which team is going to win the match with my own formula.</p>
 
-### Tech Stack
+## Tech Stack
 
 <ul>
     <li>NextJS - Framework for both backend and frontend</li>
@@ -33,8 +35,68 @@
     <li>Vercel - Deployment</li>
 </ul>
 
+## Features
 
-## Getting Started
+### Authentication with Better-Auth
+<ul>
+    <li>Sign in</li>
+    <li>Sign up</li>
+    <li>Sign out</li>
+    <li>Forgot password</li>
+</ul>
+
+### Admin features
+<ul>
+    <li>Create: game, team, match, prediction</li>
+</ul>
+
+### UI
+<ul>
+    <li>Theme - dark / light mode</li>
+</ul>
+
+
+## Installation - Getting Started
+Follow these steps to make this project work on your machine.
+
+<b>Cloning the repository</b>
+```bash
+git clone git@github.com:aviran-abramov/truedamage.gg.git
+```
+
+<b>Installation</b>
+```bash
+npm install
+```
+
+<b>Set up environment variables</b>
+<ol>
+    <li>Create a new file in the root folder, and call it ```.env```</li>
+    <li>Paste and add the required content:</li>
+</ol> 
+
+```bash
+# Database
+DATABASE_URL=
+
+# Better Auth
+BETTER_AUTH_URL="http://localhost:3000"
+
+# Google (Auth)
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+# Facebook (Auth)
+FACEBOOK_CLIENT_ID=
+FACEBOOK_CLIENT_SECRET=
+
+# Resend Email Service
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=
+
+# Email Address - For now only I can get emails (costs money)
+MY_EMAIL_ADDRESS="aviranabramov@gmail.com"
+```
 
 First, run the development server:
 
