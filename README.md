@@ -1,17 +1,11 @@
 # **TrueDamage.gg**
 
 ## Table of Contents
-<ol>
-    <li>
-        <a href="#overview">Overview</a>
-    </li>
-    <li>
-        <a href="#tech-stack">Tech Stack</a>
-    </li>
-    <li>
-        <a href="#features">Features</a>
-    </li>
-</ol>
+[Overview](#overview)
+[Tech Stack](#tech-stack)
+[Features](#features)
+[Getting Started](#getting-started)
+[Architecture](#architecture)
 
 ## Overview
 <p>Instead of tutorial CRUD YouTube projects that most of the juniors do and use the "copy paste" method, I decided to work on a field that I know very well and like as a hobby to create a real project.</p>
@@ -56,7 +50,7 @@
 </ul>
 
 
-## Installation - Getting Started
+## Getting Started
 Follow these steps to make this project work on your machine.
 
 <b>Cloning the repository</b>
@@ -97,6 +91,28 @@ RESEND_FROM_EMAIL=
 # Email Address - For now only I can get emails (costs money)
 MY_EMAIL_ADDRESS="aviranabramov@gmail.com"
 ```
+
+## Architecture
+### Database Schema
+I used PostgreSQL with Prisma ORM.
+
+### Tables
+
+#### Better Auth Tables
+
+**User**
+**Session**
+**Account**
+**Verification**
+
+#### App Tables
+
+**Game**
+**Team**
+**Match**
+
+
+<!-- REMOVE AT THE END -->
 
 First, run the development server:
 

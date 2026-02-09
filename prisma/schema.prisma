@@ -80,6 +80,18 @@ model Verification {
   @@map("verification")
 }
 
+model TwoFactor {
+  id          String @id
+  secret      String
+  backupCodes String
+  userId      String
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([secret])
+  @@index([userId])
+  @@map("twoFactor")
+}
+
 model Game {
   id        String  @id
   name      String  @unique @db.VarChar(255)
@@ -132,16 +144,4 @@ model Match {
 
   gameId String
   game   Game   @relation(fields: [gameId], references: [id])
-}
-
-model TwoFactor {
-  id          String @id
-  secret      String
-  backupCodes String
-  userId      String
-  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([secret])
-  @@index([userId])
-  @@map("twoFactor")
 }
