@@ -42,6 +42,7 @@ export const MatchSchema = z.object({
         .string()
         .trim()
         .max(255, { error: "Winner prediction field must be 255 characters or less." })
+        .optional()
 });
 
 export type MatchFormData = z.infer<typeof MatchSchema>;
