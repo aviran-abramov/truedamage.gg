@@ -6,3 +6,5 @@ export const ForgotPasswordSchema = z.object({
         .string()
         .min(8, { error: "Password field must be at least 8 characters." })
 })
+
+export type ForgotPasswordFormData = z.infer<typeof ForgotPasswordSchema>;

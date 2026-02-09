@@ -22,3 +22,5 @@ export const TeamSchema = z.object({
         .toLowerCase()
         .length(2, { error: "Country code field must be exactly 2 characters" })
 });
+
+export type TeamFormData = z.infer<typeof TeamSchema>;

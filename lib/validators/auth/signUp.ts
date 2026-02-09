@@ -10,3 +10,5 @@ export const SignUpSchema = z.object({
         .string()
         .min(8, { error: "Password field must be at least 8 characters." })
 });
+
+export type SignUpFormData = z.infer<typeof SignUpSchema>;

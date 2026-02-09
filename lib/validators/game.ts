@@ -18,3 +18,5 @@ export const GameSchema = z.object({
         })
         .optional()
 });
+
+export type GameFormData = z.infer<typeof GameSchema>;
