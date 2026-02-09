@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { createTeam } from "@/lib/actions/teams";
 import { Game } from "@/lib/generated/prisma/client";
-import { CreateTeamSchema } from "@/lib/validators/team";
+import { TeamSchema } from "@/lib/validators/team";
 import { toast } from "sonner";
 
 interface CreateTeamFormProps {
@@ -22,7 +22,7 @@ export function CreateTeamForm({ games }: CreateTeamFormProps) {
             countryCode: formData.get("countryCode") as string,
         };
 
-        const result = CreateTeamSchema.safeParse(newTeam);
+        const result = TeamSchema.safeParse(newTeam);
         if (!result.success) {
             toast.warning(result.error.issues[0].message, { position: "top-center" });
             return;

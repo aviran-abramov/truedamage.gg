@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-export const CreateTeamSchema = z.object({
+export const TeamSchema = z.object({
     gameName: z
         .string()
         .trim()

@@ -4,7 +4,7 @@ import { FormField } from "@/components/forms/FormField";
 import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { createGame } from "@/lib/actions/games";
-import { CreateGameSchema } from "@/lib/validators/game";
+import { GameSchema } from "@/lib/validators/game";
 import { toast } from "sonner";
 
 export function CreateGameForm() {
@@ -14,7 +14,7 @@ export function CreateGameForm() {
             shortName: formData.get("shortName") as string || formData.get("name") as string
         };
 
-        const result = CreateGameSchema.safeParse(newGame);
+        const result = GameSchema.safeParse(newGame);
         if (!result.success) {
             toast.warning(result.error.issues[0].message, { position: "top-center" });
             return;

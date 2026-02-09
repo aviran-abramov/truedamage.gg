@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { signIn } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
-import { CreateSignInSchema } from "@/lib/validators/auth/signIn";
+import { SignInSchema } from "@/lib/validators/auth/signIn";
 import { toast } from "sonner";
 import { AuthModalType } from "@/lib/types/auth";
 
@@ -18,7 +18,7 @@ export function SignInForm({ onAuthModalToShowClick }: SignInFormProps) {
             password: formData.get("password") as string
         };
 
-        const result = CreateSignInSchema.safeParse(newSignIn);
+        const result = SignInSchema.safeParse(newSignIn);
         if (!result.success) {
             toast.warning(result.error.issues[0].message, { position: "top-center" });
             return;

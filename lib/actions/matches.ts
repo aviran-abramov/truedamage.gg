@@ -2,7 +2,7 @@
 
 import prisma from "../db";
 import { Prisma } from "../generated/prisma/client";
-import { CreateMatchSchema } from "../validators/match";
+import { MatchSchema } from "../validators/match";
 
 type ActionResult<T> =
     | { success: true; data: T }
@@ -10,7 +10,7 @@ type ActionResult<T> =
 
 export async function createMatch(newMatch: unknown) {
     try {
-        const result = CreateMatchSchema.safeParse(newMatch);
+        const result = MatchSchema.safeParse(newMatch);
         if (!result.success) {
             let errorMessage = "";
 

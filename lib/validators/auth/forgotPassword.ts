@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-export const CreateForgotPasswordSchema = z.object({
+export const ForgotPasswordSchema = z.object({
     email: z.email(),
     password: z
         .string()

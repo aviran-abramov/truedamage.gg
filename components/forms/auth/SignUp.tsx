@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { signUp } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
-import { CreateSignUpSchema } from "@/lib/validators/auth/signUp";
+import { SignUpSchema } from "@/lib/validators/auth/signUp";
 import { toast } from "sonner";
 
 export function SignUpForm() {
@@ -14,7 +14,7 @@ export function SignUpForm() {
             password: formData.get("password") as string
         };
 
-        const result = CreateSignUpSchema.safeParse(newSignUp);
+        const result = SignUpSchema.safeParse(newSignUp);
         if (!result.success) {
             toast.warning(result.error.issues[0].message, { position: "top-center" });
             return;

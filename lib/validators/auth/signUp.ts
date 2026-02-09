@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-export const CreateSignUpSchema = z.object({
+export const SignUpSchema = z.object({
     name: z
         .string()
         .trim()

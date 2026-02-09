@@ -2,11 +2,11 @@
 
 import prisma from "../db";
 import { createIdWithNumbers } from "../helpers";
-import { CreateTeamSchema } from "../validators/team";
+import { TeamSchema } from "../validators/team";
 
 export async function createTeam(newTeam: unknown) {
     try {
-        const result = CreateTeamSchema.safeParse(newTeam);
+        const result = TeamSchema.safeParse(newTeam);
         if (!result.success) {
             let errorMessage = "";
 

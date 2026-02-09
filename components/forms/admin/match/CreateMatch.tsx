@@ -6,7 +6,7 @@ import { createMatch } from "@/lib/actions/matches";
 import { FormField } from "../../FormField";
 import { FormSelectGameField } from "../../FormSelectGameField";
 import { Game } from "@/lib/generated/prisma/client";
-import { CreateMatchSchema } from "@/lib/validators/match";
+import { MatchSchema } from "@/lib/validators/match";
 import { toast } from "sonner";
 
 interface CreateMatchProps {
@@ -26,7 +26,7 @@ export function CreateMatch({ games }: CreateMatchProps) {
             winnerPrediction: formData.get("winnerPrediction") as string
         }
 
-        const result = CreateMatchSchema.safeParse(newMatch);
+        const result = MatchSchema.safeParse(newMatch);
         if (!result.success) {
             toast.warning(result.error.issues[0].message, { position: "top-center" });
             return;

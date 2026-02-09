@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-export const CreateMatchSchema = z.object({
+export const MatchSchema = z.object({
     date: z
         .string()
         .trim()

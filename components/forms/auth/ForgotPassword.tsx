@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { signIn } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
 import { toast } from "sonner";
-import { CreateForgotPasswordSchema } from "@/lib/validators/auth/forgotPassword";
+import { ForgotPasswordSchema } from "@/lib/validators/auth/forgotPassword";
 
 export function ForgotPasswordForm() {
     const handleForgotPassword = async (formData: FormData) => {
@@ -13,7 +13,7 @@ export function ForgotPasswordForm() {
             password: formData.get("password") as string
         };
 
-        const result = CreateForgotPasswordSchema.safeParse(newForgotPasswordRequest);
+        const result = ForgotPasswordSchema.safeParse(newForgotPasswordRequest);
         if (!result.success) {
             toast.warning(result.error.issues[0].message, { position: "top-center" });
             return;

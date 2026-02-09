@@ -3,14 +3,14 @@
 import { redirect } from "next/navigation"
 import { auth } from "../auth";
 import { headers } from "next/headers";
-import { CreateSignInSchema } from "../validators/auth/signIn";
-import { CreateSignUpSchema } from "../validators/auth/signUp";
+import { SignInSchema } from "../validators/auth/signIn";
+import { SignUpSchema } from "../validators/auth/signUp";
 
 export async function signUp(newSignUp: unknown) {
     try {
         console.log("Attempting to sign up a new user via form");
 
-        const result = CreateSignUpSchema.safeParse(newSignUp);
+        const result = SignUpSchema.safeParse(newSignUp);
         if (!result.success) {
             let errorMessage = "";
 
@@ -48,7 +48,7 @@ export async function signIn(newSignIn: unknown) {
     try {
         console.log("Attempting to sign in a user via form");
 
-        const result = CreateSignInSchema.safeParse(newSignIn);
+        const result = SignInSchema.safeParse(newSignIn);
         if (!result.success) {
             let errorMessage = "";
 
@@ -125,7 +125,7 @@ export async function forgotPassword(newForgotPassword: unknown) {
     try {
         console.log("Attempting to sign in a user via form");
 
-        const result = CreateSignInSchema.safeParse(newForgotPassword);
+        const result = SignInSchema.safeParse(newForgotPassword);
         if (!result.success) {
             let errorMessage = "";
 

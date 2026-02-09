@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-export const CreateGameSchema = z.object({
+export const GameSchema = z.object({
     name: z
         .string()
         .trim()

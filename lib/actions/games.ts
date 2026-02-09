@@ -1,12 +1,12 @@
 "use server";
 
 import prisma from "../db";
-import { CreateGameSchema } from "../validators/game";
+import { GameSchema } from "../validators/game";
 import { createIconUrl, createSlug } from "../helpers";
 
 export async function createGame(newGame: unknown) {
     try {
-        const result = CreateGameSchema.safeParse(newGame);
+        const result = GameSchema.safeParse(newGame);
         if (!result.success) {
             let errorMessage = "";
 
