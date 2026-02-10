@@ -1,73 +1,62 @@
 # **TrueDamage.gg**
 
 ## Table of Contents
-[Overview](#overview)
-[Tech Stack](#tech-stack)
-[Features](#features)
-[Getting Started](#getting-started)
-[Architecture](#architecture)
+* [Overview](#overview)  
+* [Tech Stack](#tech-stack)  
+* [Features](#features)  
+* [Getting Started](#getting-started)  
+* [Environment Variables](#environment-variables)
+* [Architecture](#architecture)
 
 ## Overview
-<p>Instead of tutorial CRUD YouTube projects that most of the juniors do and use the "copy paste" method, I decided to work on a field that I know very well and like as a hobby to create a real project.</p>
+Instead of tutorial CRUD YouTube projects that most of the juniors do and use the "copy paste" method, I decided to work on a field that I know very well and like as a hobby to create a real project.
 
 ### Why I built this project
-<p>As a former heavy gamer, and as a person who is working with computer 24/7 since the age of 3, I decided to build a project about eSports. I created a website which provides data about games, tournaments, teams, players and even predict which team is going to win the match with my own formula.</p>
+As a former heavy gamer, and as a persoson who is working with computer 24/7 since the age of 3, I decided to build a project about eSports. I created a website which provides data about games, tournaments, teams, players and even predict which team is going to win the match with my own formula.
 
 ## Tech Stack
-
-<ul>
-    <li>NextJS - Framework for both backend and frontend</li>
-    <li>TypeScript</li>
-    <li>Prisma - Database ORM</li>
-    <li>PostgreSQL - Relational database</li>
-    <li>Zod - Data validation</li>
-    <li>React-Hook-Form - Form state management</li>
-    <li>Better Auth - Authentication</li>
-    <li>Resend - Email service</li>
-    <li>ShadCN - UI library</li>
-    <li>TailwindCSS - CSS framework</li>
-    <li>Vercel - Deployment</li>
-</ul>
+* NextJS - Framework for both backend and frontend
+* TypeScript
+* Prisma - Database ORM
+* PostgreSQL - Relational database
+* Zod - Data validation
+* React-Hook-Form - Form state management
+* Better Auth - Authentication
+* Resend - Email service
+* ShadCN - UI library
+* TailwindCSS - CSS framework
+* Vercel - Deployment
 
 ## Features
-
 ### Authentication with Better-Auth
-<ul>
-    <li>Sign in</li>
-    <li>Sign up</li>
-    <li>Sign out</li>
-    <li>Forgot password</li>
-</ul>
+* Sign in  
+* Sign up  
+* Sign out  
+* Forgot password
 
 ### Admin features
-<ul>
-    <li>Create: game, team, match, prediction</li>
-</ul>
+* Create: game, team, match, prediction  
 
 ### UI
-<ul>
-    <li>Theme - dark / light mode</li>
-</ul>
-
+* Theme - dark / light mode  
 
 ## Getting Started
-Follow these steps to make this project work on your machine.
+Follow these steps to make this project work on your machine.  
+**Cloning the repository**
 
-<b>Cloning the repository</b>
 ```bash
 git clone git@github.com:aviran-abramov/truedamage.gg.git
 ```
 
-<b>Installation</b>
+**Installation**
 ```bash
 npm install
 ```
 
-<b>Set up environment variables</b>
-<ol>
-    <li>Create a new file in the root folder, and call it ```.env```</li>
-    <li>Paste and add the required content:</li>
-</ol> 
+## Environment Variables
+**Set up environment variables**  
+1. Create a new file in the root folder, and call it ```.env```
+2. Paste and add the required content:
 
 ```bash
 # Database
@@ -99,17 +88,15 @@ I used PostgreSQL with Prisma ORM.
 ### Tables
 
 #### Better Auth Tables
-
-**User**
-**Session**
-**Account**
-**Verification**
+* **User**
+* **Session**
+* **Account**
+* **Verification**
 
 #### App Tables
-
-**Game**
-**Team**
-**Match**
+* **Game**  
+* **Team**  
+* **Match**  
 
 
 <!-- REMOVE AT THE END -->
