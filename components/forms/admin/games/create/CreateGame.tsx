@@ -38,14 +38,14 @@ export function CreateGameForm() {
                 <FormInputField
                     control={form.control}
                     name="name"
-                    label="Name"
+                    title="Name"
                     placeholder="League of Legends"
                 />
 
                 <FormInputField
                     control={form.control}
                     name="shortName"
-                    label="Short Name (optional)"
+                    title="Short Name (optional)"
                     placeholder="LoL"
                 />
             </FieldGroup>
