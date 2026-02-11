@@ -5,7 +5,7 @@ import { Input } from "../ui/input";
 interface FormInputFieldProps {
     control: Control<any>;
     name: string;
-    label: string;
+    title: string;
     type?: string
     placeholder?: string;
 }
@@ -13,7 +13,7 @@ interface FormInputFieldProps {
 export const FormInputField = ({
     control,
     name,
-    label,
+    title,
     type = "text",
     placeholder
 }: FormInputFieldProps) => {
@@ -25,7 +25,7 @@ export const FormInputField = ({
             render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                     <FieldContent>
-                        <FieldLabel htmlFor={field.name}>{label}</FieldLabel>
+                        <FieldLabel htmlFor={field.name}>{title}</FieldLabel>
                         <Input
                             type={type}
                             placeholder={placeholder}
