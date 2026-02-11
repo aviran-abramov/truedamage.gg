@@ -16,7 +16,7 @@ export const GameSchema = z.object({
         .max(10, {
             error: "Short name must be 10 characters or less."
         })
-        .optional()
+        .transform(value => value || undefined)
 });
 
 export type GameFormData = z.infer<typeof GameSchema>;
