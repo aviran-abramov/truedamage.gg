@@ -4,28 +4,28 @@ import { Input } from "../ui/input";
 
 interface FormInputFieldProps {
     control: Control<any>;
-    name: string;
-    title: string;
+    controllerName: string;
+    fieldLabel: string;
     type?: string
     placeholder?: string;
 }
 
 export const FormInputField = ({
     control,
-    name,
-    title,
+    controllerName,
+    fieldLabel,
     type = "text",
     placeholder
 }: FormInputFieldProps) => {
 
     return (
         <Controller
-            name={name}
+            name={controllerName}
             control={control}
             render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                     <FieldContent>
-                        <FieldLabel htmlFor={field.name}>{title}</FieldLabel>
+                        <FieldLabel htmlFor={field.name}>{fieldLabel}</FieldLabel>
                         <Input
                             type={type}
                             placeholder={placeholder}
