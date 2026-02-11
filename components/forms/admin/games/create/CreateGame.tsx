@@ -1,58 +1,78 @@
 "use client";
 
-import { FormField } from "@/components/forms/FormField";
 import { Button } from "@/components/ui/button";
-import { CardFooter } from "@/components/ui/card";
 import { createGame } from "@/lib/actions/games";
-import { GameSchema } from "@/lib/validators/game";
+import { GameFormData, GameSchema } from "@/lib/validators/game";
 import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import { Field, FieldContent, FieldError, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 
 export function CreateGameForm() {
-    const handleCreateGame = async (formData: FormData) => {
-        const newGame = {
-            name: formData.get("name") as string,
-            shortName: formData.get("shortName") as string || formData.get("name") as string
-        };
-
-        const result = GameSchema.safeParse(newGame);
-        if (!result.success) {
-            toast.warning(result.error.issues[0].message, { position: "top-center" });
-            return;
+    const form = useForm({
+        resolver: zodResolver(GameSchema),
+        defaultValues: {
+            name: "",
+            shortName: ""
         }
+    });
 
-        const response = await createGame(result.data);
-        if (response?.error) {
-            toast.error(response.error, { position: "top-center" });
-            return;
+    const onSubmit = async (data: GameFormData) => {
+        console.log(form);
+
+        const result = await createGame(data);
+
+        if (result.success) {
+            form.reset();
+            toast.success("Game created successfully!", { position: "top-center" });
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1500);
+        } else {
+            toast.error("Failed to create game.", { position: "top-center" });
         }
-
-        toast.success("Game created successfully!", { position: "top-center" });
-        setTimeout(() => {
-            window.location.href = "/";
-        }, 1500);
     }
 
     return (
-        <form action={handleCreateGame} className="flex flex-col gap-4">
-            <FormField
-                name="name"
-                label="Name"
-                type="text"
-                placeholder="League of Legends"
-            />
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
+            <FieldGroup>
+                <Controller
+                    name="name"
+                    control={form.control}
+                    render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                            <FieldContent>
+                                <FieldLabel htmlFor={field.name}>Name</FieldLabel>
+                                <Input {...field} id={field.name} aria-invalid={fieldState.invalid} />
+                                {fieldState.invalid && (
+                                    <FieldError errors={[fieldState.error]} />
+                                )}
+                            </FieldContent>
+                        </Field>
+                    )}
+                />
 
-            <FormField
-                name="shortName"
-                label="Short Name (optional)"
-                type="text"
-                placeholder="LoL"
-            />
+                <Controller
+                    name="shortName"
+                    control={form.control}
+                    render={({ field, fieldState }) => (
+                        <FieldContent>
+                            <Field data-invalid={fieldState.invalid}>
+                                <FieldLabel htmlFor={field.name}>Short Name (optional)</FieldLabel>
+                                <Input {...field} id={field.name} aria-invalid={fieldState.invalid} />
+                                {fieldState.invalid && (
+                                    <FieldError errors={[fieldState.error]} />
+                                )}
+                            </Field>
+                        </FieldContent>
+                    )}
+                />
 
-            <CardFooter className="flex flex-col gap-2 border-t">
-                <Button type="submit" className="w-full cursor-pointer">
-                    Create Game
-                </Button>
-            </CardFooter>
-        </form>
+                <FieldSeparator />
+
+                <Button type="submit" className="w-full cursor-pointer">Create Game</Button>
+            </FieldGroup>
+        </form >
     )
 }
