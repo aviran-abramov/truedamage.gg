@@ -5,9 +5,9 @@ import { createGame } from "@/lib/actions/games";
 import { GameFormData, GameSchema } from "@/lib/validators/game";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import { Field, FieldContent, FieldError, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { useForm } from "react-hook-form";
+import { FieldGroup, FieldSeparator } from "@/components/ui/field";
+import { FormInputField } from "@/components/forms/FormInputField";
 
 export function CreateGameForm() {
     const form = useForm({
@@ -19,8 +19,6 @@ export function CreateGameForm() {
     });
 
     const onSubmit = async (data: GameFormData) => {
-        console.log(form);
-
         const result = await createGame(data);
 
         if (result.success) {
@@ -37,42 +35,24 @@ export function CreateGameForm() {
     return (
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
             <FieldGroup>
-                <Controller
+                <FormInputField
+                    control={form.control}
                     name="name"
-                    control={form.control}
-                    render={({ field, fieldState }) => (
-                        <Field data-invalid={fieldState.invalid}>
-                            <FieldContent>
-                                <FieldLabel htmlFor={field.name}>Name</FieldLabel>
-                                <Input {...field} id={field.name} aria-invalid={fieldState.invalid} />
-                                {fieldState.invalid && (
-                                    <FieldError errors={[fieldState.error]} />
-                                )}
-                            </FieldContent>
-                        </Field>
-                    )}
+                    label="Name"
+                    placeholder="League of Legends"
                 />
 
-                <Controller
+                <FormInputField
+                    control={form.control}
                     name="shortName"
-                    control={form.control}
-                    render={({ field, fieldState }) => (
-                        <FieldContent>
-                            <Field data-invalid={fieldState.invalid}>
-                                <FieldLabel htmlFor={field.name}>Short Name (optional)</FieldLabel>
-                                <Input {...field} id={field.name} aria-invalid={fieldState.invalid} />
-                                {fieldState.invalid && (
-                                    <FieldError errors={[fieldState.error]} />
-                                )}
-                            </Field>
-                        </FieldContent>
-                    )}
+                    label="Short Name (optional)"
+                    placeholder="LoL"
                 />
-
-                <FieldSeparator />
-
-                <Button type="submit" className="w-full cursor-pointer">Create Game</Button>
             </FieldGroup>
+
+            <FieldSeparator />
+
+            <Button type="submit" className="w-full cursor-pointer">Create Game</Button>
         </form >
     )
 }
