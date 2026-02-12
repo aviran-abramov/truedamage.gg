@@ -3,58 +3,58 @@
 import { Button } from "@/components/ui/button";
 import { signIn } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
-import { SignInSchema } from "@/lib/validators/auth/signIn";
+import { SignInFormData, SignInSchema } from "@/lib/validators/auth/signIn";
 import { toast } from "sonner";
 import { AuthModalType } from "@/lib/types/auth";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormInputField } from "../FormInputField";
 
 interface SignInFormProps {
     onAuthModalToShowClick: (type: AuthModalType) => void;
 }
 
 export function SignInForm({ onAuthModalToShowClick }: SignInFormProps) {
-    const handleSignIn = async (formData: FormData) => {
-        const newSignIn = {
-            email: formData.get("email") as string,
-            password: formData.get("password") as string
-        };
-
-        const result = SignInSchema.safeParse(newSignIn);
-        if (!result.success) {
-            toast.warning(result.error.issues[0].message, { position: "top-center" });
-            return;
+    const form = useForm({
+        resolver: zodResolver(SignInSchema),
+        defaultValues: {
+            email: "",
+            password: ""
         }
+    });
 
-        const response = await signIn(result.data);
-        if (response?.error) {
-            toast.error(response.error, { position: "top-center" });
-            return;
+    const onSubmit = async (data: SignInFormData) => {
+        const result = await signIn(data);
+
+        if (result.success) {
+            form.reset();
+            toast.success("Signed in successfully!", { position: "top-center" });
+            setTimeout(() => window.location.href = "/", 1500);
+        } else {
+            toast.error("Failed signing in.");
         }
-
-        toast.success("Signed in successfully!", { position: "top-center" });
-        setTimeout(() => {
-            window.location.href = "/";
-        }, 1500);
-    }
+    };
 
     return (
-        <form action={handleSignIn} className='space-y-4'>
-            <FormField
-                name="email"
-                label="Email Address"
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+            <FormInputField
+                control={form.control}
+                controllerName="email"
+                fieldLabel="Email Address"
                 type="email"
                 placeholder="johndoe@gmail.com"
             />
 
-            <FormField
-                name="password"
-                label="Password"
+            <FormInputField
+                control={form.control}
+                controllerName="password"
+                fieldLabel="Password"
                 type="password"
                 placeholder="password"
                 hasAdditionalButton={true}
                 additionalButtonLabel="Forgot password"
                 onAuthModalToShowClick={onAuthModalToShowClick}
             />
-
 
             <Button type="submit" className="w-full cursor-pointer">
                 SIGN IN
