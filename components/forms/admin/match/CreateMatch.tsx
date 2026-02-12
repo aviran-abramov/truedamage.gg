@@ -123,7 +123,7 @@ export function CreateMatch({ games }: CreateMatchProps) {
 
             <FieldSeparator />
 
-            <Button type="submit" className="w-full cursor-pointer">Create Team</Button>
+            <Button type="submit" className="w-full cursor-pointer">Create Match</Button>
 
         </form>
     )
