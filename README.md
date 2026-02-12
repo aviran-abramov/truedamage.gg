@@ -1,5 +1,7 @@
 # **TrueDamage.gg**
-Get the latest esports news, live tournament coverage, match schedules, expert predictions for League of Legends, CS2, Valorant, Dota 2, and more!  
+Get the latest esports news, live tournament coverage, match schedules, expert predictions for League of Legends, CS2, Valorant, Dota 2, and more!
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-truedamage.gg-blue?style=for-the-badge)](https://truedamage-gg.vercel.app/)
 
 ## Table of Contents
 * [Overview](#overview)  
