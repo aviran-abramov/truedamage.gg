@@ -1,6 +1,7 @@
 import { Control, Controller } from "react-hook-form";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
+import Link from "next/link";
 
 interface FormInputFieldProps {
     control: Control<any>;
@@ -8,6 +9,9 @@ interface FormInputFieldProps {
     fieldLabel: string;
     type?: string
     placeholder?: string;
+    hasAdditionalButton?: boolean;
+    onAuthModalToShowClick?: any; // just for now
+    additionalButtonLabel?: string;
 }
 
 export const FormInputField = ({
@@ -15,7 +19,10 @@ export const FormInputField = ({
     controllerName,
     fieldLabel,
     type = "text",
-    placeholder
+    placeholder,
+    hasAdditionalButton = false,
+    onAuthModalToShowClick,
+    additionalButtonLabel
 }: FormInputFieldProps) => {
 
     return (
@@ -25,7 +32,20 @@ export const FormInputField = ({
             render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                     <FieldContent>
-                        <FieldLabel htmlFor={field.name}>{fieldLabel}</FieldLabel>
+                        {hasAdditionalButton ? (
+                            <div className="flex items-center justify-between px-0.5">
+                                <FieldLabel htmlFor={field.name}>{fieldLabel}</FieldLabel>
+                                <Link
+                                    href="#"
+                                    onClick={() => onAuthModalToShowClick("forgotPassword")}
+                                    className="text-blue-500 text-sm hover:underline"
+                                >
+                                    {additionalButtonLabel}
+                                </Link>
+                            </div>
+                        ) : (
+                            <FieldLabel htmlFor={field.name}>{fieldLabel}</FieldLabel>
+                        )}
                         <Input
                             type={type}
                             placeholder={placeholder}
@@ -36,7 +56,7 @@ export const FormInputField = ({
                             <FieldError errors={[fieldState.error]} />
                         )}
                     </FieldContent>
-                </Field>
+                </Field >
             )}
         />
     )
