@@ -40,10 +40,14 @@ As a former heavy gamer, and as a persoson who is working with computer 24/7 sin
 * Sign in  
 * Sign up  
 * Sign out  
-* Forgot password
+* TO-FINISH: Forgot password
+* TODO: 2FA
 
 ### Admin features
-* Create: game, team, match, prediction  
+* Create: game, team, match, prediction
+* TODO: Edit: game, team, match, prediciton
+* TODO: Delete: game, team, match, prediction
+* TODO: Fetch specific game (scraper project)
 
 ### UI
 * Theme - dark / light mode  
