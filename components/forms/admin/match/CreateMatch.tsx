@@ -6,113 +6,125 @@ import { createMatch } from "@/lib/actions/matches";
 import { FormField } from "../../FormField";
 import { FormSelectGameField } from "../../FormSelectGameField";
 import { Game } from "@/lib/generated/prisma/client";
-import { MatchSchema } from "@/lib/validators/match";
+import { MatchFormData, MatchSchema } from "@/lib/validators/match";
 import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormInputField } from "../../FormInputField";
+import { FormSelectField } from "../../FormSelectField";
+import { FieldSeparator } from "@/components/ui/field";
 
 interface CreateMatchProps {
     games: Game[];
 }
 
 export function CreateMatch({ games }: CreateMatchProps) {
-    const handleCreateMatch = async (formData: FormData) => {
-        const newMatch = {
-            date: formData.get('date') as string,
-            time: formData.get('time') as string,
-            gameName: formData.get('gameName') as string,
-            tournament: formData.get('tournament') as string,
-            bestOf: Number(formData.get('bestOf')),
-            teamAName: formData.get('teamAName') as string,
-            teamBName: formData.get('teamBName') as string,
-            winnerPrediction: formData.get("winnerPrediction") as string
+    const form = useForm({
+        resolver: zodResolver(MatchSchema),
+        defaultValues: {
+            date: "",
+            time: "",
+            gameName: "",
+            tournament: "",
+            bestOf: "",
+            teamAName: "",
+            teamBName: "",
+            winnerPrediction: ""
         }
+    });
 
-        const result = MatchSchema.safeParse(newMatch);
-        if (!result.success) {
-            toast.warning(result.error.issues[0].message, { position: "top-center" });
-            return;
+    const onSubmit = async (data: MatchFormData) => {
+        const result = await createMatch(data);
+
+        if (result.success) {
+            form.reset();
+            toast.success("Match created successfully!", { position: "top-center" });
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1500);
+        } else {
+            toast.error("Failed to create match.", { position: "top-center" })
         }
-
-        const response = await createMatch(result.data);
-        if (response?.error) {
-            toast.error(response.error, { position: "top-center" });
-            return;
-        }
-
-        toast.success("Match created successfully!", { position: "top-center" });
-        setTimeout(() => {
-            window.location.href = "/matches/predictions/upcoming";
-        }, 1500);
     }
 
+    const gameSelectItems = games.map((game) => {
+        return {
+            id: game.id,
+            label: game.name,
+            value: game.name
+        }
+    });
+
     return (
-        <form action={handleCreateMatch} className="flex flex-col gap-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-                <FormField
-                    name="date"
-                    label="Match Date"
-                    type="text"
+                <FormInputField
+                    control={form.control}
+                    controllerName="date"
+                    fieldLabel="Match Date"
                     placeholder="2026-01-12"
                 />
 
-                <FormField
-                    name="time"
-                    label="Match Time"
-                    type="text"
+                <FormInputField
+                    control={form.control}
+                    controllerName="time"
+                    fieldLabel="Match Time"
                     placeholder="11:00"
                 />
             </div>
 
-            <FormField
-                name="tournament"
-                label="Tournament"
-                type="text"
+            <FormInputField
+                control={form.control}
+                controllerName="tournament"
+                fieldLabel="Tournament"
                 placeholder="LoL Champions Korea (LCK) Cup 2026"
             />
 
+
+
             <div className="flex items-center gap-3">
-                <FormSelectGameField
-                    label="Game"
-                    name="gameName"
+                <FormSelectField
+                    control={form.control}
+                    controllerName="gameName"
+                    fieldLabel="Game"
                     placeholder="Select a game"
-                    title="Games"
-                    games={games}
+                    selectLabel="Games"
+                    items={gameSelectItems}
                 />
 
-                <FormField
-                    name="bestOf"
-                    label="Best of"
-                    type="text"
+                <FormInputField
+                    control={form.control}
+                    controllerName="bestOf"
+                    fieldLabel="Best of"
                     placeholder="3"
                 />
             </div>
 
-            <FormField
-                name="teamAName"
-                label="Team A"
-                type="text"
+            <FormInputField
+                control={form.control}
+                controllerName="teamAName"
+                fieldLabel="Team A"
                 placeholder="Gen.G"
             />
 
-            <FormField
-                name="teamBName"
-                label="Team B"
-                type="text"
+            <FormInputField
+                control={form.control}
+                controllerName="teamBName"
+                fieldLabel="Team B"
                 placeholder="Dplus KIA"
             />
 
-            <FormField
-                name="winnerPrediction"
-                label="Winner Prediction"
-                type="text"
+            <FormInputField
+                control={form.control}
+                controllerName="winnerPrediction"
+                fieldLabel="Winner Prediction"
                 placeholder="Gen.G"
             />
 
+            <FieldSeparator />
 
-            <CardFooter className="flex flex-col gap-2 border-t">
-                <Button type="submit" className="w-full cursor-pointer">
-                    Create Match
-                </Button>
-            </CardFooter>
+            <Button type="submit" className="w-full cursor-pointer">Create Team</Button>
+
         </form>
     )
 }

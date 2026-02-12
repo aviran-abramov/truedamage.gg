@@ -60,7 +60,6 @@ export async function createMatch(newMatch: unknown) {
         })
     } catch (error) {
         console.error(`createMatch failed:`, error);
-        return;
     }
 
     return {
