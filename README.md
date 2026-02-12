@@ -16,24 +16,24 @@ As a former heavy gamer, and as a persoson who is working with computer 24/7 sin
 
 ## Tech Stack
 ### Both frontend and backend
-* **NextJS 16** - Full-Stack React Framework with CSR and SSR, including server actions
-* **Zod 4** - Data validation and schemas
+* **[NextJS 16](https://nextjs.org)** - Full-Stack React Framework with CSR and SSR, including server actions
+* **[Zod 4](https://zod.dev)** - Data validation and schemas
 
 ### Frontend Only
-* **ShadCN** - UI library
-* **TailwindCSS 4** - CSS framework
-* **React-Hook-Form** - Form state management
+* **[ShadCN](https://ui.shadcn.com)** - UI library
+* **[TailwindCSS 4](https://tailwindcss.com)** - CSS framework
+* **[React-Hook-Form](https://react-hook-form.com)** - Form state management
 
 ### Backend & Services
-* **Prisma** - Database ORM
-* **PostgreSQL** - Relational database
-* **Better Auth** - Authentication
-* **Resend** - Email service
+* **[Prisma](https://www.prisma.io)** - Database ORM
+* **[PostgreSQL](https://www.postgresql.org)** - Relational database
+* **[Better Auth](https://www.better-auth.com)** - Authentication
+* **[Resend](https://resend.com)** - Email service
 
 
 ### Development & Deployment
-* **TypeScript** - Type safety
-* **Vercel** - Deployment
+* **[TypeScript](https://www.typescriptlang.org)** - Type safety
+* **[Vercel](https://vercel.com)** - Deployment
 
 ## Features
 ### Authentication with Better-Auth
