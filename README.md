@@ -15,17 +15,25 @@ Instead of tutorial CRUD YouTube projects that most of the juniors do and use th
 As a former heavy gamer, and as a persoson who is working with computer 24/7 since the age of 3, I decided to build a project about eSports. I created a website which provides data about games, tournaments, teams, players and even predict which team is going to win the match with my own formula.
 
 ## Tech Stack
-* NextJS - Framework for both backend and frontend
-* TypeScript
-* Prisma - Database ORM
-* PostgreSQL - Relational database
-* Zod - Data validation
-* React-Hook-Form - Form state management
-* Better Auth - Authentication
-* Resend - Email service
-* ShadCN - UI library
-* TailwindCSS - CSS framework
-* Vercel - Deployment
+### Both frontend and backend
+* **NextJS 16** - Full-Stack React Framework with CSR and SSR, including server actions
+* **Zod 4** - Data validation and schemas
+
+### Frontend Only
+* **ShadCN** - UI library
+* **TailwindCSS 4** - CSS framework
+* **React-Hook-Form** - Form state management
+
+### Backend & Services
+* **Prisma** - Database ORM
+* **PostgreSQL** - Relational database
+* **Better Auth** - Authentication
+* **Resend** - Email service
+
+
+### Development & Deployment
+* **TypeScript** - Type safety
+* **Vercel** - Deployment
 
 ## Features
 ### Authentication with Better-Auth
