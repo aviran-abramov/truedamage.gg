@@ -35,7 +35,7 @@ export const FormSelectField = ({
                     <FieldContent>
                         <FieldLabel htmlFor={field.name}>{fieldLabel}</FieldLabel>
                         <Select value={field.value} onValueChange={field.onChange}>
-                            <SelectTrigger className="w-1/2">
+                            <SelectTrigger className="w-full">
                                 <SelectValue placeholder={placeholder} />
                             </SelectTrigger>
                             <SelectContent>
