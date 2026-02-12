@@ -32,9 +32,7 @@ export function CreateTeamForm({ games }: CreateTeamFormProps) {
         if (result.success) {
             form.reset();
             toast.success("Team created successfully!", { position: "top-center" });
-            setTimeout(() => {
-                window.location.href = "/";
-            }, 1500);
+            setTimeout(() => window.location.href = "/", 1500);
         } else {
             toast.error("Failed to create team.", { position: "top-center" });
         }
