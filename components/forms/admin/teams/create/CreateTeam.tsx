@@ -45,6 +45,7 @@ export function CreateTeamForm({ games }: CreateTeamFormProps) {
             value: game.name
         }
     });
+
     return (
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
             <FormSelectField

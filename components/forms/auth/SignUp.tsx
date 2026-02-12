@@ -3,54 +3,56 @@
 import { Button } from "@/components/ui/button";
 import { signUp } from "@/lib/actions/auth";
 import { FormField } from "../FormField";
-import { SignUpSchema } from "@/lib/validators/auth/signUp";
+import { SignUpFormData, SignUpSchema } from "@/lib/validators/auth/signUp";
 import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormInputField } from "../FormInputField";
+import { FieldSeparator } from "@/components/ui/field";
 
 export function SignUpForm() {
-    const handleSignUp = async (formData: FormData) => {
-        const newSignUp = {
-            name: formData.get("name") as string,
-            email: formData.get("email") as string,
-            password: formData.get("password") as string
-        };
-
-        const result = SignUpSchema.safeParse(newSignUp);
-        if (!result.success) {
-            toast.warning(result.error.issues[0].message, { position: "top-center" });
-            return;
+    const form = useForm({
+        resolver: zodResolver(SignUpSchema),
+        defaultValues: {
+            name: "",
+            email: "",
+            password: ""
         }
+    });
 
-        const response = await signUp(result.data);
-        if (response?.error) {
-            toast.error(response.error, { position: "top-center" });
-            return;
+    const onSubmit = async (data: SignUpFormData) => {
+        const result = await signUp(data);
+
+        if (result.success) {
+            form.reset();
+            toast.success("Signed up successfully!", { position: "top-center" });
+            setTimeout(() => window.location.href = "/", 1500);
+        } else {
+            toast.error("Failed signing up.");
         }
-
-        toast.success("Signed up successfully!", { position: "top-center" });
-        setTimeout(() => {
-            window.location.href = "/";
-        }, 1500);
     }
 
     return (
-        <form action={handleSignUp} className='space-y-4'>
-            <FormField
-                name="name"
-                label="Username"
-                type="text"
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+            <FormInputField
+                control={form.control}
+                controllerName="name"
+                fieldLabel="Username"
                 placeholder="johndoe"
             />
 
-            <FormField
-                name="email"
-                label="Email Address"
+            <FormInputField
+                control={form.control}
+                controllerName="email"
+                fieldLabel="Email Address"
                 type="email"
                 placeholder="johndoe@gmail.com"
             />
 
-            <FormField
-                name="password"
-                label="Password"
+            <FormInputField
+                control={form.control}
+                controllerName="password"
+                fieldLabel="Password"
                 type="password"
                 placeholder="password"
             />
