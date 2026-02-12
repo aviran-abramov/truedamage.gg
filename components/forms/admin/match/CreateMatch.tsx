@@ -1,10 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CardFooter } from "@/components/ui/card";
 import { createMatch } from "@/lib/actions/matches";
-import { FormField } from "../../FormField";
-import { FormSelectGameField } from "../../FormSelectGameField";
 import { Game } from "@/lib/generated/prisma/client";
 import { MatchFormData, MatchSchema } from "@/lib/validators/match";
 import { toast } from "sonner";
