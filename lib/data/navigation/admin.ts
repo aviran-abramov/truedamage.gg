@@ -5,4 +5,5 @@ export const adminCreateLinks: LinkListItem[] = [
     { id: 'new-team', label: 'New Team', href: '/admin/teams/create' },
     { id: 'new-match', label: 'New Match', href: '/admin/matches/create' },
     { id: 'new-prediction', label: 'New Prediction', href: '/admin/predictions/create' },
+    { id: 'new-user', label: 'New User', href: '/admin/users/create' },
 ];
