@@ -40,20 +40,39 @@ As a former heavy gamer, and as a persoson who is working with computer 24/7 sin
 
 ## Features
 ### Authentication with Better-Auth
-* Sign in  
-* Sign up  
-* Sign out  
+* Google authentication support
+* Facebook authentication support
+* Sign in - manual 
+* Sign up - manual  
+* Sign out
+* Account linking (OAuth with manual registration)
 * TO-FINISH: Forgot password
-* TODO: 2FA
+* TODO: Email verification on manual sign up
+* TODO: Remember me - persistent sessions
+* TODO: Two-factor authentication (2FA)
 
 ### Admin features
 * Create: game, team, match, prediction
 * TODO: Edit: game, team, match, prediciton
 * TODO: Delete: game, team, match, prediction
 * TODO: Fetch specific game (scraper project)
+* TODO: Dashboard with analytics (user count, match, team stats)
+* TODO: User management (ban, roles, permissions)
+
+### User features
+* TODO: User profile
+* TODO: Follow favorite teams
+* TODO: Alerts for favorite teams
+
 
 ### UI
-* Theme - dark / light mode  
+* Theme - dark / light mode
+* Toast notifications 
+* Filters - by game, team, tournament
+* TODO: Responsiveness and mobile design
+* TODO: Bulk import/export data
+* TODO: Navbar - Search (teams, matches)
+
 
 ## Getting Started
 Follow these steps to make this project work on your machine.  
