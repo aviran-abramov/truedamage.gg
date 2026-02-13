@@ -23,10 +23,10 @@ export function SignUpForm() {
 
         if (result.success) {
             form.reset();
-            toast.success("Signed up successfully!", { position: "top-center" });
+            toast.success("Signed up successfully!");
             setTimeout(() => window.location.href = "/", 1500);
         } else {
-            toast.error("Failed signing up.", { position: "top-center" });
+            toast.error("Failed signing up.");
         }
     }
 

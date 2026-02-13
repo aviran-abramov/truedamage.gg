@@ -23,10 +23,10 @@ export function CreateGameForm() {
 
         if (result.success) {
             form.reset();
-            toast.success("Game created successfully!", { position: "top-center" });
+            toast.success("Game created successfully!");
             setTimeout(() => window.location.href = "/", 1500);
         } else {
-            toast.error("Failed to create game.", { position: "top-center" });
+            toast.error("Failed to create game.");
         }
     }
 

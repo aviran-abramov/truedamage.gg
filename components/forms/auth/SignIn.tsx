@@ -27,10 +27,10 @@ export function SignInForm({ onAuthModalToShowClick }: SignInFormProps) {
 
         if (result.success) {
             form.reset();
-            toast.success("Signed in successfully!", { position: "top-center" });
+            toast.success("Signed in successfully!");
             setTimeout(() => window.location.href = "/", 1500);
         } else {
-            toast.error("Failed signing in.", { position: "top-center" });
+            toast.error("Failed signing in.");
         }
     };
 

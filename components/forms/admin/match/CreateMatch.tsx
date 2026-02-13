@@ -35,10 +35,10 @@ export function CreateMatch({ games }: CreateMatchProps) {
 
         if (result.success) {
             form.reset();
-            toast.success("Match created successfully!", { position: "top-center" });
+            toast.success("Match created successfully!");
             setTimeout(() => window.location.href = "/", 1500);
         } else {
-            toast.error("Failed to create match.", { position: "top-center" })
+            toast.error("Failed to create match.")
         }
     }
 

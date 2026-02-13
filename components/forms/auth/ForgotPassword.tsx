@@ -22,10 +22,10 @@ export function ForgotPasswordForm() {
 
         if (result.success) {
             form.reset();
-            toast.success("Email sent successfully!", { position: "top-center" });
+            toast.success("Email sent successfully!");
             setTimeout(() => window.location.href = "/", 1500);
         } else {
-            toast.error("Failed sending email.", { position: "top-center" });
+            toast.error("Failed sending email.");
         }
     };
 
