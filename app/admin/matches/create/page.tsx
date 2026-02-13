@@ -1,4 +1,4 @@
-import { CreateMatch } from "@/components/forms/admin/match/CreateMatch";
+import { CreateMatch } from "@/components/forms/admin/match/create/CreateMatch";
 import { FormPageContainer } from "@/components/layout/FormPageContainer";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllGames } from "@/lib/actions/games";

@@ -7,9 +7,9 @@ import { MatchFormData, MatchSchema } from "@/lib/validators/match";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormInputField } from "../../FormInputField";
-import { FormSelectField } from "../../FormSelectField";
 import { FieldSeparator } from "@/components/ui/field";
+import { FormInputField } from "@/components/forms/FormInputField";
+import { FormSelectField } from "@/components/forms/FormSelectField";
 
 interface CreateMatchProps {
     games: Game[];
