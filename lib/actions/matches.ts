@@ -8,9 +8,9 @@ type ActionResult<T> =
     | { success: true; data: T }
     | { success: false; errorMessage: string };
 
-export async function createMatch(newMatch: unknown) {
+export async function createMatch(data: unknown) {
     try {
-        const result = MatchSchema.safeParse(newMatch);
+        const result = MatchSchema.safeParse(data);
         if (!result.success) {
             let errorMessage = "";
 

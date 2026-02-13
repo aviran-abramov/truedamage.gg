@@ -4,9 +4,9 @@ import prisma from "../db";
 import { GameSchema } from "../validators/game";
 import { createIconUrl, createSlug } from "../helpers";
 
-export async function createGame(newGame: unknown) {
+export async function createGame(data: unknown) {
     try {
-        const result = GameSchema.safeParse(newGame);
+        const result = GameSchema.safeParse(data);
         if (!result.success) {
             let errorMessage = "";
 

@@ -4,9 +4,9 @@ import prisma from "../db";
 import { createIdWithNumbers } from "../helpers";
 import { TeamSchema } from "../validators/team";
 
-export async function createTeam(newTeam: unknown) {
+export async function createTeam(data: unknown) {
     try {
-        const result = TeamSchema.safeParse(newTeam);
+        const result = TeamSchema.safeParse(data);
         if (!result.success) {
             let errorMessage = "";
 

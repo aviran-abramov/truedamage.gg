@@ -3,11 +3,11 @@
 import { auth } from "../auth";
 import { UserSchema } from "../validators/user";
 
-export async function createUser(newUser: unknown) {
+export async function createUser(data: unknown) {
     try {
         console.log("Attempting to sign up a new user via admin form");
 
-        const result = UserSchema.safeParse(newUser);
+        const result = UserSchema.safeParse(data);
         if (!result.success) {
             let errorMessage = "";
 

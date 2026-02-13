@@ -6,11 +6,11 @@ import { headers } from "next/headers";
 import { SignInSchema } from "../validators/auth/signIn";
 import { SignUpSchema } from "../validators/auth/signUp";
 
-export async function signUp(newSignUp: unknown) {
+export async function signUp(data: unknown) {
     try {
         console.log("Attempting to sign up a new user via form");
 
-        const result = SignUpSchema.safeParse(newSignUp);
+        const result = SignUpSchema.safeParse(data);
         if (!result.success) {
             let errorMessage = "";
 
@@ -44,11 +44,11 @@ export async function signUp(newSignUp: unknown) {
     };
 }
 
-export async function signIn(newSignIn: unknown) {
+export async function signIn(data: unknown) {
     try {
         console.log("Attempting to sign in a user via form");
 
-        const result = SignInSchema.safeParse(newSignIn);
+        const result = SignInSchema.safeParse(data);
         if (!result.success) {
             let errorMessage = "";
 
@@ -121,11 +121,11 @@ export async function signOut() {
     redirect("/");
 }
 
-export async function forgotPassword(newForgotPassword: unknown) {
+export async function forgotPassword(data: unknown) {
     try {
         console.log("Attempting to sign in a user via form");
 
-        const result = SignInSchema.safeParse(newForgotPassword);
+        const result = SignInSchema.safeParse(data);
         if (!result.success) {
             let errorMessage = "";
 
