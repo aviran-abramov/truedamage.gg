@@ -35,7 +35,12 @@ export const FormSelectField = ({
                     <FieldContent>
                         <FieldLabel htmlFor={field.name}>{fieldLabel}</FieldLabel>
                         <Select value={field.value} onValueChange={field.onChange}>
-                            <SelectTrigger className="w-full">
+                            <SelectTrigger
+                                aria-invalid={fieldState.invalid}
+                                onBlur={field.onBlur}
+                                id={field.name}
+                                className="w-full"
+                            >
                                 <SelectValue placeholder={placeholder} />
                             </SelectTrigger>
                             <SelectContent>
