@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { signIn } from "@/lib/actions/auth";
-import { FormField } from "../FormField";
 import { SignInFormData, SignInSchema } from "@/lib/validators/auth/signIn";
 import { toast } from "sonner";
 import { AuthModalType } from "@/lib/types/auth";
