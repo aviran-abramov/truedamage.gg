@@ -30,7 +30,7 @@ export function SignInForm({ onAuthModalToShowClick }: SignInFormProps) {
             toast.success("Signed in successfully!", { position: "top-center" });
             setTimeout(() => window.location.href = "/", 1500);
         } else {
-            toast.error("Failed signing in.");
+            toast.error("Failed signing in.", { position: "top-center" });
         }
     };
 

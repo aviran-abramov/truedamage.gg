@@ -25,7 +25,7 @@ export function ForgotPasswordForm() {
             toast.success("Email sent successfully!", { position: "top-center" });
             setTimeout(() => window.location.href = "/", 1500);
         } else {
-            toast.error("Failed sending email.");
+            toast.error("Failed sending email.", { position: "top-center" });
         }
     };
 

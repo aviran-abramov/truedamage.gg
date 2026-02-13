@@ -26,7 +26,7 @@ export function SignUpForm() {
             toast.success("Signed up successfully!", { position: "top-center" });
             setTimeout(() => window.location.href = "/", 1500);
         } else {
-            toast.error("Failed signing up.");
+            toast.error("Failed signing up.", { position: "top-center" });
         }
     }
 
