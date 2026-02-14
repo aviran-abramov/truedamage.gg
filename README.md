@@ -15,7 +15,7 @@ Get the latest esports news, live tournament coverage, match schedules, expert p
 Instead of tutorial CRUD YouTube projects that most of the juniors do and use the "copy paste" method, I decided to work on a field that I know very well and like as a hobby to create a real project.
 
 ### Why I built this project
-As a former heavy gamer, and as a persoson who is working with computer 24/7 since the age of 3, I decided to build a project about eSports. I created a website which provides data about games, tournaments, teams, players and even predict which team is going to win the match with my own formula.
+As a former heavy gamer, and as a person who is working with computer 24/7 since the age of 3, I decided to build a project about eSports. I created a website which provides data about games, tournaments, teams, players and even predict which team is going to win the match with my own formula.
 
 ## Tech Stack
 ### Both frontend and backend
@@ -53,7 +53,7 @@ As a former heavy gamer, and as a persoson who is working with computer 24/7 sin
 
 ### Admin features
 * Create: game, team, match, prediction
-* TODO: Edit: game, team, match, prediciton
+* TODO: Edit: game, team, match, prediction
 * TODO: Delete: game, team, match, prediction
 * TODO: Fetch specific game (scraper project)
 * TODO: Dashboard with analytics (user count, match, team stats)
