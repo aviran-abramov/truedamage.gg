@@ -102,7 +102,7 @@ npm run dev
 1. Create a new file in the root folder, and call it ```.env```
 2. Paste and add the required content:
 
-```bash
+```env
 # Database
 DATABASE_URL=
 
