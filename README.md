@@ -108,6 +108,7 @@ DATABASE_URL=
 
 # Better Auth
 BETTER_AUTH_URL="http://localhost:3000"
+BETTER_AUTH_SECRET=
 
 # Google (Auth)
 GOOGLE_CLIENT_ID=
