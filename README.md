@@ -75,16 +75,26 @@ As a former heavy gamer, and as a person who is working with computer 24/7 since
 
 
 ## Getting Started
-Follow these steps to make this project work on your machine.  
+Follow these steps to make this project work on your machine.
+
 **Cloning the repository**
 
 ```bash
 git clone git@github.com:aviran-abramov/truedamage.gg.git
 ```
 
-**Installation**
+### **Installation**
+
+**Install node modules**
+
 ```bash
 npm install
+```
+
+**Run the development server**
+
+```bash
+npm run dev
 ```
 
 ## Environment Variables
