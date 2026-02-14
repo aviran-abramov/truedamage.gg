@@ -1,27 +1,14 @@
 import { DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { authHeaderDetails } from "@/lib/data/auth";
 import { AuthModalType } from "@/lib/types/auth";
 
-const headerDetails = {
-    signIn: {
-        title: "Sign in",
-        description: "Sign in to your account to continue"
-    },
-    signUp: {
-        title: "Sign up",
-        description: "Create your account to get started"
-    },
-    forgotPassword: {
-        title: "Forgot password",
-        description: "Type in your email address in the form below to reset your password"
-    },
-};
 
 interface AuthModalHeaderProps {
     authModalToShow: AuthModalType;
 }
 
 export const AuthModalHeader = ({ authModalToShow }: AuthModalHeaderProps) => {
-    const { title, description } = headerDetails[authModalToShow];
+    const { title, description } = authHeaderDetails[authModalToShow];
 
     return (
         <DialogHeader>
