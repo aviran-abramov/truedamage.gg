@@ -95,7 +95,7 @@ model TwoFactor {
 model Game {
   id        String  @id
   name      String  @unique @db.VarChar(255)
-  shortName String
+  shortName String  @unique @db.VarChar(10)
   slug      String  @unique @db.VarChar(255)
   iconUrl   String? // "/icons/lol.svg"
 
