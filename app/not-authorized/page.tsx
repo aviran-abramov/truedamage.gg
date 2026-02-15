@@ -12,7 +12,7 @@ export default function NotAuthorizedPage() {
                 className='hover:underline text-blue-400 flex items-center justify-start gap-1 underline-offset-1'
             >
                 <ArrowLeft />
-                <span>Back to sign in</span>
+                <span>Back to home page</span>
             </Link>
         </AppContainer>
     )
