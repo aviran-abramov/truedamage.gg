@@ -20,7 +20,7 @@ export default function SignInPage() {
                 </CardHeader>
 
                 <CardContent>
-                    <SignInForm />
+                    <SignInForm additionalButtonHref="/forgot-password" />
                 </CardContent>
             </Card>
         </FormPageContainer>

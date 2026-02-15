@@ -10,10 +10,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInputField } from "../FormInputField";
 
 interface SignInFormProps {
-    onAuthModalToShowClick: (type: AuthModalType) => void;
+    onAuthModalToShowClick?: (type: AuthModalType) => void;
+    additionalButtonHref?: string
 }
 
-export function SignInForm({ onAuthModalToShowClick }: SignInFormProps) {
+export function SignInForm({ onAuthModalToShowClick, additionalButtonHref }: SignInFormProps) {
     const form = useForm({
         resolver: zodResolver(SignInSchema),
         defaultValues: {
@@ -52,7 +53,8 @@ export function SignInForm({ onAuthModalToShowClick }: SignInFormProps) {
                 placeholder="password"
                 hasAdditionalButton={true}
                 additionalButtonLabel="Forgot password"
-                onAuthModalToShowClick={onAuthModalToShowClick}
+                additionalButtonOnClick={onAuthModalToShowClick}
+                additionalButtonHref={additionalButtonHref}
             />
 
             <Button type="submit" className="w-full cursor-pointer">

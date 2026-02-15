@@ -10,8 +10,9 @@ interface FormInputFieldProps {
     type?: string
     placeholder?: string;
     hasAdditionalButton?: boolean;
-    onAuthModalToShowClick?: any; // just for now
     additionalButtonLabel?: string;
+    additionalButtonHref?: string;
+    additionalButtonOnClick?: any;
 }
 
 export const FormInputField = ({
@@ -21,8 +22,9 @@ export const FormInputField = ({
     type = "text",
     placeholder,
     hasAdditionalButton = false,
-    onAuthModalToShowClick,
-    additionalButtonLabel
+    additionalButtonLabel,
+    additionalButtonHref,
+    additionalButtonOnClick
 }: FormInputFieldProps) => {
 
     return (
@@ -35,13 +37,19 @@ export const FormInputField = ({
                         {hasAdditionalButton ? (
                             <div className="flex items-center justify-between px-0.5">
                                 <FieldLabel htmlFor={field.name}>{fieldLabel}</FieldLabel>
-                                <Link
-                                    href="#"
-                                    onClick={() => onAuthModalToShowClick("forgotPassword")}
-                                    className="text-blue-500 text-sm hover:underline"
-                                >
-                                    {additionalButtonLabel}
-                                </Link>
+                                {additionalButtonHref ? (
+                                    <Link href={additionalButtonHref} className="text-blue-500 text-sm hover:underline">
+                                        {additionalButtonLabel}
+                                    </Link>
+                                ) : (
+                                    <Link
+                                        href="#"
+                                        onClick={() => additionalButtonOnClick("forgotPassword")}
+                                        className="text-blue-500 text-sm hover:underline"
+                                    >
+                                        {additionalButtonLabel}
+                                    </Link>
+                                )}
                             </div>
                         ) : (
                             <FieldLabel htmlFor={field.name}>{fieldLabel}</FieldLabel>
