@@ -2,7 +2,7 @@ import { NavMenuItemWithTrigger } from "../NavMenuItemWithTrigger";
 import { adminCreateLinks } from "@/lib/data/navigation/admin";
 import { AdminNavigationMenu } from "./AdminNavigationMenu";
 
-export function AdminBar() {
+export function AdminNavbar() {
 
     return (
         <nav className='px-6 py-0.5 bg-red-400 dark:bg-red-900 border-b shadow-md'>

@@ -1,7 +1,7 @@
-import { AdminBar } from './AdminNavigation/AdminBar';
 import { UserRole } from '@/lib/generated/prisma/enums';
-import { UserBar } from './UserNavigation/UserBar';
 import { getSession } from '@/lib/auth-session';
+import { UserNavbar } from './UserNavbar/UserNavbar';
+import { AdminNavbar } from './AdminNavbar/AdminNavbar';
 
 export async function AppHeader() {
     const session = await getSession();
@@ -11,8 +11,8 @@ export async function AppHeader() {
 
     return (
         <header className="border-b">
-            <UserBar isSignedIn={isSignedIn} />
-            {isAdmin && <AdminBar />}
+            <UserNavbar isSignedIn={isSignedIn} />
+            {isAdmin && <AdminNavbar />}
         </header>
     )
 }
