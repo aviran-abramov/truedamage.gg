@@ -5,7 +5,7 @@ import { UserIcon } from "lucide-react";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { AuthModalType } from "@/lib/types/auth";
-import { AuthModal } from "./AuthModal";
+import { AuthModal } from "@/components/auth/modal/AuthModal";
 
 
 export function AuthModalButton() {

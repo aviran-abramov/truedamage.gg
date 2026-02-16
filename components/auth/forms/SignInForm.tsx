@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { AuthModalType } from "@/lib/types/auth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormInputField } from "../FormInputField";
+import { FormInputField } from "@/components/forms/FormInputField";
 
 interface SignInFormProps {
     onAuthModalToShowClick?: (type: AuthModalType) => void;

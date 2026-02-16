@@ -1,4 +1,4 @@
-import { SignOutForm } from "@/components/forms/auth/SignOut";
+import { SignOutForm } from "@/components/auth/forms/SignOutForm";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 

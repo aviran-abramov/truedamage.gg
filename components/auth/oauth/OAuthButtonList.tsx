@@ -1,6 +1,6 @@
 import { OAuthButton } from "./OAuthButton";
 
-export function OAuthButtons() {
+export function OAuthButtonList() {
 
     return (
         <div className="space-y-2.5">
