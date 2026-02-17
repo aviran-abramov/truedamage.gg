@@ -5,12 +5,9 @@ import { auth } from "../auth";
 import { headers } from "next/headers";
 import { SignInSchema } from "../validators/auth/signIn";
 import { SignUpSchema } from "../validators/auth/signUp";
+import { ActionResult } from "../types/actions";
 
-type SignUpResult =
-    | { success: true; }
-    | { success: false; error: string; }
-
-export async function signUp(data: unknown): Promise<SignUpResult> {
+export async function signUp(data: unknown): Promise<ActionResult> {
     try {
         const result = SignUpSchema.safeParse(data);
 
@@ -49,11 +46,7 @@ export async function signUp(data: unknown): Promise<SignUpResult> {
     }
 }
 
-type SignInResult =
-    | { success: true; }
-    | { success: false; error: string; }
-
-export async function signIn(data: unknown): Promise<SignInResult> {
+export async function signIn(data: unknown): Promise<ActionResult> {
     try {
         const result = SignInSchema.safeParse(data);
 

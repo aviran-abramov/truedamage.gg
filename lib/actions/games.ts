@@ -4,12 +4,9 @@ import prisma from "../db";
 import { GameSchema } from "../validators/game";
 import { createIconUrl, createSlug } from "../helpers";
 import { Game } from "../generated/prisma/browser";
+import { ActionResult, ActionResultWithData } from "../types/actions";
 
-type CreateGameResult =
-    | { success: true; }
-    | { success: false; error: string }
-
-export async function createGame(data: unknown): Promise<CreateGameResult> {
+export async function createGame(data: unknown): Promise<ActionResult> {
     try {
         const result = GameSchema.safeParse(data);
 
@@ -53,11 +50,7 @@ export async function createGame(data: unknown): Promise<CreateGameResult> {
     }
 }
 
-type GetAllGamesResult =
-    | { success: true; data: Game[]; }
-    | { success: false; error: string; }
-
-export async function getAllGames(): Promise<GetAllGamesResult> {
+export async function getAllGames(): Promise<ActionResultWithData<Game[]>> {
     try {
         const games = await prisma.game.findMany();
 
