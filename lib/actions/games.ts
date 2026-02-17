@@ -3,6 +3,7 @@
 import prisma from "../db";
 import { GameSchema } from "../validators/game";
 import { createIconUrl, createSlug } from "../helpers";
+import { Game } from "../generated/prisma/browser";
 
 type CreateGameResult =
     | { success: true; }
@@ -51,16 +52,23 @@ export async function createGame(data: unknown): Promise<CreateGameResult> {
     };
 }
 
-export async function getAllGames() {
+type GetAllGamesResult =
+    | { success: true; data: Game[] }
+    | { success: false; error: string }
+
+export async function getAllGames(): Promise<GetAllGamesResult> {
     try {
-        console.log("Attempting to get all games");
-
         const games = await prisma.game.findMany();
-        if (!games) throw new Error("Could not retrieve all available games");
 
-        console.log("Success!");
-        return games;
+        return {
+            success: true,
+            data: games
+        }
     } catch (error) {
         console.error("Error: Could not retrieve all available games", error);
+        return {
+            success: false,
+            error: "Failed to get all available games."
+        }
     }
 }
