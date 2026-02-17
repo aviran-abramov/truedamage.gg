@@ -4,7 +4,11 @@ import prisma from "../db";
 import { GameSchema } from "../validators/game";
 import { createIconUrl, createSlug } from "../helpers";
 
-export async function createGame(data: unknown) {
+type CreateGameResult =
+    | { success: true; }
+    | { success: false; error: string }
+
+export async function createGame(data: unknown): Promise<CreateGameResult> {
     try {
         const result = GameSchema.safeParse(data);
         if (!result.success) {
@@ -15,6 +19,7 @@ export async function createGame(data: unknown) {
             })
 
             return {
+                success: false,
                 error: errorMessage
             };
         }
@@ -36,6 +41,7 @@ export async function createGame(data: unknown) {
     } catch (error) {
         console.log("Error creating game", error);
         return {
+            success: false,
             error: "Failed to create game."
         };
     }
