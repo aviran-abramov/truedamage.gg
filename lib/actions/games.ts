@@ -40,6 +40,10 @@ export async function createGame(data: unknown): Promise<CreateGameResult> {
                 iconUrl
             }
         });
+
+        return {
+            success: true
+        };
     } catch (error) {
         console.log("Error creating game", error);
         return {
@@ -47,10 +51,6 @@ export async function createGame(data: unknown): Promise<CreateGameResult> {
             error: "Failed to create game."
         };
     }
-
-    return {
-        success: true
-    };
 }
 
 type GetAllGamesResult =
