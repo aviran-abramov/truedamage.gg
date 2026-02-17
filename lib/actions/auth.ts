@@ -6,11 +6,14 @@ import { headers } from "next/headers";
 import { SignInSchema } from "../validators/auth/signIn";
 import { SignUpSchema } from "../validators/auth/signUp";
 
-export async function signUp(data: unknown) {
-    try {
-        console.log("Attempting to sign up a new user via form");
+type SignUpResult =
+    | { success: true; }
+    | { success: false; error: string; }
 
+export async function signUp(data: unknown): Promise<SignUpResult> {
+    try {
         const result = SignUpSchema.safeParse(data);
+
         if (!result.success) {
             let errorMessage = "";
 
@@ -19,29 +22,31 @@ export async function signUp(data: unknown) {
             });
 
             return {
+                success: false,
                 error: errorMessage
             };
         }
 
         const { name, email, password } = result.data;
 
-        const { user } = await auth.api.signUpEmail({
+        await auth.api.signUpEmail({
             body: {
                 name,
                 email,
                 password
             }
         });
-        if (!user) throw new Error("Could not sign up the new user via form");
 
-        console.log("Success!");
+        return {
+            success: true
+        };
     } catch (error) {
         console.error("Error: Could not sign up the new user via form", error);
+        return {
+            success: false,
+            error: "Error: Could not sign up the new user via form."
+        };
     }
-
-    return {
-        success: true
-    };
 }
 
 export async function signIn(data: unknown) {

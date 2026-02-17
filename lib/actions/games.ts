@@ -12,6 +12,7 @@ type CreateGameResult =
 export async function createGame(data: unknown): Promise<CreateGameResult> {
     try {
         const result = GameSchema.safeParse(data);
+
         if (!result.success) {
             let errorMessage = "";
 
@@ -53,8 +54,8 @@ export async function createGame(data: unknown): Promise<CreateGameResult> {
 }
 
 type GetAllGamesResult =
-    | { success: true; data: Game[] }
-    | { success: false; error: string }
+    | { success: true; data: Game[]; }
+    | { success: false; error: string; }
 
 export async function getAllGames(): Promise<GetAllGamesResult> {
     try {
@@ -63,12 +64,12 @@ export async function getAllGames(): Promise<GetAllGamesResult> {
         return {
             success: true,
             data: games
-        }
+        };
     } catch (error) {
         console.error("Error: Could not retrieve all available games", error);
         return {
             success: false,
             error: "Failed to get all available games."
-        }
+        };
     }
 }
