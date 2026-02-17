@@ -49,11 +49,14 @@ export async function signUp(data: unknown): Promise<SignUpResult> {
     }
 }
 
-export async function signIn(data: unknown) {
-    try {
-        console.log("Attempting to sign in a user via form");
+type SignInResult =
+    | { success: true; }
+    | { success: false; error: string; }
 
+export async function signIn(data: unknown): Promise<SignInResult> {
+    try {
         const result = SignInSchema.safeParse(data);
+
         if (!result.success) {
             let errorMessage = "";
 
@@ -62,27 +65,29 @@ export async function signIn(data: unknown) {
             });
 
             return {
+                success: false,
                 error: errorMessage
             };
         }
         const { email, password } = result.data;
 
-        const { user } = await auth.api.signInEmail({
+        await auth.api.signInEmail({
             body: {
                 email,
                 password
             },
         });
-        if (!user) throw new Error("Could not sign in the new user via form");
 
-        console.log("Success!");
+        return {
+            success: true
+        };
     } catch (error) {
-        console.error("Error: Could not sign in the new user via form", error);
+        console.error("Error: Could not sign in new user via form", error);
+        return {
+            success: false,
+            error: "Error: could not sign in the user via form."
+        };
     }
-
-    return {
-        success: true
-    };
 }
 
 export async function signInWithOAuth(provider: "google" | "facebook") {
