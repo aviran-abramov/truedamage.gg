@@ -2,6 +2,7 @@
 
 import prisma from "../db";
 import { Prisma } from "../generated/prisma/client";
+import { createErrorMessage } from "../helpers/zod";
 import { MatchSchema } from "../validators/match";
 
 type ActionResult<T> =
@@ -11,16 +12,12 @@ type ActionResult<T> =
 export async function createMatch(data: unknown) {
     try {
         const result = MatchSchema.safeParse(data);
+
         if (!result.success) {
-            let errorMessage = "";
-
-            result.error.issues.forEach((issue) => {
-                errorMessage += `${issue.path}: ${issue.message}`
-            });
-
             return {
-                error: errorMessage
-            };
+                success: false,
+                error: createErrorMessage(result.error.issues)
+            }
         }
 
         const { date, time, tournament, gameName, bestOf, teamAName, teamBName, winnerPrediction } = result.data;

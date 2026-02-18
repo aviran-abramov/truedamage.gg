@@ -5,22 +5,17 @@ import { GameSchema } from "../validators/game";
 import { createIconUrl, createSlug } from "../helpers";
 import { Game } from "../generated/prisma/browser";
 import { ActionResult, ActionResultWithData } from "../types/actions";
+import { createErrorMessage } from "../helpers/zod";
 
 export async function createGame(data: unknown): Promise<ActionResult> {
     try {
         const result = GameSchema.safeParse(data);
 
         if (!result.success) {
-            let errorMessage = "";
-
-            result.error.issues.forEach((issue) => {
-                errorMessage += `${issue.path}: ${issue.message}.`
-            })
-
             return {
                 success: false,
-                error: errorMessage
-            };
+                error: createErrorMessage(result.error.issues)
+            }
         }
 
         const { name, shortName } = result.data;

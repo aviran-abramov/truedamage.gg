@@ -6,22 +6,17 @@ import { headers } from "next/headers";
 import { SignInSchema } from "../validators/auth/signIn";
 import { SignUpSchema } from "../validators/auth/signUp";
 import { ActionResult } from "../types/actions";
+import { createErrorMessage } from "../helpers/zod";
 
 export async function signUp(data: unknown): Promise<ActionResult> {
     try {
         const result = SignUpSchema.safeParse(data);
 
         if (!result.success) {
-            let errorMessage = "";
-
-            result.error.issues.forEach((issue) => {
-                errorMessage += `${issue.path}: ${issue.message}`
-            });
-
             return {
                 success: false,
-                error: errorMessage
-            };
+                error: createErrorMessage(result.error.issues)
+            }
         }
 
         const { name, email, password } = result.data;
@@ -51,17 +46,12 @@ export async function signIn(data: unknown): Promise<ActionResult> {
         const result = SignInSchema.safeParse(data);
 
         if (!result.success) {
-            let errorMessage = "";
-
-            result.error.issues.forEach((error) => {
-                errorMessage += `${error.path}: ${error.message}`
-            });
-
             return {
                 success: false,
-                error: errorMessage
-            };
+                error: createErrorMessage(result.error.issues)
+            }
         }
+
         const { email, password } = result.data;
 
         await auth.api.signInEmail({
@@ -129,16 +119,12 @@ export async function forgotPassword(data: unknown) {
         console.log("Attempting to sign in a user via form");
 
         const result = SignInSchema.safeParse(data);
+
         if (!result.success) {
-            let errorMessage = "";
-
-            result.error.issues.forEach((error) => {
-                errorMessage += `${error.path}: ${error.message}`
-            });
-
             return {
-                error: errorMessage
-            };
+                success: false,
+                error: createErrorMessage(result.error.issues)
+            }
         }
 
         // ADD LOGIC LATER

@@ -1,6 +1,7 @@
 "use server";
 
 import { auth } from "../auth";
+import { createErrorMessage } from "../helpers/zod";
 import { UserSchema } from "../validators/user";
 
 export async function createUser(data: unknown) {
@@ -8,16 +9,12 @@ export async function createUser(data: unknown) {
         console.log("Attempting to sign up a new user via admin form");
 
         const result = UserSchema.safeParse(data);
+
         if (!result.success) {
-            let errorMessage = "";
-
-            result.error.issues.forEach((issue) => {
-                errorMessage += `${issue.path}: ${issue.message}`
-            });
-
             return {
-                error: errorMessage
-            };
+                success: false,
+                error: createErrorMessage(result.error.issues)
+            }
         }
 
         const { name, email, password, role } = result.data;
