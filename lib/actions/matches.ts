@@ -1,15 +1,13 @@
 "use server";
 
 import prisma from "../db";
-import { Prisma } from "../generated/prisma/client";
+import { Prisma } from "../generated/prisma/browser";
+import { Match } from "../generated/prisma/client";
 import { createErrorMessage } from "../helpers/zod";
+import { ActionResult, ActionResultWithData } from "../types/actions";
 import { MatchSchema } from "../validators/match";
 
-type ActionResult<T> =
-    | { success: true; data: T }
-    | { success: false; errorMessage: string };
-
-export async function createMatch(data: unknown) {
+export async function createMatch(data: unknown): Promise<ActionResult> {
     try {
         const result = MatchSchema.safeParse(data);
 
@@ -55,24 +53,20 @@ export async function createMatch(data: unknown) {
                 winnerPrediction
             }
         })
+
+        return {
+            success: true
+        }
     } catch (error) {
         console.error(`createMatch failed:`, error);
+        return {
+            success: false,
+            error: "Failed to create match."
+        }
     }
-
-    return {
-        success: true
-    };
 }
 
-export type MatchWithRelations = Prisma.MatchGetPayload<{
-    include: {
-        game: true,
-        teamA: true,
-        teamB: true
-    }
-}>;
-
-export async function getMatches() {
+export async function getMatches(): Promise<ActionResultWithData<Match[]>> {
     try {
         const matches = await prisma.match.findMany({
             include: {
@@ -85,14 +79,28 @@ export async function getMatches() {
             }
         });
 
-        return matches
+        return {
+            success: true,
+            data: matches
+        }
     } catch (error) {
         console.error("getMatches failed:", error);
-        return [];
+        return {
+            success: false,
+            error: "Failed to get matches."
+        }
     }
 }
 
-export async function getMatchesWithPredictions(): Promise<ActionResult<MatchWithRelations[]>> {
+export type MatchWithRelations = Prisma.MatchGetPayload<{
+    include: {
+        game: true,
+        teamA: true,
+        teamB: true
+    }
+}>;
+
+export async function getMatchesWithPredictions(): Promise<ActionResultWithData<MatchWithRelations[]>> {
     try {
         const predictions = await prisma.match.findMany({
             where: {
@@ -118,7 +126,7 @@ export async function getMatchesWithPredictions(): Promise<ActionResult<MatchWit
         console.error("getMatchesWithPredictions failed:", error);
         return {
             success: false,
-            errorMessage: error instanceof Error ? error.message : "Failed to fetch matches with predictions."
+            error: "Failed to fetch matches with predictions."
         }
     }
 }
