@@ -46,12 +46,9 @@ export async function createTeam(data: unknown) {
 
 export async function getAllTeams() {
     try {
-        console.log("Attempting to get all teams");
-
         const teams = await prisma.team.findMany();
         if (!teams) throw new Error("Could not retrieve all available teams");
 
-        console.log("Success!");
         return teams;
     } catch (error) {
         console.error("Error: Could not retrieve all available teams", error);
@@ -60,8 +57,6 @@ export async function getAllTeams() {
 
 export async function getAllTeamsWithGames() {
     try {
-        console.log("Attempting to get all teams");
-
         const teams = await prisma.team.findMany({
             include: {
                 game: true
@@ -70,7 +65,6 @@ export async function getAllTeamsWithGames() {
 
         if (!teams) throw new Error("Could not retrieve all available teams");
 
-        console.log("Success!");
         return teams;
     } catch (error) {
         console.error("Error: Could not retrieve all available teams", error);

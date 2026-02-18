@@ -77,21 +77,20 @@ export async function signInWithOAuth(provider: "google" | "facebook") {
     let url: string | undefined;
 
     try {
-        console.log("Attempting to move user to OAuth login");
-
         const result = await auth.api.signInSocial({
             body: {
                 provider
             }
         });
+
         if (!result) throw new Error("Could not sign in the user via OAuth");
+
         url = result.url;
     } catch (error) {
         console.error("Error: Could not sign in the user via OAuth", error);
     }
 
     if (url) {
-        console.log("Success!");
         redirect(url);
     }
     redirect("/");
@@ -99,14 +98,11 @@ export async function signInWithOAuth(provider: "google" | "facebook") {
 
 export async function signOut() {
     try {
-        console.log("Attempting to sign out a user");
-
         const { success } = await auth.api.signOut({
             headers: await headers()
         });
-        if (!success) throw new Error("Could not sign out the user");
 
-        console.log("Success!");
+        if (!success) throw new Error("Could not sign out the user");
     } catch (error) {
         console.error("Error: Could not sign out the user", error);
     }
@@ -116,8 +112,6 @@ export async function signOut() {
 
 export async function forgotPassword(data: unknown) {
     try {
-        console.log("Attempting to sign in a user via form");
-
         const result = SignInSchema.safeParse(data);
 
         if (!result.success) {
@@ -126,11 +120,6 @@ export async function forgotPassword(data: unknown) {
                 error: createErrorMessage(result.error.issues)
             }
         }
-
-        // ADD LOGIC LATER
-
-
-        console.log("Success!");
     } catch (error) {
         console.error("Error: Could not sign in the new user via form", error);
     }

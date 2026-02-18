@@ -6,8 +6,6 @@ import { UserSchema } from "../validators/user";
 
 export async function createUser(data: unknown) {
     try {
-        console.log("Attempting to sign up a new user via admin form");
-
         const result = UserSchema.safeParse(data);
 
         if (!result.success) {
@@ -27,9 +25,8 @@ export async function createUser(data: unknown) {
                 role
             }
         });
-        if (!user) throw new Error("Could not sign up the new user via admin form");
 
-        console.log("Success!");
+        if (!user) throw new Error("Could not sign up the new user via admin form");
     } catch (error) {
         console.error("Error: Could not sign up the new user via admin form", error);
         return {
