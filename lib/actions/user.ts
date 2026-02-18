@@ -3,8 +3,9 @@
 import { auth } from "../auth";
 import { createErrorMessage } from "../helpers/zod";
 import { UserSchema } from "../validators/user";
+import { ActionResult } from "../types/actions";
 
-export async function createUser(data: unknown) {
+export async function createUser(data: unknown): Promise<ActionResult> {
     try {
         const result = UserSchema.safeParse(data);
 
@@ -17,7 +18,7 @@ export async function createUser(data: unknown) {
 
         const { name, email, password, role } = result.data;
 
-        const { user } = await auth.api.signUpEmail({
+        await auth.api.signUpEmail({
             body: {
                 name,
                 email,
@@ -26,15 +27,14 @@ export async function createUser(data: unknown) {
             }
         });
 
-        if (!user) throw new Error("Could not sign up the new user via admin form");
+        return {
+            success: true
+        }
     } catch (error) {
         console.error("Error: Could not sign up the new user via admin form", error);
         return {
-            success: false
+            success: false,
+            error: "Failed to create user."
         }
     }
-
-    return {
-        success: true
-    };
 }
