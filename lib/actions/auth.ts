@@ -110,7 +110,7 @@ export async function signOut() {
     redirect("/");
 }
 
-export async function forgotPassword(data: unknown) {
+export async function forgotPassword(data: unknown): Promise<ActionResult> {
     try {
         const result = SignInSchema.safeParse(data);
 
@@ -120,11 +120,15 @@ export async function forgotPassword(data: unknown) {
                 error: createErrorMessage(result.error.issues)
             }
         }
-    } catch (error) {
-        console.error("Error: Could not sign in the new user via form", error);
-    }
 
-    return {
-        success: true
-    };
+        return {
+            success: true
+        };
+    } catch (error) {
+        console.error("Error: Could not recover password", error);
+        return {
+            success: false,
+            error: "Failed to recover password."
+        };
+    }
 }
