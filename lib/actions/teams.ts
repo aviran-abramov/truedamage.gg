@@ -1,11 +1,13 @@
 "use server";
 
 import prisma from "../db";
+import { Team } from "../generated/prisma/browser";
 import { createIdWithNumbers } from "../helpers";
 import { createErrorMessage } from "../helpers/zod";
+import { ActionResult, ActionResultWithData } from "../types/actions";
 import { TeamSchema } from "../validators/team";
 
-export async function createTeam(data: unknown) {
+export async function createTeam(data: unknown): Promise<ActionResult> {
     try {
         const result = TeamSchema.safeParse(data);
 
@@ -34,28 +36,38 @@ export async function createTeam(data: unknown) {
                 countryName,
                 countryCode
             }
-        })
+        });
+
+        return {
+            success: true
+        }
     } catch (error) {
         console.log(error);
+        return {
+            success: false,
+            error: "Failed to create team."
+        }
     }
-
-    return {
-        success: true
-    };
 }
 
-export async function getAllTeams() {
+export async function getAllTeams(): Promise<ActionResultWithData<Team[]>> {
     try {
         const teams = await prisma.team.findMany();
-        if (!teams) throw new Error("Could not retrieve all available teams");
 
-        return teams;
+        return {
+            success: true,
+            data: teams
+        }
     } catch (error) {
         console.error("Error: Could not retrieve all available teams", error);
+        return {
+            success: false,
+            error: "Failed to get all teams."
+        }
     }
 }
 
-export async function getAllTeamsWithGames() {
+export async function getAllTeamsWithGames(): Promise<ActionResultWithData<Team[]>> {
     try {
         const teams = await prisma.team.findMany({
             include: {
@@ -63,10 +75,15 @@ export async function getAllTeamsWithGames() {
             }
         });
 
-        if (!teams) throw new Error("Could not retrieve all available teams");
-
-        return teams;
+        return {
+            success: true,
+            data: teams
+        }
     } catch (error) {
         console.error("Error: Could not retrieve all available teams", error);
+        return {
+            success: false,
+            error: "Failed to get all team with games."
+        }
     }
 }
