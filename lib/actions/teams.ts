@@ -20,13 +20,10 @@ export async function createTeam(data: unknown): Promise<ActionResult> {
 
         const { name, gameName, countryName, countryCode } = result.data;
         const slug = createIdWithNumbers(name);
-        const game = await prisma.game.findFirst({
-            where: {
-                name: gameName
-            }
+        const game = await prisma.game.findFirstOrThrow({
+            where: { name: gameName }
         })
 
-        if (!game) throw new Error("Game not found");
 
         await prisma.team.create({
             data: {
