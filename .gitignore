@@ -25,6 +25,7 @@
 *.pem
 .github/
 .vscode/
+.claude/
 
 # debug
 npm-debug.log*
