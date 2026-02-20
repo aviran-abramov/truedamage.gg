@@ -2,10 +2,17 @@
 
 import prisma from "../db";
 import { Prisma } from "../generated/prisma/browser";
-import { Match } from "../generated/prisma/client";
 import { createErrorMessage } from "../helpers/zod";
 import { ActionResult, ActionResultWithData } from "../types/actions";
 import { MatchSchema } from "../validators/match";
+
+export type MatchWithRelations = Prisma.MatchGetPayload<{
+    include: {
+        game: true,
+        teamA: true,
+        teamB: true
+    }
+}>;
 
 export async function createMatch(data: unknown): Promise<ActionResult> {
     try {
@@ -57,7 +64,7 @@ export async function createMatch(data: unknown): Promise<ActionResult> {
     }
 }
 
-export async function getMatches(): Promise<ActionResultWithData<Match[]>> {
+export async function getMatches(): Promise<ActionResultWithData<MatchWithRelations[]>> {
     try {
         const matches = await prisma.match.findMany({
             include: {
@@ -82,14 +89,6 @@ export async function getMatches(): Promise<ActionResultWithData<Match[]>> {
         }
     }
 }
-
-export type MatchWithRelations = Prisma.MatchGetPayload<{
-    include: {
-        game: true,
-        teamA: true,
-        teamB: true
-    }
-}>;
 
 export async function getMatchesWithPredictions(): Promise<ActionResultWithData<MatchWithRelations[]>> {
     try {

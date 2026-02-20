@@ -10,9 +10,20 @@ import { getAllTeamsWithGames } from "@/lib/actions/teams";
 import { Game } from "@/lib/generated/prisma/client";
 
 export default async function UpcomingMatchesPage() {
-    const matches = (await getMatches()) ?? [];
-    const teams = (await getAllTeamsWithGames()) ?? [];
+    const matchesResult = await getMatches();
+    const teamsResult = await getAllTeamsWithGames();
     const games: Game[] = [];
+
+    if (!matchesResult.success) {
+        return <p>Failed to get matches</p>
+    }
+
+    if (!teamsResult.success) {
+        return <p>Failed to get teams</p>
+    }
+
+    const matches = matchesResult.data;
+    const teams = teamsResult.data;
 
     for (const match of matches) {
         const game = match.game;

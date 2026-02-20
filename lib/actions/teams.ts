@@ -5,6 +5,7 @@ import { Team } from "../generated/prisma/browser";
 import { createIdWithNumbers } from "../helpers";
 import { createErrorMessage } from "../helpers/zod";
 import { ActionResult, ActionResultWithData } from "../types/actions";
+import { TeamWithGame } from "../types/teams";
 import { TeamSchema } from "../validators/team";
 
 export async function createTeam(data: unknown): Promise<ActionResult> {
@@ -64,7 +65,7 @@ export async function getAllTeams(): Promise<ActionResultWithData<Team[]>> {
     }
 }
 
-export async function getAllTeamsWithGames(): Promise<ActionResultWithData<Team[]>> {
+export async function getAllTeamsWithGames(): Promise<ActionResultWithData<TeamWithGame[]>> {
     try {
         const teams = await prisma.team.findMany({
             include: {
