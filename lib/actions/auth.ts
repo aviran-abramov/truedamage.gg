@@ -88,24 +88,14 @@ export async function signOut() {
 }
 
 export async function forgotPassword(data: unknown): Promise<ActionResult> {
-    try {
-        const result = SignInSchema.safeParse(data);
+    const result = SignInSchema.safeParse(data)
 
-        if (!result.success) {
-            return {
-                success: false,
-                error: createErrorMessage(result.error.issues)
-            }
-        }
-
-        return {
-            success: true
-        };
-    } catch (error) {
-        console.error("Error: Could not recover password", error);
+    if (!result.success) {
         return {
             success: false,
-            error: "Failed to recover password."
-        };
+            error: createErrorMessage(result.error.issues)
+        }
     }
+
+    return { success: true }
 }
