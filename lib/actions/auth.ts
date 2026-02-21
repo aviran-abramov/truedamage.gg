@@ -9,16 +9,16 @@ import { ActionResult } from "../types/actions"
 import { createErrorMessage } from "../helpers/zod"
 
 export async function signUp(data: unknown): Promise<ActionResult> {
-    try {
-        const result = SignUpSchema.safeParse(data)
+    const result = SignUpSchema.safeParse(data)
 
-        if (!result.success) {
-            return {
-                success: false,
-                error: createErrorMessage(result.error.issues)
-            }
+    if (!result.success) {
+        return {
+            success: false,
+            error: createErrorMessage(result.error.issues)
         }
+    }
 
+    try {
         const { name, email, password } = result.data
 
         await auth.api.signUpEmail({ body: { name, email, password } })
