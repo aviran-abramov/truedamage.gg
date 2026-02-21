@@ -1,16 +1,16 @@
 "use server";
 
 import { redirect } from "next/navigation"
-import { auth } from "../auth";
-import { headers } from "next/headers";
-import { SignInSchema } from "../validators/auth/signIn";
-import { SignUpSchema } from "../validators/auth/signUp";
-import { ActionResult } from "../types/actions";
-import { createErrorMessage } from "../helpers/zod";
+import { auth } from "../auth"
+import { headers } from "next/headers"
+import { SignInSchema } from "../validators/auth/signIn"
+import { SignUpSchema } from "../validators/auth/signUp"
+import { ActionResult } from "../types/actions"
+import { createErrorMessage } from "../helpers/zod"
 
 export async function signUp(data: unknown): Promise<ActionResult> {
     try {
-        const result = SignUpSchema.safeParse(data);
+        const result = SignUpSchema.safeParse(data)
 
         if (!result.success) {
             return {
@@ -19,25 +19,17 @@ export async function signUp(data: unknown): Promise<ActionResult> {
             }
         }
 
-        const { name, email, password } = result.data;
+        const { name, email, password } = result.data
 
-        await auth.api.signUpEmail({
-            body: {
-                name,
-                email,
-                password
-            }
-        });
+        await auth.api.signUpEmail({ body: { name, email, password } })
 
-        return {
-            success: true
-        };
+        return { success: true }
     } catch (error) {
-        console.error("Error: Could not sign up the new user via form", error);
+        console.error("Error: Could not sign up the new user via form", error)
         return {
             success: false,
             error: "Error: Could not sign up the new user via form."
-        };
+        }
     }
 }
 
