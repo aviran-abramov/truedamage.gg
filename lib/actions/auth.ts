@@ -34,16 +34,16 @@ export async function signUp(data: unknown): Promise<ActionResult> {
 }
 
 export async function signIn(data: unknown): Promise<ActionResult> {
-    try {
-        const result = SignInSchema.safeParse(data)
+    const result = SignInSchema.safeParse(data)
 
-        if (!result.success) {
-            return {
-                success: false,
-                error: createErrorMessage(result.error.issues)
-            }
+    if (!result.success) {
+        return {
+            success: false,
+            error: createErrorMessage(result.error.issues)
         }
+    }
 
+    try {
         const { email, password } = result.data
 
         await auth.api.signInEmail({ body: { email, password } })
