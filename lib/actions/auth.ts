@@ -79,11 +79,7 @@ export async function signInWithOAuth(provider: "google" | "facebook") {
 
 export async function signOut() {
     try {
-        const { success } = await auth.api.signOut({
-            headers: await headers()
-        });
-
-        if (!success) throw new Error("Could not sign out the user");
+        await auth.api.signOut({ headers: await headers() })
     } catch (error) {
         console.error("Error: Could not sign out the user", error);
     }
