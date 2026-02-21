@@ -81,10 +81,10 @@ export async function signOut() {
     try {
         await auth.api.signOut({ headers: await headers() })
     } catch (error) {
-        console.error("Error: Could not sign out the user", error);
+        console.error("Error: Could not sign out the user", error)
     }
 
-    redirect("/");
+    redirect("/")
 }
 
 export async function forgotPassword(data: unknown): Promise<ActionResult> {
