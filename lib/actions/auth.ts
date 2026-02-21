@@ -35,7 +35,7 @@ export async function signUp(data: unknown): Promise<ActionResult> {
 
 export async function signIn(data: unknown): Promise<ActionResult> {
     try {
-        const result = SignInSchema.safeParse(data);
+        const result = SignInSchema.safeParse(data)
 
         if (!result.success) {
             return {
@@ -44,24 +44,17 @@ export async function signIn(data: unknown): Promise<ActionResult> {
             }
         }
 
-        const { email, password } = result.data;
+        const { email, password } = result.data
 
-        await auth.api.signInEmail({
-            body: {
-                email,
-                password
-            },
-        });
+        await auth.api.signInEmail({ body: { email, password } })
 
-        return {
-            success: true
-        };
+        return { success: true }
     } catch (error) {
-        console.error("Error: Could not sign in new user via form", error);
+        console.error("Error: Could not sign in new user via form", error)
         return {
             success: false,
             error: "Error: could not sign in the user via form."
-        };
+        }
     }
 }
 
