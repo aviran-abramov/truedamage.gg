@@ -6,7 +6,7 @@ import { PageTitle } from "@/components/PageTitle";
 import { getMatchesWithPredictions } from "@/lib/actions/matches";
 
 export default async function UpcomingPredictionsPage() {
-    const matchesWithPredictions = await getMatchesWithPredictions();
+    const matchesWithPredictionsData = await getMatchesWithPredictions();
 
     return (
         <AppContainer>
@@ -18,10 +18,10 @@ export default async function UpcomingPredictionsPage() {
                 <FilterByGame />
 
                 {
-                    matchesWithPredictions.success ? (
-                        <PredictionList predictions={matchesWithPredictions.data} />
+                    matchesWithPredictionsData.success ? (
+                        <PredictionList predictions={matchesWithPredictionsData.data} />
                     ) : (
-                        <p>{matchesWithPredictions.errorMessage}</p>
+                        <p>{matchesWithPredictionsData.error}</p>
                     )
                 }
             </section>
