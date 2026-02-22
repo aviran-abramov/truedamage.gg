@@ -1,6 +1,4 @@
-import { NavMenuItemWithTrigger } from "../NavMenuItemWithTrigger";
-import { adminCreateLinks } from "@/lib/data/navigation/admin";
-import { AdminNavigationMenu } from "./AdminNavigationMenu";
+import { AdminNavigationMenu } from "./AdminNavigationMenu"
 
 export function AdminNavbar() {
 
@@ -9,12 +7,7 @@ export function AdminNavbar() {
             <div className='flex items-center max-w-7xl mx-auto'>
                 <p className='text-base font-semibold'>Admin Panel</p>
 
-                <AdminNavigationMenu>
-                    <NavMenuItemWithTrigger
-                        title="Create"
-                        linkList={adminCreateLinks}
-                    />
-                </AdminNavigationMenu>
+                <AdminNavigationMenu />
             </div>
         </nav>
     )

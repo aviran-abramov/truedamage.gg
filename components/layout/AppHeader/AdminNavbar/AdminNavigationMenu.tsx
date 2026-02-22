@@ -1,18 +1,32 @@
-import { NavigationMenu, NavigationMenuList } from "@/components/ui/navigation-menu";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu"
+import { adminCreateLinks } from "@/lib/data/navigation/admin"
+import Link from "next/link"
 
-interface AdminNavigationMenuProps {
-    children: React.ReactNode;
-}
-
-export function AdminNavigationMenu({ children }: AdminNavigationMenuProps) {
+export function AdminNavigationMenu() {
 
     return (
-        <div className='flex items-center gap-2 ml-4'>
-            <NavigationMenu>
-                <NavigationMenuList>
-                    {children}
-                </NavigationMenuList>
-            </NavigationMenu >
-        </div>
+        <NavigationMenu className="flex items-center gap-2 ml-4">
+            <NavigationMenuList>
+                <NavigationMenuItem>
+                    <NavigationMenuTrigger>
+                        Create
+                    </NavigationMenuTrigger>
+
+                    <NavigationMenuContent>
+                        <ul className="grid w-50 gap-4">
+                            {adminCreateLinks.map((link) => (
+                                <li key={link.id}>
+                                    <NavigationMenuLink asChild>
+                                        <Link href={link.href}>
+                                            {link.label}
+                                        </Link>
+                                    </NavigationMenuLink>
+                                </li>
+                            ))}
+                        </ul>
+                    </NavigationMenuContent>
+                </NavigationMenuItem>
+            </NavigationMenuList>
+        </NavigationMenu>
     )
 }
