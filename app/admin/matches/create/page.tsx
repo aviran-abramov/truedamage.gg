@@ -1,11 +1,11 @@
-import { CreateMatch } from "@/components/forms/admin/match/create/CreateMatch";
-import { FormPageContainer } from "@/components/layout/FormPageContainer";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { getAllGames } from "@/lib/actions/games";
+import { CreateMatch } from "@/components/forms/admin/match/create/CreateMatch"
+import { FormPageContainer } from "@/components/layout/FormPageContainer"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { getAllGames } from "@/lib/actions/games"
 
 export default async function CreateMatchPage() {
-    const games = await getAllGames();
-    if (!games) return;
+    const gamesData = await getAllGames()
+    if (!gamesData.success) return "ERROR: No games found"
 
     return (
         <FormPageContainer>
@@ -15,7 +15,7 @@ export default async function CreateMatchPage() {
                 </CardHeader>
 
                 <CardContent>
-                    <CreateMatch games={games} />
+                    <CreateMatch games={gamesData.data} />
                 </CardContent>
             </Card>
         </FormPageContainer>
