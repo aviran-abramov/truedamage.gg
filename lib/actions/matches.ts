@@ -56,7 +56,7 @@ export async function createMatch(data: unknown): Promise<ActionResult> {
         console.error(`createMatch failed:`, error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to created match."
+            error: error instanceof Error ? error.message : "Failed to create match."
         };
     }
 }
