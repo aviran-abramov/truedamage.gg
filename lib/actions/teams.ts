@@ -41,7 +41,7 @@ export async function createTeam(data: unknown): Promise<ActionResult> {
             success: true
         };
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return {
             success: false,
             error: "Failed to create team."
