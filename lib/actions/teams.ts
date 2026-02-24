@@ -22,9 +22,7 @@ export async function createTeam(data: unknown): Promise<ActionResult> {
         const { name, gameName, countryName, countryCode } = result.data;
         const slug = createIdWithNumbers(name);
         const game = await prisma.game.findFirst({ where: { name: gameName } });
-        if (!game) {
-            return { success: false, error: "Game not found." };
-        }
+        if (!game) throw new Error("Game not found");
 
 
         await prisma.team.create({
@@ -44,7 +42,7 @@ export async function createTeam(data: unknown): Promise<ActionResult> {
         console.error(error);
         return {
             success: false,
-            error: "Failed to create team."
+            error: error instanceof Error ? error.message : "Failed to create team."
         };
     }
 }

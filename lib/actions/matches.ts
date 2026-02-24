@@ -28,19 +28,13 @@ export async function createMatch(data: unknown): Promise<ActionResult> {
         const { date, time, tournament, gameName, bestOf, teamAName, teamBName, winnerPrediction } = result.data;
 
         const game = await prisma.game.findFirst({ where: { name: gameName } });
-        if (!game) {
-            return { success: false, error: "Game not found." };
-        }
+        if (!game) throw new Error("Game not found.");
 
         const teamA = await prisma.team.findFirst({ where: { name: teamAName } });
-        if (!teamA) {
-            return { success: false, error: "Team A not found." };
-        }
+        if (!teamA) throw new Error("Team A not found.");
 
         const teamB = await prisma.team.findFirst({ where: { name: teamBName } });
-        if (!teamB) {
-            return { success: false, error: "Team B not found." };
-        }
+        if (!teamB) throw new Error("Team B not found.");
 
         await prisma.match.create({
             data: {
@@ -62,7 +56,7 @@ export async function createMatch(data: unknown): Promise<ActionResult> {
         console.error(`createMatch failed:`, error);
         return {
             success: false,
-            error: "Failed to create match."
+            error: error instanceof Error ? error.message : "Failed to created match."
         };
     }
 }
