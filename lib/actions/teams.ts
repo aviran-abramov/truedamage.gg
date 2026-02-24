@@ -16,14 +16,15 @@ export async function createTeam(data: unknown): Promise<ActionResult> {
             return {
                 success: false,
                 error: createErrorMessage(result.error.issues)
-            }
+            };
         }
 
         const { name, gameName, countryName, countryCode } = result.data;
         const slug = createIdWithNumbers(name);
-        const game = await prisma.game.findFirstOrThrow({
-            where: { name: gameName }
-        })
+        const game = await prisma.game.findFirst({ where: { name: gameName } });
+        if (!game) {
+            return { success: false, error: "Game not found." };
+        }
 
 
         await prisma.team.create({
@@ -38,13 +39,13 @@ export async function createTeam(data: unknown): Promise<ActionResult> {
 
         return {
             success: true
-        }
+        };
     } catch (error) {
         console.log(error);
         return {
             success: false,
             error: "Failed to create team."
-        }
+        };
     }
 }
 
