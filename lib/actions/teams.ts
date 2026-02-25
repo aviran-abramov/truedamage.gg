@@ -9,18 +9,19 @@ import { TeamWithGame } from "../types/teams";
 import { TeamSchema } from "../validators/team";
 
 export async function createTeam(data: unknown): Promise<ActionResult> {
+  const result = TeamSchema.safeParse(data);
+
+  if (!result.success) {
+    return {
+      success: false,
+      error: createErrorMessage(result.error.issues),
+    };
+  }
+
+  const { name, gameName, countryName, countryCode } = result.data;
+  const slug = createIdWithNumbers(name);
+
   try {
-    const result = TeamSchema.safeParse(data);
-
-    if (!result.success) {
-      return {
-        success: false,
-        error: createErrorMessage(result.error.issues),
-      };
-    }
-
-    const { name, gameName, countryName, countryCode } = result.data;
-    const slug = createIdWithNumbers(name);
     const game = await prisma.game.findFirst({ where: { name: gameName } });
     if (!game) throw new Error("Game not found");
 
@@ -33,10 +34,6 @@ export async function createTeam(data: unknown): Promise<ActionResult> {
         countryCode,
       },
     });
-
-    return {
-      success: true,
-    };
   } catch (error) {
     console.error(error);
     return {
@@ -44,6 +41,7 @@ export async function createTeam(data: unknown): Promise<ActionResult> {
       error: error instanceof Error ? error.message : "Failed to create team.",
     };
   }
+  return { success: true };
 }
 
 export async function getAllTeams(): Promise<ActionResultWithData<Team[]>> {
