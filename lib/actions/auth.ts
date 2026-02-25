@@ -1,99 +1,99 @@
 "use server";
 
-import { redirect } from "next/navigation"
-import { auth } from "../auth"
-import { headers } from "next/headers"
-import { SignInSchema } from "../validators/auth/signIn"
-import { SignUpSchema } from "../validators/auth/signUp"
-import { ActionResult } from "../types/actions"
-import { createErrorMessage } from "../helpers/zod"
+import { redirect } from "next/navigation";
+import { auth } from "../auth";
+import { headers } from "next/headers";
+import { SignInSchema } from "../validators/auth/signIn";
+import { SignUpSchema } from "../validators/auth/signUp";
+import { ActionResult } from "../types/actions";
+import { createErrorMessage } from "../helpers/zod";
 
 export async function signUp(data: unknown): Promise<ActionResult> {
-    const result = SignUpSchema.safeParse(data);
+  const result = SignUpSchema.safeParse(data);
 
-    if (!result.success) {
-        return {
-            success: false,
-            error: createErrorMessage(result.error.issues)
-        };
-    }
+  if (!result.success) {
+    return {
+      success: false,
+      error: createErrorMessage(result.error.issues),
+    };
+  }
 
-    const { name, email, password } = result.data;
+  const { name, email, password } = result.data;
 
-    try {
-        await auth.api.signUpEmail({ body: { name, email, password } });
+  try {
+    await auth.api.signUpEmail({ body: { name, email, password } });
 
-        return { success: true };
-    } catch (error) {
-        console.error("Error: Could not sign up the new user via form", error)
-        return {
-            success: false,
-            error: "Error: Could not sign up the new user via form."
-        };
-    }
+    return { success: true };
+  } catch (error) {
+    console.error("Error: Could not sign up the new user via form", error);
+    return {
+      success: false,
+      error: "Error: Could not sign up the new user via form.",
+    };
+  }
 }
 
 export async function signIn(data: unknown): Promise<ActionResult> {
-    const result = SignInSchema.safeParse(data)
+  const result = SignInSchema.safeParse(data);
 
-    if (!result.success) {
-        return {
-            success: false,
-            error: createErrorMessage(result.error.issues)
-        }
-    }
+  if (!result.success) {
+    return {
+      success: false,
+      error: createErrorMessage(result.error.issues),
+    };
+  }
 
-    const { email, password } = result.data
+  const { email, password } = result.data;
 
-    try {
-        await auth.api.signInEmail({ body: { email, password } })
+  try {
+    await auth.api.signInEmail({ body: { email, password } });
 
-        return { success: true }
-    } catch (error) {
-        console.error("Error: Could not sign in new user via form", error)
-        return {
-            success: false,
-            error: "Error: could not sign in the user via form."
-        }
-    }
+    return { success: true };
+  } catch (error) {
+    console.error("Error: Could not sign in new user via form", error);
+    return {
+      success: false,
+      error: "Error: could not sign in the user via form.",
+    };
+  }
 }
 
 export async function signInWithOAuth(provider: "google" | "facebook") {
-    let url: string | undefined
+  let url: string | undefined;
 
-    try {
-        const result = await auth.api.signInSocial({ body: { provider } })
+  try {
+    const result = await auth.api.signInSocial({ body: { provider } });
 
-        url = result.url
-    } catch (error) {
-        console.error("Error: Could not sign in the user via OAuth", error)
-    }
+    url = result.url;
+  } catch (error) {
+    console.error("Error: Could not sign in the user via OAuth", error);
+  }
 
-    if (url) {
-        redirect(url)
-    }
-    redirect("/")
+  if (url) {
+    redirect(url);
+  }
+  redirect("/");
 }
 
 export async function signOut() {
-    try {
-        await auth.api.signOut({ headers: await headers() });
-    } catch (error) {
-        console.error("Error: Could not sign out the user", error);
-    }
+  try {
+    await auth.api.signOut({ headers: await headers() });
+  } catch (error) {
+    console.error("Error: Could not sign out the user", error);
+  }
 
-    redirect("/")
+  redirect("/");
 }
 
 export async function forgotPassword(data: unknown): Promise<ActionResult> {
-    const result = SignInSchema.safeParse(data)
+  const result = SignInSchema.safeParse(data);
 
-    if (!result.success) {
-        return {
-            success: false,
-            error: createErrorMessage(result.error.issues)
-        }
-    }
+  if (!result.success) {
+    return {
+      success: false,
+      error: createErrorMessage(result.error.issues),
+    };
+  }
 
-    return { success: true }
+  return { success: true };
 }

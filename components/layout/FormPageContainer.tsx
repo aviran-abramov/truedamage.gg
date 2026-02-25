@@ -1,14 +1,9 @@
-import React from "react"
+import React from "react";
 
 interface FormPageContainerProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export const FormPageContainer = ({ children }: FormPageContainerProps) => {
-
-    return (
-        <div className="max-w-md mx-auto py-10">
-            {children}
-        </div>
-    )
-}
+  return <div className="max-w-md mx-auto py-10">{children}</div>;
+};

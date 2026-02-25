@@ -10,47 +10,52 @@ import { FieldGroup, FieldSeparator } from "@/components/ui/field";
 import { FormInputField } from "@/components/forms/FormInputField";
 
 export function CreateGameForm() {
-    const form = useForm({
-        resolver: zodResolver(GameSchema),
-        defaultValues: {
-            name: "",
-            shortName: ""
-        }
-    });
+  const form = useForm({
+    resolver: zodResolver(GameSchema),
+    defaultValues: {
+      name: "",
+      shortName: "",
+    },
+  });
 
-    const onSubmit = async (data: GameFormData) => {
-        const result = await createGame(data);
+  const onSubmit = async (data: GameFormData) => {
+    const result = await createGame(data);
 
-        if (result.success) {
-            form.reset();
-            toast.success("Game created successfully!");
-            setTimeout(() => window.location.href = "/", 1500);
-        } else {
-            toast.error("Failed to create game.");
-        }
+    if (result.success) {
+      form.reset();
+      toast.success("Game created successfully!");
+      setTimeout(() => (window.location.href = "/"), 1500);
+    } else {
+      toast.error("Failed to create game.");
     }
+  };
 
-    return (
-        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
-            <FieldGroup>
-                <FormInputField
-                    control={form.control}
-                    controllerName="name"
-                    fieldLabel="Name"
-                    placeholder="League of Legends"
-                />
+  return (
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="flex flex-col gap-4"
+    >
+      <FieldGroup>
+        <FormInputField
+          control={form.control}
+          controllerName="name"
+          fieldLabel="Name"
+          placeholder="League of Legends"
+        />
 
-                <FormInputField
-                    control={form.control}
-                    controllerName="shortName"
-                    fieldLabel="Short Name (optional)"
-                    placeholder="LoL"
-                />
-            </FieldGroup>
+        <FormInputField
+          control={form.control}
+          controllerName="shortName"
+          fieldLabel="Short Name (optional)"
+          placeholder="LoL"
+        />
+      </FieldGroup>
 
-            <FieldSeparator />
+      <FieldSeparator />
 
-            <Button type="submit" className="w-full cursor-pointer">Create Game</Button>
-        </form >
-    )
+      <Button type="submit" className="w-full cursor-pointer">
+        Create Game
+      </Button>
+    </form>
+  );
 }

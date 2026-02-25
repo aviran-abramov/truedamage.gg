@@ -5,19 +5,21 @@ import { TournamentsFilter } from "./TournamentsFilter";
 import { TeamWithGame } from "@/lib/types/teams";
 
 interface UpcomingMatchesFiltersProps {
-    games: Game[];
-    teams: TeamWithGame[];
+  games: Game[];
+  teams: TeamWithGame[];
 }
 
-export const UpcomingMatchesFilters = ({ games, teams }: UpcomingMatchesFiltersProps) => {
+export const UpcomingMatchesFilters = ({
+  games,
+  teams,
+}: UpcomingMatchesFiltersProps) => {
+  return (
+    <aside className="col-span-4 space-y-6">
+      <GamesFilter games={games} />
 
-    return (
-        <aside className="col-span-4 space-y-6">
-            <GamesFilter games={games} />
+      <TeamsFilter teams={teams} />
 
-            <TeamsFilter teams={teams} />
-
-            <TournamentsFilter />
-        </aside>
-    )
-}
+      <TournamentsFilter />
+    </aside>
+  );
+};

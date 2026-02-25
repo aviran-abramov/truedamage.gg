@@ -7,34 +7,34 @@ import { Button } from "@/components/ui/button";
 import { AuthModalType } from "@/lib/types/auth";
 import { AuthModal } from "@/components/auth/modal/AuthModal";
 
-
 export function AuthModalButton() {
-    const [authModalToShow, setAuthModalToShow] = useState<AuthModalType>("signIn");
+  const [authModalToShow, setAuthModalToShow] =
+    useState<AuthModalType>("signIn");
 
-    const handleAuthModalToShowClick = (type: AuthModalType) => setAuthModalToShow(type);
-    const handleOpenChange = (isOpen: boolean) => {
-        if (!isOpen) setAuthModalToShow("signIn");
-    };
+  const handleAuthModalToShowClick = (type: AuthModalType) =>
+    setAuthModalToShow(type);
+  const handleOpenChange = (isOpen: boolean) => {
+    if (!isOpen) setAuthModalToShow("signIn");
+  };
 
-    return (
-        <Dialog onOpenChange={handleOpenChange}>
-            <UserIconButtonTrigger />
+  return (
+    <Dialog onOpenChange={handleOpenChange}>
+      <UserIconButtonTrigger />
 
-            <AuthModal
-                authModalToShow={authModalToShow}
-                onAuthModalToShowClick={handleAuthModalToShowClick}
-            />
-        </Dialog>
-    )
+      <AuthModal
+        authModalToShow={authModalToShow}
+        onAuthModalToShowClick={handleAuthModalToShowClick}
+      />
+    </Dialog>
+  );
 }
 
 const UserIconButtonTrigger = () => {
-
-    return (
-        <DialogTrigger asChild>
-            <Button variant="outline" size="icon" className="cursor-pointer">
-                <UserIcon />
-            </Button>
-        </DialogTrigger>
-    )
-}
+  return (
+    <DialogTrigger asChild>
+      <Button variant="outline" size="icon" className="cursor-pointer">
+        <UserIcon />
+      </Button>
+    </DialogTrigger>
+  );
+};

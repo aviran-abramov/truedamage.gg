@@ -4,36 +4,36 @@ import prisma from "./db";
 import { nextCookies } from "better-auth/next-js";
 
 export const auth = betterAuth({
-    database: prismaAdapter(prisma, {
-        provider: "postgresql", // or "mysql", "postgresql", ...etc
-    }),
-    baseURL: process.env.BETTER_AUTH_URL,
-    socialProviders: {
-        google: {
-            prompt: "select_account",
-            clientId: process.env.GOOGLE_CLIENT_ID as string,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-        },
-        facebook: {
-            prompt: "select_account",
-            clientId: process.env.FACEBOOK_CLIENT_ID as string,
-            clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
-        },
+  database: prismaAdapter(prisma, {
+    provider: "postgresql", // or "mysql", "postgresql", ...etc
+  }),
+  baseURL: process.env.BETTER_AUTH_URL,
+  socialProviders: {
+    google: {
+      prompt: "select_account",
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
-    account: {
-        accountLinking: {
-            enabled: true,
-            trustedProviders: ["google", "facebook"]
-        }
+    facebook: {
+      prompt: "select_account",
+      clientId: process.env.FACEBOOK_CLIENT_ID as string,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
     },
-    emailAndPassword: { enabled: true },
-    plugins: [nextCookies()],
-    user: {
-        additionalFields: {
-            role: {
-                type: "string",
-                required: false
-            }
-        }
-    }
+  },
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google", "facebook"],
+    },
+  },
+  emailAndPassword: { enabled: true },
+  plugins: [nextCookies()],
+  user: {
+    additionalFields: {
+      role: {
+        type: "string",
+        required: false,
+      },
+    },
+  },
 });

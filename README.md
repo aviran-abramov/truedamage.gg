@@ -1,80 +1,92 @@
 # **TrueDamage.gg**
+
 Get the latest esports news, live tournament coverage, match schedules, expert predictions for League of Legends, CS2, Valorant, Dota 2, and more!
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-truedamage.gg-blue?style=for-the-badge)](https://truedamage-gg.vercel.app/)
 
 ## Table of Contents
-* [Overview](#overview)  
-* [Tech Stack](#tech-stack)  
-* [Features](#features)  
-* [Getting Started](#getting-started)  
-* [Environment Variables](#environment-variables)
-* [Architecture](#architecture)
+
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Architecture](#architecture)
 
 ## Overview
+
 Instead of tutorial CRUD YouTube projects that most of the juniors do and use the "copy paste" method, I decided to work on a field that I know very well and like as a hobby to create a real project.
 
 ### Why I built this project
+
 As a former heavy gamer, and as a person who is working with computer 24/7 since the age of 3, I decided to build a project about eSports. I created a website which provides data about games, tournaments, teams, players and even predict which team is going to win the match with my own formula.
 
 ## Tech Stack
+
 ### Both frontend and backend
-* **[NextJS 16](https://nextjs.org)** - Full-Stack React Framework with CSR and SSR, including server actions
-* **[Zod 4](https://zod.dev)** - Data validation and schemas
+
+- **[NextJS 16](https://nextjs.org)** - Full-Stack React Framework with CSR and SSR, including server actions
+- **[Zod 4](https://zod.dev)** - Data validation and schemas
 
 ### Frontend Only
-* **[ShadCN](https://ui.shadcn.com)** - UI library
-* **[TailwindCSS 4](https://tailwindcss.com)** - CSS framework
-* **[React-Hook-Form](https://react-hook-form.com)** - Form state management
+
+- **[ShadCN](https://ui.shadcn.com)** - UI library
+- **[TailwindCSS 4](https://tailwindcss.com)** - CSS framework
+- **[React-Hook-Form](https://react-hook-form.com)** - Form state management
 
 ### Backend & Services
-* **[Prisma](https://www.prisma.io)** - Database ORM
-* **[PostgreSQL](https://www.postgresql.org)** - Relational database
-* **[Better Auth](https://www.better-auth.com)** - Authentication
-* **[Resend](https://resend.com)** - Email service
 
+- **[Prisma](https://www.prisma.io)** - Database ORM
+- **[PostgreSQL](https://www.postgresql.org)** - Relational database
+- **[Better Auth](https://www.better-auth.com)** - Authentication
+- **[Resend](https://resend.com)** - Email service
 
 ### Development & Deployment
-* **[TypeScript](https://www.typescriptlang.org)** - Type safety
-* **[Vercel](https://vercel.com)** - Deployment
+
+- **[TypeScript](https://www.typescriptlang.org)** - Type safety
+- **[Vercel](https://vercel.com)** - Deployment
 
 ## Features
+
 ### Authentication with Better-Auth
-* Google authentication support
-* Facebook authentication support
-* Sign in - manual 
-* Sign up - manual  
-* Sign out
-* Account linking (OAuth with manual registration)
-* TO-FINISH: Forgot password
-* TODO: Email verification on manual sign up
-* TODO: Remember me - persistent sessions
-* TODO: Two-factor authentication (2FA)
+
+- Google authentication support
+- Facebook authentication support
+- Sign in - manual
+- Sign up - manual
+- Sign out
+- Account linking (OAuth with manual registration)
+- TO-FINISH: Forgot password
+- TODO: Email verification on manual sign up
+- TODO: Remember me - persistent sessions
+- TODO: Two-factor authentication (2FA)
 
 ### Admin features
-* Create: game, team, match, prediction
-* TODO: Edit: game, team, match, prediction
-* TODO: Delete: game, team, match, prediction
-* TODO: Fetch specific game (scraper project)
-* TODO: Dashboard with analytics (user count, match, team stats)
-* TODO: User management (ban, roles, permissions)
+
+- Create: game, team, match, prediction
+- TODO: Edit: game, team, match, prediction
+- TODO: Delete: game, team, match, prediction
+- TODO: Fetch specific game (scraper project)
+- TODO: Dashboard with analytics (user count, match, team stats)
+- TODO: User management (ban, roles, permissions)
 
 ### User features
-* TODO: User profile
-* TODO: Follow favorite teams
-* TODO: Alerts for favorite teams
 
+- TODO: User profile
+- TODO: Follow favorite teams
+- TODO: Alerts for favorite teams
 
 ### UI
-* Theme - dark / light mode
-* Toast notifications 
-* Filters - by game, team, tournament
-* TODO: Responsiveness and mobile design
-* TODO: Bulk import/export data
-* TODO: Navbar - Search (teams, matches)
 
+- Theme - dark / light mode
+- Toast notifications
+- Filters - by game, team, tournament
+- TODO: Responsiveness and mobile design
+- TODO: Bulk import/export data
+- TODO: Navbar - Search (teams, matches)
 
 ## Getting Started
+
 Follow these steps to make this project work on your machine.
 
 **Cloning the repository**
@@ -98,8 +110,10 @@ npm run dev
 ```
 
 ## Environment Variables
-**Set up environment variables**  
-1. Create a new file in the root folder, and call it ```.env```
+
+**Set up environment variables**
+
+1. Create a new file in the root folder, and call it `.env`
 2. Paste and add the required content:
 
 ```env
@@ -127,18 +141,22 @@ MY_EMAIL_ADDRESS="aviranabramov@gmail.com"
 ```
 
 ## Architecture
+
 ### Database Schema
+
 I used PostgreSQL with Prisma ORM.
 
 ### Tables
 
 #### Better Auth Tables
-* **User**
-* **Session**
-* **Account**
-* **Verification**
+
+- **User**
+- **Session**
+- **Account**
+- **Verification**
 
 #### App Tables
-* **Game**  
-* **Team**  
-* **Match**  
+
+- **Game**
+- **Team**
+- **Match**

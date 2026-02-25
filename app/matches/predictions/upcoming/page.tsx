@@ -6,25 +6,23 @@ import { PageTitle } from "@/components/PageTitle";
 import { getMatchesWithPredictions } from "@/lib/actions/matches";
 
 export default async function UpcomingPredictionsPage() {
-    const matchesWithPredictionsData = await getMatchesWithPredictions();
+  const matchesWithPredictionsData = await getMatchesWithPredictions();
 
-    return (
-        <AppContainer>
-            <PageBanner />
+  return (
+    <AppContainer>
+      <PageBanner />
 
-            <section className="flex flex-col max-w-5xl w-full">
-                <PageTitle>Upcoming Predictions</PageTitle>
+      <section className="flex flex-col max-w-5xl w-full">
+        <PageTitle>Upcoming Predictions</PageTitle>
 
-                <FilterByGame />
+        <FilterByGame />
 
-                {
-                    matchesWithPredictionsData.success ? (
-                        <PredictionList predictions={matchesWithPredictionsData.data} />
-                    ) : (
-                        <p>{matchesWithPredictionsData.error}</p>
-                    )
-                }
-            </section>
-        </AppContainer>
-    )
+        {matchesWithPredictionsData.success ? (
+          <PredictionList predictions={matchesWithPredictionsData.data} />
+        ) : (
+          <p>{matchesWithPredictionsData.error}</p>
+        )}
+      </section>
+    </AppContainer>
+  );
 }

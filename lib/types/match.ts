@@ -2,36 +2,36 @@ import { MatchWithRelations } from "../actions/matches";
 import { Game, Match, Team } from "../generated/prisma/client";
 
 export interface PredictionListProps {
-    predictions: MatchWithRelations[]
+  predictions: MatchWithRelations[];
 }
 
 export interface PredictionProps {
-    prediction: Match & {
-        game: Game;
-        teamA: Team;
-        teamB: Team;
-    }
+  prediction: Match & {
+    game: Game;
+    teamA: Team;
+    teamB: Team;
+  };
 }
 
 export interface PredictionHeaderProps {
-    gameIconPath: string;
-    gameName: string;
-    tournament: string
+  gameIconPath: string;
+  gameName: string;
+  tournament: string;
 }
 
 export interface PredictionContentProps {
-    children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export interface PredictionTeamProps {
-    name: string;
-    countryName: string;
-    countryCode: string;
-    isPredictedWinner: boolean;
+  name: string;
+  countryName: string;
+  countryCode: string;
+  isPredictedWinner: boolean;
 }
 
 export interface PredictionMatchDetailsProps {
-    date: string;
-    time: string;
-    bestOf: number;
+  date: string;
+  time: string;
+  bestOf: number;
 }

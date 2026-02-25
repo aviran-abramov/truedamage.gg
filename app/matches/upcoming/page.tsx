@@ -10,42 +10,42 @@ import { getAllTeamsWithGames } from "@/lib/actions/teams";
 import { Game } from "@/lib/generated/prisma/client";
 
 export default async function UpcomingMatchesPage() {
-    const matchesResult = await getMatches();
-    const teamsResult = await getAllTeamsWithGames();
-    const games: Game[] = [];
+  const matchesResult = await getMatches();
+  const teamsResult = await getAllTeamsWithGames();
+  const games: Game[] = [];
 
-    if (!matchesResult.success) {
-        return <p>Failed to get matches</p>
+  if (!matchesResult.success) {
+    return <p>Failed to get matches</p>;
+  }
+
+  if (!teamsResult.success) {
+    return <p>Failed to get teams</p>;
+  }
+
+  const matches = matchesResult.data;
+  const teams = teamsResult.data;
+
+  for (const match of matches) {
+    const game = match.game;
+    const isGameAlreadyExists = games.find((game) => game.id === match.game.id);
+
+    if (!isGameAlreadyExists) {
+      games.push(game);
     }
+  }
 
-    if (!teamsResult.success) {
-        return <p>Failed to get teams</p>
-    }
+  return (
+    <AppContainer>
+      <PageBanner />
 
-    const matches = matchesResult.data;
-    const teams = teamsResult.data;
+      <section className="flex flex-col max-w-7xl w-full bg-[#242430] p-8 rounded">
+        <PageTitle>Upcoming Matches</PageTitle>
 
-    for (const match of matches) {
-        const game = match.game;
-        const isGameAlreadyExists = games.find(game => game.id === match.game.id);
-
-        if (!isGameAlreadyExists) {
-            games.push(game);
-        }
-    }
-
-    return (
-        <AppContainer>
-            <PageBanner />
-
-            <section className="flex flex-col max-w-7xl w-full bg-[#242430] p-8 rounded">
-                <PageTitle>Upcoming Matches</PageTitle>
-
-                <div className="grid grid-cols-12 gap-4">
-                    <MatchPreviewList matches={matches} />
-                    <UpcomingMatchesFilters games={games} teams={teams} />
-                </div>
-            </section>
-        </AppContainer>
-    )
+        <div className="grid grid-cols-12 gap-4">
+          <MatchPreviewList matches={matches} />
+          <UpcomingMatchesFilters games={games} teams={teams} />
+        </div>
+      </section>
+    </AppContainer>
+  );
 }

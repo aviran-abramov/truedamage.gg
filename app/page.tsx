@@ -1,4 +1,4 @@
-import { AppContainer } from "@/components/layout/AppContainer"
+import { AppContainer } from "@/components/layout/AppContainer";
 
 export default function HomePage() {
   return (

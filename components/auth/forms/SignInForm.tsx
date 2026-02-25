@@ -10,56 +10,59 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInputField } from "@/components/forms/FormInputField";
 
 interface SignInFormProps {
-    onAuthModalToShowClick?: (type: AuthModalType) => void;
-    additionalButtonHref?: string
+  onAuthModalToShowClick?: (type: AuthModalType) => void;
+  additionalButtonHref?: string;
 }
 
-export function SignInForm({ onAuthModalToShowClick, additionalButtonHref }: SignInFormProps) {
-    const form = useForm({
-        resolver: zodResolver(SignInSchema),
-        defaultValues: {
-            email: "",
-            password: ""
-        }
-    });
+export function SignInForm({
+  onAuthModalToShowClick,
+  additionalButtonHref,
+}: SignInFormProps) {
+  const form = useForm({
+    resolver: zodResolver(SignInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-    const onSubmit = async (data: SignInFormData) => {
-        const result = await signIn(data);
+  const onSubmit = async (data: SignInFormData) => {
+    const result = await signIn(data);
 
-        if (result.success) {
-            form.reset();
-            toast.success("Signed in successfully!");
-            setTimeout(() => window.location.href = "/", 1500);
-        } else {
-            toast.error("Failed signing in.");
-        }
-    };
+    if (result.success) {
+      form.reset();
+      toast.success("Signed in successfully!");
+      setTimeout(() => (window.location.href = "/"), 1500);
+    } else {
+      toast.error("Failed signing in.");
+    }
+  };
 
-    return (
-        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
-            <FormInputField
-                control={form.control}
-                controllerName="email"
-                fieldLabel="Email Address"
-                type="email"
-                placeholder="johndoe@gmail.com"
-            />
+  return (
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <FormInputField
+        control={form.control}
+        controllerName="email"
+        fieldLabel="Email Address"
+        type="email"
+        placeholder="johndoe@gmail.com"
+      />
 
-            <FormInputField
-                control={form.control}
-                controllerName="password"
-                fieldLabel="Password"
-                type="password"
-                placeholder="password"
-                hasAdditionalButton={true}
-                additionalButtonLabel="Forgot password"
-                additionalButtonOnClick={onAuthModalToShowClick}
-                additionalButtonHref={additionalButtonHref}
-            />
+      <FormInputField
+        control={form.control}
+        controllerName="password"
+        fieldLabel="Password"
+        type="password"
+        placeholder="password"
+        hasAdditionalButton={true}
+        additionalButtonLabel="Forgot password"
+        additionalButtonOnClick={onAuthModalToShowClick}
+        additionalButtonHref={additionalButtonHref}
+      />
 
-            <Button type="submit" className="w-full cursor-pointer">
-                SIGN IN
-            </Button>
-        </form>
-    )
+      <Button type="submit" className="w-full cursor-pointer">
+        SIGN IN
+      </Button>
+    </form>
+  );
 }

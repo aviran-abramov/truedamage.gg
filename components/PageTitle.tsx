@@ -1,11 +1,12 @@
 interface PageTitleProps {
-    children: string;
-    className?: string;
+  children: string;
+  className?: string;
 }
 
 export const PageTitle = ({ children, className }: PageTitleProps) => {
-
-    return (
-        <h2 className={`text-4xl font-bold mb-6 text-left ${className}`}>{children}</h2>
-    )
-}
+  return (
+    <h2 className={`text-4xl font-bold mb-6 text-left ${className}`}>
+      {children}
+    </h2>
+  );
+};

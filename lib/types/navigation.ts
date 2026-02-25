@@ -1,5 +1,5 @@
 export interface LinkListItem {
-    id: string;
-    label: string;
-    href: string;
+  id: string;
+  label: string;
+  href: string;
 }
