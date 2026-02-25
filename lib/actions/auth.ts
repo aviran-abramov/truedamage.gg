@@ -9,27 +9,27 @@ import { ActionResult } from "../types/actions"
 import { createErrorMessage } from "../helpers/zod"
 
 export async function signUp(data: unknown): Promise<ActionResult> {
-    const result = SignUpSchema.safeParse(data)
+    const result = SignUpSchema.safeParse(data);
 
     if (!result.success) {
         return {
             success: false,
             error: createErrorMessage(result.error.issues)
-        }
+        };
     }
 
+    const { name, email, password } = result.data;
+
     try {
-        const { name, email, password } = result.data
+        await auth.api.signUpEmail({ body: { name, email, password } });
 
-        await auth.api.signUpEmail({ body: { name, email, password } })
-
-        return { success: true }
+        return { success: true };
     } catch (error) {
         console.error("Error: Could not sign up the new user via form", error)
         return {
             success: false,
             error: "Error: Could not sign up the new user via form."
-        }
+        };
     }
 }
 
@@ -43,9 +43,9 @@ export async function signIn(data: unknown): Promise<ActionResult> {
         }
     }
 
-    try {
-        const { email, password } = result.data
+    const { email, password } = result.data
 
+    try {
         await auth.api.signInEmail({ body: { email, password } })
 
         return { success: true }
