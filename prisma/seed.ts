@@ -89,27 +89,21 @@ async function seedTeamTable() {
 async function seedMatchTable() {
   try {
     for (const match of matches) {
-      const game = await prisma.game.findUnique({
-        where: { name: match.game },
-      });
+      const [game, teamA, teamB] = await Promise.all([
+        prisma.game.findUnique({ where: { name: match.game } }),
+        prisma.team.findFirst({ where: { name: match.teamAName } }),
+        prisma.team.findFirst({ where: { name: match.teamBName } }),
+      ]);
       if (!game) {
         throw new Error(
           `SEED: Create Matches - Game not found for match: ${match.game}`
         );
       }
-
-      const teamA = await prisma.team.findFirst({
-        where: { name: match.teamAName },
-      });
       if (!teamA) {
         throw new Error(
           `SEED: Create matches - Team A not found for match: ${match.game}`
         );
       }
-
-      const teamB = await prisma.team.findFirst({
-        where: { name: match.teamBName },
-      });
       if (!teamB) {
         throw new Error(
           `SEED: Create matches - Team B not found for match: ${match.game}`
