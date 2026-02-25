@@ -15,16 +15,16 @@ export type MatchWithRelations = Prisma.MatchGetPayload<{
 }>;
 
 export async function createMatch(data: unknown): Promise<ActionResult> {
+  const result = MatchSchema.safeParse(data);
+
+  if (!result.success) {
+    return {
+      success: false,
+      error: createErrorMessage(result.error.issues),
+    };
+  }
+
   try {
-    const result = MatchSchema.safeParse(data);
-
-    if (!result.success) {
-      return {
-        success: false,
-        error: createErrorMessage(result.error.issues),
-      };
-    }
-
     const {
       date,
       time,
@@ -57,10 +57,6 @@ export async function createMatch(data: unknown): Promise<ActionResult> {
         winnerPrediction,
       },
     });
-
-    return {
-      success: true,
-    };
   } catch (error) {
     console.error(`createMatch failed:`, error);
     return {
@@ -68,6 +64,8 @@ export async function createMatch(data: unknown): Promise<ActionResult> {
       error: error instanceof Error ? error.message : "Failed to create match.",
     };
   }
+
+  return { success: true };
 }
 
 export async function getMatches(): Promise<
