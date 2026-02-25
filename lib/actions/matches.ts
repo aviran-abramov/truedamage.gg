@@ -24,18 +24,18 @@ export async function createMatch(data: unknown): Promise<ActionResult> {
     };
   }
 
-  try {
-    const {
-      date,
-      time,
-      tournament,
-      gameName,
-      bestOf,
-      teamAName,
-      teamBName,
-      winnerPrediction,
-    } = result.data;
+  const {
+    date,
+    time,
+    tournament,
+    gameName,
+    bestOf,
+    teamAName,
+    teamBName,
+    winnerPrediction,
+  } = result.data;
 
+  try {
     const game = await prisma.game.findFirst({ where: { name: gameName } });
     if (!game) throw new Error("Game not found.");
 
