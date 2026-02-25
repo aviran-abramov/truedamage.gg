@@ -64,8 +64,6 @@ export async function signInWithOAuth(provider: "google" | "facebook") {
     try {
         const result = await auth.api.signInSocial({ body: { provider } })
 
-        if (!result) throw new Error("Could not sign in the user via OAuth")
-
         url = result.url
     } catch (error) {
         console.error("Error: Could not sign in the user via OAuth", error)
@@ -79,9 +77,9 @@ export async function signInWithOAuth(provider: "google" | "facebook") {
 
 export async function signOut() {
     try {
-        await auth.api.signOut({ headers: await headers() })
+        await auth.api.signOut({ headers: await headers() });
     } catch (error) {
-        console.error("Error: Could not sign out the user", error)
+        console.error("Error: Could not sign out the user", error);
     }
 
     redirect("/")
