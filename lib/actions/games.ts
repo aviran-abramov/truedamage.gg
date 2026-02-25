@@ -8,21 +8,21 @@ import { ActionResult, ActionResultWithData } from "../types/actions";
 import { createErrorMessage } from "../helpers/zod";
 
 export async function createGame(data: unknown): Promise<ActionResult> {
+  const result = GameSchema.safeParse(data);
+
+  if (!result.success) {
+    return {
+      success: false,
+      error: createErrorMessage(result.error.issues),
+    };
+  }
+
+  const { name, shortName } = result.data;
+  const slug = createSlug(name);
+  const iconUrl = createIconUrl(slug);
+  const id = createSlug(name);
+
   try {
-    const result = GameSchema.safeParse(data);
-
-    if (!result.success) {
-      return {
-        success: false,
-        error: createErrorMessage(result.error.issues),
-      };
-    }
-
-    const { name, shortName } = result.data;
-    const slug = createSlug(name);
-    const iconUrl = createIconUrl(slug);
-    const id = createSlug(name);
-
     await prisma.game.create({
       data: {
         id,
@@ -32,8 +32,6 @@ export async function createGame(data: unknown): Promise<ActionResult> {
         iconUrl,
       },
     });
-
-    return { success: true };
   } catch (error) {
     console.error("Error creating game", error);
     return {
@@ -41,6 +39,8 @@ export async function createGame(data: unknown): Promise<ActionResult> {
       error: "Failed to create game.",
     };
   }
+
+  return { success: true };
 }
 
 export async function getAllGames(): Promise<ActionResultWithData<Game[]>> {
