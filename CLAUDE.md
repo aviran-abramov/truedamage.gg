@@ -1,5 +1,11 @@
 # CLAUDE.md
 
+## Tech Stack
+
+- Next.js 16
+- Zod 4
+  - Uses `error` not `message` for custom error messages: `.min(8, { error: "..." })`
+
 ## Learning Mode
 
 - I am learning to become a full stack web developer
