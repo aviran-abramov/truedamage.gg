@@ -1,8 +1,7 @@
 "use server";
 
 import { AppContainer } from "@/components/layout/AppContainer";
-import { UpcomingMatchesFilters } from "@/components/matches/Filters/UpcomingMatchesFilters";
-import { MatchPreviewList } from "@/components/matches/upcoming/MatchPreviewList";
+import { UpcomingMatchesView } from "@/components/matches/upcoming/UpcomingMatchesView";
 import { PageBanner } from "@/components/PageBanner";
 import { PageTitle } from "@/components/PageTitle";
 import { getMatches, MatchWithRelations } from "@/lib/actions/matches";
@@ -59,10 +58,7 @@ export default async function UpcomingMatchesPage() {
       <section className="flex flex-col max-w-7xl w-full bg-[#242430] p-8 rounded">
         <PageTitle>Upcoming Matches</PageTitle>
 
-        <div className="grid grid-cols-12 gap-4">
-          <MatchPreviewList matches={matches} />
-          <UpcomingMatchesFilters games={games} teams={teams} />
-        </div>
+        <UpcomingMatchesView matches={matches} games={games} teams={teams} />
       </section>
     </AppContainer>
   );
