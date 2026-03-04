@@ -5,14 +5,28 @@ import { UpcomingMatchesFilters } from "@/components/matches/Filters/UpcomingMat
 import { MatchPreviewList } from "@/components/matches/upcoming/MatchPreviewList";
 import { PageBanner } from "@/components/PageBanner";
 import { PageTitle } from "@/components/PageTitle";
-import { getMatches } from "@/lib/actions/matches";
+import { getMatches, MatchWithRelations } from "@/lib/actions/matches";
 import { getAllTeamsWithGames } from "@/lib/actions/teams";
 import { Game } from "@/lib/generated/prisma/client";
+
+function extractGames(matches: MatchWithRelations[]) {
+  const games: Game[] = [];
+
+  for (const match of matches) {
+    const game = match.game;
+    const isGameAlreadyExists = games.find((game) => game.id === match.game.id);
+
+    if (!isGameAlreadyExists) {
+      games.push(game);
+    }
+  }
+
+  return games;
+}
 
 export default async function UpcomingMatchesPage() {
   const matchesResult = await getMatches();
   const teamsResult = await getAllTeamsWithGames();
-  const games: Game[] = [];
 
   if (!matchesResult.success) {
     return <p>Failed to get matches</p>;
@@ -24,15 +38,7 @@ export default async function UpcomingMatchesPage() {
 
   const matches = matchesResult.data;
   const teams = teamsResult.data;
-
-  for (const match of matches) {
-    const game = match.game;
-    const isGameAlreadyExists = games.find((game) => game.id === match.game.id);
-
-    if (!isGameAlreadyExists) {
-      games.push(game);
-    }
-  }
+  const games = extractGames(matches);
 
   return (
     <AppContainer>
