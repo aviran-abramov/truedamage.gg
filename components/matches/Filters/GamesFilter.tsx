@@ -15,6 +15,7 @@ export const GamesFilter = ({ games }: GamesFilterProps) => {
         {games.map((game) => (
           <li key={game.id}>
             <Button variant={"outline"} className="cursor-pointer rounded-sm">
+              <span>✕</span>
               <Image
                 className="dark:invert"
                 src={game.iconUrl || "/icons/x.png"}
@@ -22,7 +23,7 @@ export const GamesFilter = ({ games }: GamesFilterProps) => {
                 height={20}
                 width={20}
               />
-              {game.shortName}
+              <span>{game.shortName}</span>
             </Button>
           </li>
         ))}
