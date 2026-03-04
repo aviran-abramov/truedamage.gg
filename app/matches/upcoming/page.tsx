@@ -6,8 +6,8 @@ import { MatchPreviewList } from "@/components/matches/upcoming/MatchPreviewList
 import { PageBanner } from "@/components/PageBanner";
 import { PageTitle } from "@/components/PageTitle";
 import { getMatches, MatchWithRelations } from "@/lib/actions/matches";
-import { getAllTeamsWithGames } from "@/lib/actions/teams";
 import { Game } from "@/lib/generated/prisma/client";
+import { TeamWithGame } from "@/lib/types/teams";
 
 function extractGames(matches: MatchWithRelations[]) {
   const games: Game[] = [];
@@ -24,21 +24,33 @@ function extractGames(matches: MatchWithRelations[]) {
   return games;
 }
 
+function extractTeams(matches: MatchWithRelations[]) {
+  const teams: TeamWithGame[] = [];
+
+  for (const match of matches) {
+    const teamA: TeamWithGame = { ...match.teamA, game: match.game };
+    const teamB: TeamWithGame = { ...match.teamB, game: match.game };
+
+    if (!teams.find((team) => team.id === teamA.id)) {
+      teams.push(teamA);
+    }
+    if (!teams.find((team) => team.id === teamB.id)) {
+      teams.push(teamB);
+    }
+  }
+
+  return teams;
+}
+
 export default async function UpcomingMatchesPage() {
   const matchesResult = await getMatches();
-  const teamsResult = await getAllTeamsWithGames();
-
   if (!matchesResult.success) {
     return <p>Failed to get matches</p>;
   }
 
-  if (!teamsResult.success) {
-    return <p>Failed to get teams</p>;
-  }
-
   const matches = matchesResult.data;
-  const teams = teamsResult.data;
   const games = extractGames(matches);
+  const teams = extractTeams(matches);
 
   return (
     <AppContainer>
