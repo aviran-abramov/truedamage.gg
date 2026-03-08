@@ -29,23 +29,15 @@ export const GamesFilter = ({
           <FilterSubTitle>Included</FilterSubTitle>
           <ul className="flex items-center flex-wrap gap-2">
             {selectedGames.map((game) => (
-              <li key={game.id}>
-                <Button
-                  variant={"outline"}
-                  className="cursor-pointer rounded-sm"
-                  onClick={() => onGameRemovalClick(game.id)}
-                >
-                  <span>✕</span>
-                  <Image
-                    className="dark:invert"
-                    src={game.iconUrl || "/icons/x.png"}
-                    alt={`${game.name} logo`}
-                    height={20}
-                    width={20}
-                  />
-                  <span>{game.shortName}</span>
-                </Button>
-              </li>
+              <FilterListItem
+                key={game.id}
+                id={game.id}
+                type={"X"}
+                itemLabel={game.shortName}
+                itemName={game.name}
+                iconUrl={game.iconUrl ?? undefined}
+                onClick={onGameRemovalClick}
+              />
             ))}
           </ul>
         </>
@@ -56,23 +48,15 @@ export const GamesFilter = ({
           <FilterSubTitle>Not Included</FilterSubTitle>
           <ul className="flex items-center flex-wrap gap-2">
             {unSelectedGames.map((game) => (
-              <li key={game.id}>
-                <Button
-                  variant={"outline"}
-                  className="cursor-pointer rounded-sm"
-                  onClick={() => onGameAddClick(game.id)}
-                >
-                  <span className="dark:invert">➕</span>
-                  <Image
-                    className="dark:invert"
-                    src={game.iconUrl || "/icons/x.png"}
-                    alt={`${game.name} logo`}
-                    height={20}
-                    width={20}
-                  />
-                  <span>{game.shortName}</span>
-                </Button>
-              </li>
+              <FilterListItem
+                key={game.id}
+                id={game.id}
+                type={"+"}
+                itemLabel={game.shortName}
+                itemName={game.name}
+                iconUrl={game.iconUrl ?? undefined}
+                onClick={onGameAddClick}
+              />
             ))}
           </ul>
         </>
@@ -92,7 +76,7 @@ interface FilterListItemProps {
   type: ButtonType;
   itemLabel: string;
   itemName: string;
-  url?: string;
+  iconUrl?: string;
   onClick: (itemId: string) => void;
 }
 
@@ -101,7 +85,7 @@ function FilterListItem({
   type,
   itemLabel,
   itemName,
-  url,
+  iconUrl,
   onClick,
 }: FilterListItemProps) {
   return (
@@ -111,10 +95,12 @@ function FilterListItem({
         className="cursor-pointer rounded-sm"
         onClick={() => onClick(id)}
       >
-        <span className="dark:invert">{type === "+" ? "➕" : "✕"}</span>
+        <span className={`${type === "+" ? "dark:invert" : ""}`}>
+          {type === "+" ? "➕" : "✕"}
+        </span>
         <Image
           className="dark:invert"
-          src={url || "/icons/x.png"}
+          src={iconUrl || "/icons/x.png"}
           alt={`${itemName} logo`}
           height={20}
           width={20}
