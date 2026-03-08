@@ -11,7 +11,7 @@ interface GamesFilterProps {
   games: Game[];
 }
 
-export const GamesFilter = ({ games }: GamesFilterProps) => {
+export const GamesFilter = ({ games = [] }: GamesFilterProps) => {
   const [selectedGames, setSelectedGames] = useState(games);
   const [unSelectedGames, setUnselectedGames] = useState<Game[]>([]);
 
@@ -88,6 +88,10 @@ export const GamesFilter = ({ games }: GamesFilterProps) => {
             ))}
           </ul>
         </>
+      )}
+
+      {games.length === 0 && (
+        <p className="text-muted-foreground">No games found yet.</p>
       )}
     </div>
   );
