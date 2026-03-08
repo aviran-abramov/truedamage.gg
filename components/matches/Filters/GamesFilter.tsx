@@ -4,35 +4,23 @@ import { Game } from "@/lib/generated/prisma/client";
 import { FilterTitle } from "./FilterTitle";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useState } from "react";
 import { FilterSubTitle } from "./FilterSubTitle";
 
 interface GamesFilterProps {
   games: Game[];
+  selectedGames: Game[];
+  unSelectedGames: Game[];
+  onGameRemovalClick: (gameId: string) => void;
+  onGameAddClick: (gameId: string) => void;
 }
 
-export const GamesFilter = ({ games = [] }: GamesFilterProps) => {
-  const [selectedGames, setSelectedGames] = useState(games);
-  const [unSelectedGames, setUnselectedGames] = useState<Game[]>([]);
-
-  const handleGameRemovalClick = (gameId: string) => {
-    const clickedGame = selectedGames.find((game) => game.id === gameId);
-    if (clickedGame) {
-      setSelectedGames((prevState) => prevState.filter((g) => g.id !== gameId));
-      setUnselectedGames((prevState) => [...prevState, clickedGame]);
-    }
-  };
-
-  const handleGameAddClick = (gameId: string) => {
-    const clickedGame = unSelectedGames.find((game) => game.id === gameId);
-    if (clickedGame) {
-      setSelectedGames((prevState) => [...prevState, clickedGame]);
-      setUnselectedGames((prevState) =>
-        prevState.filter((g) => g.id !== gameId)
-      );
-    }
-  };
-
+export const GamesFilter = ({
+  games = [],
+  selectedGames,
+  unSelectedGames,
+  onGameRemovalClick,
+  onGameAddClick,
+}: GamesFilterProps) => {
   return (
     <div className="rounded-sm p-4 text-black dark:text-white text-sm bg-[#F1F1F5] dark:bg-[#191921]">
       <FilterTitle>Games</FilterTitle>
@@ -45,7 +33,7 @@ export const GamesFilter = ({ games = [] }: GamesFilterProps) => {
                 <Button
                   variant={"outline"}
                   className="cursor-pointer rounded-sm"
-                  onClick={() => handleGameRemovalClick(game.id)}
+                  onClick={() => onGameRemovalClick(game.id)}
                 >
                   <span>✕</span>
                   <Image
@@ -72,7 +60,7 @@ export const GamesFilter = ({ games = [] }: GamesFilterProps) => {
                 <Button
                   variant={"outline"}
                   className="cursor-pointer rounded-sm"
-                  onClick={() => handleGameAddClick(game.id)}
+                  onClick={() => onGameAddClick(game.id)}
                 >
                   <span className="dark:invert">➕</span>
                   <Image
