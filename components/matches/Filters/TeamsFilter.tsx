@@ -19,6 +19,7 @@ import {
 import { TeamWithGame } from "@/lib/types/teams";
 import { InputGroupAddon } from "@/components/ui/input-group";
 import { Search } from "lucide-react";
+import { FilterListItem } from "./FilterListItem";
 
 interface TeamsFilterProps {
   teams: TeamWithGame[];
@@ -75,22 +76,15 @@ const VisibleTeamsList = ({ teams, onTeamClick }: VisibleTeamsListProps) => {
   return (
     <ul className="flex items-center flex-wrap gap-2">
       {teams.map((team) => (
-        <li key={team.id}>
-          <Button
-            variant={"outline"}
-            onClick={() => onTeamClick(team.id)}
-            className="cursor-pointer rounded-sm"
-          >
-            <Image
-              className="dark:invert"
-              src={"/icons/x.png"}
-              alt={`${team.name} logo`}
-              height={20}
-              width={20}
-            />
-            <span>{team.name}</span>
-          </Button>
-        </li>
+        <FilterListItem
+          key={team.id}
+          id={team.id}
+          type={"X"}
+          itemLabel={team.name}
+          itemName={team.name}
+          iconUrl={"/icons/x.png"}
+          onClick={onTeamClick}
+        />
       ))}
     </ul>
   );
