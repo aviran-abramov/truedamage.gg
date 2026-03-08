@@ -23,6 +23,16 @@ export const GamesFilter = ({ games }: GamesFilterProps) => {
     }
   };
 
+  const handleGameAddClick = (gameId: string) => {
+    const clickedGame = unSelectedGames.find((game) => game.id === gameId);
+    if (clickedGame) {
+      setSelectedGames((prevState) => [...prevState, clickedGame]);
+      setUnselectedGames((prevState) =>
+        prevState.filter((g) => g.id !== gameId)
+      );
+    }
+  };
+
   return (
     <div className="rounded-sm p-4 text-black dark:text-white text-sm bg-[#F1F1F5] dark:bg-[#191921]">
       <FilterTitle>Games</FilterTitle>
@@ -62,7 +72,7 @@ export const GamesFilter = ({ games }: GamesFilterProps) => {
                 <Button
                   variant={"outline"}
                   className="cursor-pointer rounded-sm"
-                  onClick={() => handleGameRemovalClick(game.id)}
+                  onClick={() => handleGameAddClick(game.id)}
                 >
                   <span className="dark:invert">➕</span>
                   <Image
