@@ -84,3 +84,43 @@ export const GamesFilter = ({
     </div>
   );
 };
+
+type ButtonType = "X" | "+";
+
+interface FilterListItemProps {
+  id: string;
+  type: ButtonType;
+  itemLabel: string;
+  itemName: string;
+  url?: string;
+  onClick: (itemId: string) => void;
+}
+
+function FilterListItem({
+  id,
+  type,
+  itemLabel,
+  itemName,
+  url,
+  onClick,
+}: FilterListItemProps) {
+  return (
+    <li>
+      <Button
+        variant={"outline"}
+        className="cursor-pointer rounded-sm"
+        onClick={() => onClick(id)}
+      >
+        <span className="dark:invert">{type === "+" ? "➕" : "✕"}</span>
+        <Image
+          className="dark:invert"
+          src={url || "/icons/x.png"}
+          alt={`${itemName} logo`}
+          height={20}
+          width={20}
+        />
+        <span>{itemLabel}</span>
+      </Button>
+    </li>
+  );
+}
