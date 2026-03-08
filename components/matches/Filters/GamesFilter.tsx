@@ -34,7 +34,7 @@ export const GamesFilter = ({
                 type={"X"}
                 itemLabel={game.shortName}
                 itemName={game.name}
-                iconUrl={game.iconUrl ?? undefined}
+                logoUrl={game.iconUrl ?? undefined}
                 onClick={onGameRemovalClick}
               />
             ))}
@@ -53,7 +53,7 @@ export const GamesFilter = ({
                 type={"+"}
                 itemLabel={game.shortName}
                 itemName={game.name}
-                iconUrl={game.iconUrl ?? undefined}
+                logoUrl={game.iconUrl ?? undefined}
                 onClick={onGameAddClick}
               />
             ))}

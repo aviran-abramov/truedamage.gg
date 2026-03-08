@@ -82,7 +82,7 @@ const VisibleTeamsList = ({ teams, onTeamClick }: VisibleTeamsListProps) => {
           type={"X"}
           itemLabel={team.name}
           itemName={team.name}
-          iconUrl={"/icons/x.png"}
+          logoUrl={"/icons/x.png"}
           onClick={onTeamClick}
         />
       ))}

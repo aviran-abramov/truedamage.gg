@@ -8,7 +8,7 @@ interface FilterListItemProps {
   type: ButtonType;
   itemLabel: string;
   itemName: string;
-  iconUrl?: string;
+  logoUrl?: string;
   onClick: (itemId: string) => void;
 }
 
@@ -17,7 +17,7 @@ export function FilterListItem({
   type,
   itemLabel,
   itemName,
-  iconUrl,
+  logoUrl,
   onClick,
 }: FilterListItemProps) {
   return (
@@ -32,7 +32,7 @@ export function FilterListItem({
         </span>
         <Image
           className="dark:invert"
-          src={iconUrl || "/icons/x.png"}
+          src={logoUrl || "/icons/x.png"}
           alt={`${itemName} logo`}
           height={20}
           width={20}
