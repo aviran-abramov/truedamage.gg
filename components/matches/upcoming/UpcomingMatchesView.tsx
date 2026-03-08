@@ -20,6 +20,9 @@ export function UpcomingMatchesView({
 }: UpcomingMatchesViewProps) {
   const [selectedGames, setSelectedGames] = useState(games);
   const [unSelectedGames, setUnselectedGames] = useState<Game[]>([]);
+  const availableMatches = matches.filter((match) =>
+    selectedGames.some((game) => game.id === match.game.id)
+  );
 
   const handleGameRemovalClick = (gameId: string) => {
     const clickedGame = selectedGames.find((game) => game.id === gameId);
@@ -41,7 +44,7 @@ export function UpcomingMatchesView({
 
   return (
     <div className="grid grid-cols-12 gap-4">
-      <MatchPreviewList matches={matches} />
+      <MatchPreviewList matches={availableMatches} />
       <UpcomingMatchesFilters
         games={games}
         selectedGames={selectedGames}
